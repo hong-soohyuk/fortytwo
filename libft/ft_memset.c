@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/08 21:14:57 by soohong           #+#    #+#             */
-/*   Updated: 2022/11/08 22:31:08 by soohong          ###   ########.fr       */
+/*   Created: 2022/11/08 22:18:17 by soohong           #+#    #+#             */
+/*   Updated: 2022/11/08 22:43:27 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isalnum(int c)
-{
-	unsigned char	alnum;
+#include "libft.h"
 
-	alnum = (unsigned char)c;
-	if ((alnum >= '0' && alnum <= '9') || (alnum >= 'A' && alnum <= 'Z')
-		|| (alnum >= 'a' && alnum <= 'z'))
-		return (1);
-	else
-		return (0);
+void	*ft_memset(void *b, int c, size_t len)
+{
+	unsigned char *p;
+
+	p = b;
+	while (--len)
+		*p++ = (unsigned char)c;
+	return (b);
+}
+
+#include <stdio.h>
+int	main(void)
+{
+	char string[] = "hello";
+	printf("%s", ft_memset(string, 'A', 2));
 }

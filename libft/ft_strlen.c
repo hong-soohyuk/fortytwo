@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/08 21:14:57 by soohong           #+#    #+#             */
-/*   Updated: 2022/11/08 22:31:08 by soohong          ###   ########.fr       */
+/*   Created: 2022/11/08 22:14:09 by soohong           #+#    #+#             */
+/*   Updated: 2022/11/08 22:33:21 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isalnum(int c)
+size_t	ft_strlen(const char *s)
 {
-	unsigned char	alnum;
+	size_t length;
 
-	alnum = (unsigned char)c;
-	if ((alnum >= '0' && alnum <= '9') || (alnum >= 'A' && alnum <= 'Z')
-		|| (alnum >= 'a' && alnum <= 'z'))
-		return (1);
-	else
-		return (0);
+	length = 0;
+	while (s[length])
+		length++;
+	return (length);
 }

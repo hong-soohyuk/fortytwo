@@ -6,11 +6,11 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 18:56:00 by soohong           #+#    #+#             */
-/*   Updated: 2022/11/08 21:35:20 by soohong          ###   ########.fr       */
+/*   Updated: 2022/11/08 22:31:14 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	isalpha(int c)
+int	ft_isalpha(int c)
 {
 	unsigned char	alpha;
 
