@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 22:18:17 by soohong           #+#    #+#             */
-/*   Updated: 2022/11/08 22:43:27 by soohong          ###   ########.fr       */
+/*   Updated: 2022/11/09 14:59:27 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,12 @@
 
 void	*ft_memset(void *b, int c, size_t len)
 {
-	unsigned char *p;
+	unsigned char	*p;
+	int				i;
 
 	p = b;
-	while (--len)
-		*p++ = (unsigned char)c;
+	i = -1;
+	while (++i < len)
+		*(p + i) = (unsigned char)c;
 	return (b);
-}
-
-#include <stdio.h>
-int	main(void)
-{
-	char string[] = "hello";
-	printf("%s", ft_memset(string, 'A', 2));
 }

@@ -6,13 +6,15 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 22:14:09 by soohong           #+#    #+#             */
-/*   Updated: 2022/11/08 22:33:21 by soohong          ###   ########.fr       */
+/*   Updated: 2022/11/09 14:58:30 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
 size_t	ft_strlen(const char *s)
 {
-	size_t length;
+	size_t	length;
 
 	length = 0;
 	while (s[length])

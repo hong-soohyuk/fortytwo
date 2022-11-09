@@ -6,11 +6,11 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 22:00:54 by soohong           #+#    #+#             */
-/*   Updated: 2022/11/08 22:13:23 by soohong          ###   ########.fr       */
+/*   Updated: 2022/11/09 14:47:43 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_isprint(int c)
+int	ft_isprint(int c)
 {
 	unsigned char	print;
 
