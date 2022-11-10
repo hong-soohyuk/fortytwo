@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/08 22:43:51 by soohong           #+#    #+#             */
-/*   Updated: 2022/11/10 21:40:02 by soohong          ###   ########.fr       */
+/*   Created: 2022/11/10 21:14:44 by soohong           #+#    #+#             */
+/*   Updated: 2022/11/10 21:39:24 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+size_t	ft_strlcpy(char *restrict dst, const char *restrict src, size_t dstsize)
 {
-	unsigned char	p;
-	int				i;
+	size_t	i;
 
-	p = (unsigned char)s;
-	i = -1;
-	while (++i < n)
-		*(p + i) = 0;
-	return (s);
+	i = 0;
+	while (src[i] != '\0' && i + 1 < size)
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	if (size)
+		dst[i] = '\0';
+	return (ft_strlen(src));
 }
