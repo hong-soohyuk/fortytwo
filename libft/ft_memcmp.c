@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/09 15:04:03 by soohong           #+#    #+#             */
-/*   Updated: 2022/11/11 01:31:10 by soohong          ###   ########.fr       */
+/*   Created: 2022/11/11 01:26:04 by soohong           #+#    #+#             */
+/*   Updated: 2022/11/11 01:33:32 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void	*ft_memcpy(void *restrict dst, const void *restrict src, size_t n)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	int	i;
+	unsigned char	*string1;
+	unsigned char	*string2;
+	int		i;
 
+	string1 = (unsigned char *)s1;
+	string2 = (unsigned char *)s2;
 	i = -1;
 	while (++i < n)
-		*((char *)dst + i) = *((char *)src + i);
-	return (dst);
+		if (string1[i] != string[i])
+			return (string1[i] - string2[i]);
+	return (0);
 }
