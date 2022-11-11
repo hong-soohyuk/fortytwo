@@ -6,11 +6,13 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 21:52:50 by soohong           #+#    #+#             */
-/*   Updated: 2022/11/10 21:56:21 by soohong          ###   ########.fr       */
+/*   Updated: 2022/11/11 14:27:03 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	strcmp(const char *s1, const char *s2, size_t n)
+#include "libft.h"
+
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	unsigned char	*uns1;
 	unsigned char	*uns2;

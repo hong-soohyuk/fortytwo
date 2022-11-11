@@ -6,20 +6,22 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 21:41:10 by soohong           #+#    #+#             */
-/*   Updated: 2022/11/10 21:59:59 by soohong          ###   ########.fr       */
+/*   Updated: 2022/11/11 15:10:34 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 char	*strchr(const char *s, int c)
 {
-	int	i;
+	int		i;
+	char	*pointer;
 
 	i = -1;
-	while (s[++i])
-		if (s[i] == c)
-			return (s + i);
+	pointer = (char *)s;
+	while (pointer[++i])
+		if (pointer[i] == c)
+			return (pointer + i);
 	if (c == '\0')
-		return (s + i);
+		return (pointer + i);
 	else
-		return (0); //NULL or 0
+		return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 02:32:14 by soohong           #+#    #+#             */
-/*   Updated: 2022/11/11 02:37:44 by soohong          ###   ########.fr       */
+/*   Updated: 2022/11/11 14:24:11 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 char	*strdup(const char *s1)
 {
-	int	length;
-	int	i;
+	int		length;
+	int		i;
 	char	*duplicate;
 
 	length = ft_strlen(s1);

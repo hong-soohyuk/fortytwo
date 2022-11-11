@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 02:26:25 by soohong           #+#    #+#             */
-/*   Updated: 2022/11/11 02:31:03 by soohong          ###   ########.fr       */
+/*   Updated: 2022/11/11 15:09:13 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	*ft_calloc(size_t count, size_t size)
 {
 	void	*address;
 
+	if (!count && !size)
+		return (ft_calloc(1, 1));
 	address = malloc(count * size);
 	if (address == 0)
 		return (0);
