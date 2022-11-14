@@ -6,13 +6,13 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 02:32:14 by soohong           #+#    #+#             */
-/*   Updated: 2022/11/11 14:24:11 by soohong          ###   ########.fr       */
+/*   Updated: 2022/11/14 19:52:56 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*strdup(const char *s1)
+char	*ft_strdup(const char *s1)
 {
 	int		length;
 	int		i;

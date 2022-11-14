@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 14:46:12 by soohong           #+#    #+#             */
-/*   Updated: 2022/11/14 16:47:50 by soohong          ###   ########.fr       */
+/*   Updated: 2022/11/14 22:52:56 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ static int	digit_count(long long n)
 	return (count);
 }
 
-static	void	num_to_string(char *result, int start, int max_index, long long n)
+static	void	num_to_string(char *result, int start, int max_i, long long n)
 {
 	int	digit;
 	int	i;
 
-	i = max_index - 1;
+	i = max_i - 1;
 	if (n == 0)
 		result[0] = '0';
 	while (n > 0 && i >= start)
@@ -42,7 +42,7 @@ static	void	num_to_string(char *result, int start, int max_index, long long n)
 		result[i] = digit + '0';
 		i--;
 	}
-	result[max_index] = '\0';
+	result[max_i] = '\0';
 }
 
 char	*ft_itoa(int n)
@@ -65,7 +65,8 @@ char	*ft_itoa(int n)
 	result = (char *)malloc(sizeof(char) * max_index + 1);
 	if (result == 0)
 		return (0);
-	if (negative) {
+	if (negative)
+	{
 		result[0] = '-';
 		num_to_string(result, 1, max_index, value);
 	}

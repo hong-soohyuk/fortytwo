@@ -6,7 +6,7 @@
 #    By: soohong <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/11 12:29:51 by soohong           #+#    #+#              #
-#    Updated: 2022/11/14 15:57:19 by soohong          ###   ########.fr        #
+#    Updated: 2022/11/14 19:51:55 by soohong          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ ft_strlcat.c\
 ft_toupper.c\
 ft_tolower.c\
 ft_strchr.c\
+ft_strdup.c\
 ft_strrchr.c\
 ft_strncmp.c\
 ft_memchr.c\
@@ -38,7 +39,13 @@ ft_memcmp.c\
 ft_strnstr.c\
 ft_calloc.c\
 ft_atoi.c\
-ft_itoa.c
+ft_itoa.c\
+ft_strmapi.c\
+ft_striteri.c\
+ft_putchar_fd.c\
+ft_putstr_fd.c\
+ft_putendl_fd.c\
+ft_putnbr_fd.c
 
 OBJECTS = $(SRC:%.c=%.o)
 

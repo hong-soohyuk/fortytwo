@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 21:22:44 by soohong           #+#    #+#             */
-/*   Updated: 2022/11/14 14:20:22 by soohong          ###   ########.fr       */
+/*   Updated: 2022/11/14 17:46:24 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,4 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 		return (dstsize + src_length);
 	else
 		return (src_length + dst_length);
-	//f (dstsize >= strlen(dst))
 }
