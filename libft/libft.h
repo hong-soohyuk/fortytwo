@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 22:35:53 by soohong           #+#    #+#             */
-/*   Updated: 2022/11/11 15:45:57 by soohong          ###   ########.fr       */
+/*   Updated: 2022/11/14 15:56:54 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,5 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 char	*strrchr(const char *s, int c);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
-
+char	*ft_itoa(int n);
 #endif
