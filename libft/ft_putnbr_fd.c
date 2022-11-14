@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 19:13:57 by soohong           #+#    #+#             */
-/*   Updated: 2022/11/14 22:47:46 by soohong          ###   ########.fr       */
+/*   Updated: 2022/11/14 23:00:58 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	make_output(char result[], int n, int fd, int count)
 	write(fd, result, count);
 }
 
-void	ft_putnr_fd(int n, int fd)
+void	ft_putnbr_fd(int n, int fd)
 {
 	char	result[10];
 
