@@ -6,15 +6,12 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 22:00:54 by soohong           #+#    #+#             */
-/*   Updated: 2022/11/11 14:35:02 by soohong          ###   ########.fr       */
+/*   Updated: 2022/11/14 13:56:48 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_isprint(int c)
 {
-	unsigned char	print;
-
-	print = (unsigned char)c;
 	if (c >= 32 && c <= 126)
 		return (1);
 	else

@@ -6,7 +6,7 @@
 #    By: soohong <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/11 12:29:51 by soohong           #+#    #+#              #
-#    Updated: 2022/11/11 16:08:19 by soohong          ###   ########.fr        #
+#    Updated: 2022/11/14 14:41:32 by soohong          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ ft_strncmp.c\
 ft_memchr.c\
 ft_memcmp.c\
 ft_strnstr.c\
+ft_calloc.c\
 ft_atoi.c
 
 OBJECTS = $(SRC:%.c=%.o)
