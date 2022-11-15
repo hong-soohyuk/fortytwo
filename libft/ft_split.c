@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 14:05:49 by soohong           #+#    #+#             */
-/*   Updated: 2022/11/15 18:01:42 by soohong          ###   ########.fr       */
+/*   Updated: 2022/11/15 19:00:44 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	size_of_table(char *str, char c)
 	i = -1;
 	count = 0;
 	while (str[++i])
-		if (i == 0 || (str[i] != c && str[i - 1] == c)) 
+		if (i == 0 || (str[i] != c && str[i - 1] == c))
 			count++;
 	return (count);
 }
@@ -79,7 +79,7 @@ char	**ft_split(char const *s, char c)
 	int		size;
 
 	str = (char *)s;
-	while (*str == c && *str) 
+	while (*str == c && *str)
 		str++;
 	size = size_of_table(str, c);
 	table = (char **)malloc(sizeof(char *) * (size + 1));
