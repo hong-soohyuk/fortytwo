@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 19:13:57 by soohong           #+#    #+#             */
-/*   Updated: 2022/11/14 23:00:58 by soohong          ###   ########.fr       */
+/*   Updated: 2022/11/15 14:03:42 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,10 @@ void	ft_putnbr_fd(int n, int fd)
 	char	result[10];
 
 	if (n == -2147483648)
+	{
 		write(fd, "-2147483648", 11);
+		return ;
+	}
 	if (n < 0)
 	{
 		write(fd, "-", 1);

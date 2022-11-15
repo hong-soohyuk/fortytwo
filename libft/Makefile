@@ -6,7 +6,7 @@
 #    By: soohong <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/11 12:29:51 by soohong           #+#    #+#              #
-#    Updated: 2022/11/14 22:59:17 by soohong          ###   ########.fr        #
+#    Updated: 2022/11/15 14:09:54 by soohong          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,9 +17,9 @@ CFLAGS = -Wall -Wextra -Werror
 NAME = libft.a
 
 SRC = ft_isalpha.c\
+ft_isdigit.c\
 ft_isalnum.c\
 ft_isascii.c\
-ft_isdigit.c\
 ft_isprint.c\
 ft_strlen.c\
 ft_memset.c\
@@ -31,14 +31,18 @@ ft_strlcat.c\
 ft_toupper.c\
 ft_tolower.c\
 ft_strchr.c\
-ft_strdup.c\
 ft_strrchr.c\
 ft_strncmp.c\
 ft_memchr.c\
 ft_memcmp.c\
 ft_strnstr.c\
-ft_calloc.c\
 ft_atoi.c\
+ft_strdup.c\
+ft_calloc.c\
+ft_substr.c\
+ft_strjoin.c\
+ft_strtrim.c\
+ft_split.c\
 ft_itoa.c\
 ft_strmapi.c\
 ft_striteri.c\

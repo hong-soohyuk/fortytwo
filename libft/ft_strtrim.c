@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:45:13 by soohong           #+#    #+#             */
-/*   Updated: 2022/11/13 19:15:41 by soohong          ###   ########.fr       */
+/*   Updated: 2022/11/15 14:14:44 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ft_left(char const *s1, char const *set)
 int	ft_right(char const *s1, char const *set)
 {
 	int	i;
-	
+
 	i = ft_strlen(s1);
 	while (--i > -1)
 		if (ft_strchr(set, s1[i]) == 0)
@@ -36,11 +36,11 @@ int	ft_right(char const *s1, char const *set)
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	int	left;
-	int	right;
+	int		left;
+	int		right;
 	char	*result;
-	int	i;
-	
+	int		i;
+
 	left = ft_left(s1, set);
 	right = ft_right(s1, set);
 	i = 0;
@@ -57,5 +57,4 @@ char	*ft_strtrim(char const *s1, char const *set)
 		result[i++] = s1[left++];
 	result[i] = '\0';
 	return (result);
-
 }
