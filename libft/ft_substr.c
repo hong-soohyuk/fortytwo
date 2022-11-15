@@ -25,6 +25,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		substring[0] = '\0';
 		return (substring);
 	}
+	if (ft_strlen(s) < start + len)
+		len = ft_strlen(s) - start;
 	substring = (char *)malloc(sizeof(char) * (len + 1));
 	if (substring == 0)
 		return (0);
