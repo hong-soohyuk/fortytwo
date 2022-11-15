@@ -6,23 +6,21 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 21:44:32 by soohong           #+#    #+#             */
-/*   Updated: 2022/11/14 14:43:13 by soohong          ###   ########.fr       */
+/*   Updated: 2022/11/15 11:13:44 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*strrchr(const char *s, int c)
+char	*ft_strrchr(const char *s, int c)
 {
 	int		i;
-	char	*pointer;
 
 	i = ft_strlen(s);
-	pointer = (char *)s;
-	if (c == '\0')
-		return (pointer + i);
+	if ((char)c == '\0')
+		return ((char *)&s[i]);
 	while (--i > -1)
-		if (pointer[i] == c)
-			return (pointer + i);
+		if (s[i] == (char)c)
+			return ((char *)&s[i]);
 	return (0);
 }
