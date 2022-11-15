@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:45:13 by soohong           #+#    #+#             */
-/*   Updated: 2022/11/15 14:14:44 by soohong          ###   ########.fr       */
+/*   Updated: 2022/11/15 19:15:11 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 	if (left == -1 || right == -1)
 	{
 		result = (char *)malloc(1);
+		if (result == 0)
+			return (0);
 		result[0] = '\0';
 		return (result);
 	}
