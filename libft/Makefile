@@ -6,7 +6,7 @@
 #    By: soohong <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/11 12:29:51 by soohong           #+#    #+#              #
-#    Updated: 2022/11/15 21:29:13 by soohong          ###   ########.fr        #
+#    Updated: 2022/11/16 17:16:50 by soohong          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,25 +49,41 @@ ft_striteri.c\
 ft_putchar_fd.c\
 ft_putstr_fd.c\
 ft_putendl_fd.c\
-ft_putnbr_fd.c\
-ft_lstnew.c\
+ft_putnbr_fd.c
+
+BONUS = ft_lstnew.c\
 ft_lstadd_front.c\
 ft_lstsize.c\
 ft_lstlast.c\
-ft_lstadd_back.c
+ft_lstadd_back.c\
+ft_lstdelone.c\
+ft_lstclear.c\
+ft_lstiter.c\
+ft_lstmap.c
 
-OBJECTS = $(SRC:%.c=%.o)
+OBJECT = $(SRC:%.c=%.o)
 
-$(NAME) : $(OBJECTS)
-	@ar -rc $(NAME) $(OBJECTS)
+BONUS_OBJ = $(BONUS:%.c=%.o)
+
+ifdef WITH_BONUS
+	TOTAL_OBJECT = $(OBJECT) $(BONUS_OBJ)
+else
+	TOTAL_OBJECT = $(OBJECT)
+endif
+
+$(NAME) : $(TOTAL_OBJECT)
+	@ar -rc $(NAME) $(TOTAL_OBJECT)
 
 all : $(NAME)
+
+bonus :
+	make WITH_BONUS=1 all
 
 %.o : %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean :
-	rm -f $(OBJECTS)
+	rm -f $(OBJECT) $(BONUS_OBJ)
 
 fclean : clean
 	rm -f $(NAME)
