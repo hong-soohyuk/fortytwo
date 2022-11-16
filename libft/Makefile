@@ -6,7 +6,7 @@
 #    By: soohong <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/11 12:29:51 by soohong           #+#    #+#              #
-#    Updated: 2022/11/16 17:16:50 by soohong          ###   ########.fr        #
+#    Updated: 2022/11/16 17:26:21 by soohong          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,6 +77,7 @@ $(NAME) : $(TOTAL_OBJECT)
 all : $(NAME)
 
 bonus :
+	sleep 1
 	make WITH_BONUS=1 all
 
 %.o : %.c

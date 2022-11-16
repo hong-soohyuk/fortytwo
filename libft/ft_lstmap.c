@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 14:18:33 by soohong           #+#    #+#             */
-/*   Updated: 2022/11/16 16:51:23 by soohong          ###   ########.fr       */
+/*   Updated: 2022/11/16 17:28:38 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	head = 0;
 	while (lst)
 	{
-		new_node = ft_lstnew(f(lst->content)); 
+		new_node = ft_lstnew(f(lst->content));
 		if (new_node == 0)
 		{
 			ft_lstclear(&head, del);
