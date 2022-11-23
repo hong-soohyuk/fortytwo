@@ -6,13 +6,13 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:45:13 by soohong           #+#    #+#             */
-/*   Updated: 2022/11/15 19:15:11 by soohong          ###   ########.fr       */
+/*   Updated: 2022/11/18 01:19:16 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_left(char const *s1, char const *set)
+static int	ft_left(char const *s1, char const *set)
 {
 	int	i;
 
@@ -23,7 +23,7 @@ int	ft_left(char const *s1, char const *set)
 	return (-1);
 }
 
-int	ft_right(char const *s1, char const *set)
+static int	ft_right(char const *s1, char const *set)
 {
 	int	i;
 

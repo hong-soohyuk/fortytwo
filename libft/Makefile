@@ -3,20 +3,20 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: soohong <marvin@42.fr>                     +#+  +:+       +#+         #
+#    By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/11/11 12:29:51 by soohong           #+#    #+#              #
-#    Updated: 2022/11/16 17:26:21 by soohong          ###   ########.fr        #
+#    Created: 2022/11/18 00:27:24 by soohong           #+#    #+#              #
+#    Updated: 2022/11/18 02:15:32 by soohong          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC = clang
+CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror
 
 NAME = libft.a
 
-SRC = ft_isalpha.c\
+SRCS = ft_isalpha.c\
 ft_isdigit.c\
 ft_isalnum.c\
 ft_isascii.c\
@@ -51,7 +51,7 @@ ft_putstr_fd.c\
 ft_putendl_fd.c\
 ft_putnbr_fd.c
 
-BONUS = ft_lstnew.c\
+BONUS_SRCS = ft_lstnew.c\
 ft_lstadd_front.c\
 ft_lstsize.c\
 ft_lstlast.c\
@@ -61,30 +61,29 @@ ft_lstclear.c\
 ft_lstiter.c\
 ft_lstmap.c
 
-OBJECT = $(SRC:%.c=%.o)
+OBJS = $(SRCS:%.c=%.o)
 
-BONUS_OBJ = $(BONUS:%.c=%.o)
+BONUS_OBJS = $(BONUS_SRCS:%.c=%.o)
 
 ifdef WITH_BONUS
-	TOTAL_OBJECT = $(OBJECT) $(BONUS_OBJ)
+	TOTAL_OBJS = $(OBJS) $(BONUS_OBJS)
 else
-	TOTAL_OBJECT = $(OBJECT)
+	TOTAL_OBJS = $(OBJS)
 endif
 
-$(NAME) : $(TOTAL_OBJECT)
-	@ar -rc $(NAME) $(TOTAL_OBJECT)
+$(NAME) : $(TOTAL_OBJS)
+	ar -rc $(NAME) $(TOTAL_OBJS)
 
 all : $(NAME)
 
 bonus :
-	sleep 1
 	make WITH_BONUS=1 all
 
 %.o : %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(FLAGS) -c $< -o $@
 
 clean :
-	rm -f $(OBJECT) $(BONUS_OBJ)
+	rm -f $(OBJS) $(BONUS_OBJS)
 
 fclean : clean
 	rm -f $(NAME)

@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:04:03 by soohong           #+#    #+#             */
-/*   Updated: 2022/11/14 14:31:29 by soohong          ###   ########.fr       */
+/*   Updated: 2022/11/18 01:47:41 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 	i = 0;
 	while (i < n)
 	{
-		*((char *)dst + i) = *((char *)src + i);
+		*((unsigned char *)dst + i) = *((unsigned char *)src + i);
 		i++;
 	}
 	return (dst);
