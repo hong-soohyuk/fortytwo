@@ -36,6 +36,16 @@ static char	*terminate_safely()
 	return (0);
 }
 
+static char	*split_newline(char *buff)
+{
+	size_t	i;
+
+	i = 0;
+	while (buff[i] != '\n' && buff[i] != EOF)
+		i++;
+	return (gnl_strdup(&buff[i + 1]));
+}
+
 char	*get_next_line(int fd)
 {
 	static char	*prev_str;
@@ -55,7 +65,8 @@ char	*get_next_line(int fd)
 	}
 	if (rd_size < 0)
 		return (terminate_safely());
-	//여기서 개행 넘어가는 문자 짤라줘서 prev 에 담기 
+	prev_str = split_newline(buff);
+	free(buff);
 	return (output);
 }
 
@@ -72,15 +83,15 @@ int main(void)
 	if (fd < 0)
 		return (1);
 	line = get_next_line(fd);
-	printf("Sentence: %s", line);
+	printf("Sentence: %s\n", line);
 	line = get_next_line(fd);
-	printf("Sentence: %s", line);
+	printf("Sentence: %s\n", line);
 	line = get_next_line(fd);
-	printf("Sentence: %s", line);
+	printf("Sentence: %s\n", line);
 	line = get_next_line(fd);
-	printf("Sentence: %s", line);
+	printf("Sentence: %s\n", line);
 	line = get_next_line(fd);
-	printf("Sentence: %s", line);
+	printf("Sentence: %s\n", line);
 	free(line);
 	close(fd);
 	return (0);
