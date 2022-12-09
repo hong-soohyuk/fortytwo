@@ -41,7 +41,7 @@ static char	*split_newline(char *buff)
 	size_t	i;
 
 	i = 0;
-	while (buff[i] != '\n' && buff[i] != EOF)
+	while (buff[i] != '\n')
 		i++;
 	return (gnl_strdup(&buff[i + 1]));
 }
@@ -58,15 +58,15 @@ char	*get_next_line(int fd)
 	output = prev_str;
 	buff = init_buffer(BUFFER_SIZE + 1);
 	rd_size = read(fd, buff, BUFFER_SIZE);
+	if (rd_size < 0)
+		return (terminate_safely());
 	while (!(gnl_strchr(buff, '\n')) && rd_size > 0)
 	{
 		output = gnl_strjoin(output, buff);
 		rd_size = read(fd, buff, BUFFER_SIZE);
 	}
-	if (rd_size < 0)
-		return (terminate_safely());
+
 	prev_str = split_newline(buff);
-	free(buff);
 	return (output);
 }
 
