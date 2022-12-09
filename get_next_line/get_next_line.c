@@ -5,43 +5,83 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/29 18:27:15 by soohong           #+#    #+#             */
-/*   Updated: 2022/11/30 13:58:43 by soohong          ###   ########.fr       */
+/*   Created: 2022/12/09 11:19:16 by soohong           #+#    #+#             */
+/*   Updated: 2022/12/09 17:56:22 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-void	initialize_buffer(char *buff, int value, size_t buffer_size)
+static char	*init_buffer(size_t buffer_size)
 {
 	size_t	i;
+	char	*result;
 
 	i = 0;
+	result = (char *)malloc(sizeof(char) * buffer_size);
+	if (result == NULL)
+		return (0);
 	while (i < buffer_size)
 	{
-		buff[i] = value;
-		++i;
+		result[i] = 0;
+		++i; 
 	}
-	return (buff);
+	result[i] = '\0';
+	return (result);
+}
+
+static char	*terminate_safely()
+{
+
+	return (0);
 }
 
 char	*get_next_line(int fd)
 {
-	char	buff[BUFFER_SIZE + 1];
+	static char	*prev_str;
+	char 		*output;
+	char		*buff;
+	int			rd_size;
 
-	initialize_buffer(buff, 0, BUFFER_SIZE + 1);
-	read(fd, buff, length);
-	buff[length] = '\0';
-	return (buff);
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (0);
+	output = prev_str;
+	buff = init_buffer(BUFFER_SIZE + 1);
+	rd_size = read(fd, buff, BUFFER_SIZE);
+	while (!(gnl_strchr(buff, '\n')) && rd_size > 0)
+	{
+		output = gnl_strjoin(output, buff);
+		rd_size = read(fd, buff, BUFFER_SIZE);
+	}
+	if (rd_size < 0)
+		return (terminate_safely());
+	//여기서 개행 넘어가는 문자 짤라줘서 prev 에 담기 
+	return (output);
 }
 
+#include <fcntl.h>
+#include <stdio.h>
+#include <stdlib.h>
 
-int	main(void)
+int main(void)
 {
-	int		fd;
-	char	*result;
-	
-	fd = open("./newfile", O_RDONLY);
-	result = get_next_line(fd);
-	printf("%s", result);
+	int fd;
+	char *line;
+
+	fd = open("newfile", O_RDONLY);
+	if (fd < 0)
+		return (1);
+	line = get_next_line(fd);
+	printf("Sentence: %s", line);
+	line = get_next_line(fd);
+	printf("Sentence: %s", line);
+	line = get_next_line(fd);
+	printf("Sentence: %s", line);
+	line = get_next_line(fd);
+	printf("Sentence: %s", line);
+	line = get_next_line(fd);
+	printf("Sentence: %s", line);
+	free(line);
+	close(fd);
+	return (0);
 }
