@@ -6,93 +6,98 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 11:19:16 by soohong           #+#    #+#             */
-/*   Updated: 2022/12/09 17:56:22 by soohong          ###   ########.fr       */
+/*   Updated: 2022/12/13 17:20:57 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static char	*init_buffer(size_t buffer_size)
+static char	*get_read_line(int fd, char *read_line)
 {
-	size_t	i;
-	char	*result;
+	char	*buffer;
+	int		rd_size;
 
-	i = 0;
-	result = (char *)malloc(sizeof(char) * buffer_size);
-	if (result == NULL)
+	buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (buffer == NULL)
 		return (0);
-	while (i < buffer_size)
+	rd_size = 1;
+	while (!gnl_strchr(buffer, '\n') && rd_size != 0)
 	{
-		result[i] = 0;
-		++i; 
+		rd_size = read(fd, buffer, BUFFER_SIZE);
+		if (rd_size == -1)
+		{
+			free(buffer);
+			buffer = 0;
+			return (0);
+		}
+		buffer[rd_size] = 0;
+		read_line = gnl_strjoin(read_line, buffer);
 	}
-	result[i] = '\0';
-	return (result);
+	free(buffer);
+	return (read_line);
 }
 
-static char	*terminate_safely()
+static char	*get_line(char *read_line)
 {
-
-	return (0);
-}
-
-static char	*split_newline(char *buff)
-{
+	char	*temp;
 	size_t	i;
 
 	i = 0;
-	while (buff[i] != '\n')
-		i++;
-	return (gnl_strdup(&buff[i + 1]));
+	if (read_line == 0)
+		return (0);
+	while (read_line[i] != 0 && read_line[i] != '\n')
+		++i;
+	temp = (char *)malloc(sizeof(char) * (i + 2));
+	if (temp == 0)
+		return (0);
+	i = 0;
+	while (read_line[i] != 0 && read_line[i] != '\n')
+	{
+		temp[i] = read_line[i];
+		++i;
+	}
+	temp[i] = '\0';
+	return (temp);
+}
+
+char	*reset_read_line(char *read_line)
+{
+	char	*temp;
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	while (read_line[i] != 0 && read_line[i] != '\n')
+		++i;
+	if (read_line[i] == 0)
+	{
+		free(read_line);
+		read_line = 0;
+		return (0);
+	}
+	temp = (char *)malloc(sizeof(char) * (gnl_strlen(read_line - i + 1)));
+	if (temp == 0)
+		return (0);
+	++i;
+	j = 0;
+	while (read_line[i] != 0)
+		temp[j++] = read_line[i++];
+	temp[j] = '\0';
+	free(read_line);
+	return (temp);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*prev_str;
-	char 		*output;
-	char		*buff;
-	int			rd_size;
+	static char	*read_line;
+	char		*return_val;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (0);
-	output = prev_str;
-	buff = init_buffer(BUFFER_SIZE + 1);
-	rd_size = read(fd, buff, BUFFER_SIZE);
-	if (rd_size < 0)
-		return (terminate_safely());
-	while (!(gnl_strchr(buff, '\n')) && rd_size > 0)
-	{
-		output = gnl_strjoin(output, buff);
-		rd_size = read(fd, buff, BUFFER_SIZE);
-	}
-
-	prev_str = split_newline(buff);
-	return (output);
-}
-
-#include <fcntl.h>
-#include <stdio.h>
-#include <stdlib.h>
-
-int main(void)
-{
-	int fd;
-	char *line;
-
-	fd = open("newfile", O_RDONLY);
-	if (fd < 0)
-		return (1);
-	line = get_next_line(fd);
-	printf("Sentence: %s\n", line);
-	line = get_next_line(fd);
-	printf("Sentence: %s\n", line);
-	line = get_next_line(fd);
-	printf("Sentence: %s\n", line);
-	line = get_next_line(fd);
-	printf("Sentence: %s\n", line);
-	line = get_next_line(fd);
-	printf("Sentence: %s\n", line);
-	free(line);
-	close(fd);
-	return (0);
+	read_line = get_read_line(fd, read_line);
+	if (read_line == 0)
+		return (0);
+	return_val = get_line(read_line);
+	read_line = reset_read_line(read_line);
+	return (return_val);
 }
