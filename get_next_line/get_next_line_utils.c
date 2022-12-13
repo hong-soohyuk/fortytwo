@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 15:24:03 by soohong           #+#    #+#             */
-/*   Updated: 2022/12/13 17:11:29 by soohong          ###   ########.fr       */
+/*   Updated: 2022/12/13 18:58:10 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ size_t	gnl_strlen(const char *s)
 	return (length);
 }
 
-char	*gnl_strjoin(char const *s1, char const *s2)
+char	*gnl_strjoin(char *s1, char *s2)
 {
 	int		i;
 	int		s1_length;
@@ -30,7 +30,10 @@ char	*gnl_strjoin(char const *s1, char const *s2)
 	char	*result;
 
 	if (s1 == NULL)
-		return (gnl_strdup(s2));
+	{
+		s1 = (char *)malloc(sizeof(char) * 1);
+		s1[0] = '\0';
+	}
 	i = -1;
 	s1_length = gnl_strlen(s1);
 	s2_length = gnl_strlen(s2);
@@ -43,24 +46,8 @@ char	*gnl_strjoin(char const *s1, char const *s2)
 	while (s2[++i])
 		result[i + s1_length] = s2[i];
 	result[i + s1_length] = '\0';
+	free(s1);
 	return (result);
-}
-
-char	*gnl_strdup(const char *s1)
-{
-	int		length;
-	int		i;
-	char	*duplicate;
-
-	length = gnl_strlen(s1);
-	i = -1;
-	duplicate = (char *)malloc(sizeof(char) * (length + 1));
-	if (duplicate == NULL)
-		return (0);
-	while (s1[++i])
-		duplicate[i] = s1[i];
-	duplicate[i] = '\0';
-	return (duplicate);
 }
 
 char	*gnl_strchr(const char *s, int c)
