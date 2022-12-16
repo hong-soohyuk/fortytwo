@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/09 15:24:03 by soohong           #+#    #+#             */
-/*   Updated: 2022/12/13 18:58:10 by soohong          ###   ########.fr       */
+/*   Created: 2022/12/16 14:00:48 by soohong           #+#    #+#             */
+/*   Updated: 2022/12/16 14:00:50 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,16 @@ char	*gnl_strchr(const char *s, int c)
 	if ((char)c == '\0')
 		return ((char *)&s[i]);
 	return (0);
+}
+
+void	*gnl_memset(void *b, int c, size_t len)
+{
+	unsigned char	*p;
+	size_t			i;
+
+	p = b;
+	i = 0;
+	while (i < len)
+		*(p + i++) = (unsigned char)c;
+	return (b);
 }

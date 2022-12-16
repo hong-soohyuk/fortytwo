@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/09 15:23:56 by soohong           #+#    #+#             */
-/*   Updated: 2022/12/13 18:58:14 by soohong          ###   ########.fr       */
+/*   Created: 2022/12/16 14:00:40 by soohong           #+#    #+#             */
+/*   Updated: 2022/12/16 14:00:42 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@ char	*get_next_line(int fd);
 char	*gnl_strjoin(char *s1, char *s2);
 size_t	gnl_strlen(const char *s);
 char	*gnl_strchr(const char *s, int c);
+void	*gnl_memset(void *b, int c, size_t len);
 
 #endif
