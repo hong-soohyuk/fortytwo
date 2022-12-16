@@ -6,13 +6,13 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 14:00:15 by soohong           #+#    #+#             */
-/*   Updated: 2022/12/16 14:15:41 by soohong          ###   ########.fr       */
+/*   Updated: 2022/12/16 14:34:27 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static char	*get_read_line(int fd, char *read_line)
+static char	*get_buffer_read(int fd, char *read_line)
 {
 	char	*buffer;
 	int		rd_size;
@@ -34,6 +34,8 @@ static char	*get_read_line(int fd, char *read_line)
 		}
 		buffer[rd_size] = '\0';
 		read_line = gnl_strjoin(read_line, buffer);
+		if (read_line == NULL)
+			return (0);
 	}
 	free(buffer);
 	return (read_line);
@@ -103,12 +105,9 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (0);
-	read_line = get_read_line(fd, read_line);
+	read_line = get_buffer_read(fd, read_line);
 	if (read_line == NULL)
-	{
-		free(read_line);
 		return (0);
-	}
 	return_val = get_return_val(read_line);
 	read_line = reset_read_line(read_line);
 	return (return_val);
