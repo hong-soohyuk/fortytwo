@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 14:00:15 by soohong           #+#    #+#             */
-/*   Updated: 2022/12/16 14:00:31 by soohong          ###   ########.fr       */
+/*   Updated: 2022/12/16 14:15:41 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ static char	*get_read_line(int fd, char *read_line)
 		rd_size = read(fd, buffer, BUFFER_SIZE);
 		if (rd_size == -1)
 		{
+			if (read_line)
+				free(read_line);
 			free(buffer);
 			return (0);
 		}
@@ -77,12 +79,14 @@ char	*reset_read_line(char *read_line)
 	if (read_line[i] == '\0')
 	{
 		free(read_line);
-		read_line = 0;
 		return (0);
 	}
 	prev = (char *)malloc(sizeof(char) * (gnl_strlen(read_line) - i + 1));
 	if (prev == NULL)
+	{
+		free(read_line);
 		return (0);
+	}
 	++i;
 	j = 0;
 	while (read_line[i] != '\0')
