@@ -96,7 +96,7 @@ char	*reset_read_line(char *read_line)
 
 char	*get_next_line(int fd)
 {
-	static char	*read_line = NULL;
+	static char	*read_line;
 	char		*return_val;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)

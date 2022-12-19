@@ -1,16 +1,52 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 14:00:15 by soohong           #+#    #+#             */
-/*   Updated: 2022/12/19 14:28:02 by soohong          ###   ########.fr       */
+/*   Updated: 2022/12/19 19:06:00 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
+
+static t_fd_node	*terminate(t_fd_node **lst)
+{
+	t_fd_node	*temp;
+
+	if (*lst == 0)
+		return (0);
+	while (*lst)
+	{
+		temp = (*lst)->next;
+		free((*lst)->read_line);
+		free(*lst);
+		*lst = temp;
+	}
+	*lst = 0;
+	return (0);
+}
+
+static t_fd_node	*gnl_lstadd_front(t_fd_node **lst, int fd)
+{
+	t_fd_node	*fd_node;
+
+	if (lst == 0)
+		return (0);
+	fd_node = (t_fd_node *)malloc(sizeof(t_fd_node));
+	if (fd_node == NULL)
+		return (terminate(lst));
+	fd_node->fd = fd;
+	fd_node->read_line = NULL;
+	if (*lst)
+		fd_node->next = *lst;
+	else
+		fd_node->next = 0;
+	*lst = fd_node;
+	return (fd_node);
+}
 
 static char	*get_buffer_read(int fd, char *read_line)
 {
@@ -26,15 +62,11 @@ static char	*get_buffer_read(int fd, char *read_line)
 	{
 		rd_size = read(fd, buffer, BUFFER_SIZE);
 		if (rd_size == -1)
-		{
-			if (read_line)
-				free_return(read_line);
-			return (free_return(buffer));
-		}
+			return (free_return(read_line, buffer));
 		buffer[rd_size] = '\0';
 		read_line = gnl_strjoin(read_line, buffer);
 		if (read_line == NULL)
-			return (free_return(buffer));
+			return (free_return(buffer, NULL));
 	}
 	free(buffer);
 	buffer = 0;
@@ -55,7 +87,7 @@ static char	*get_return_val(char *read_line)
 	byte_for_n = read_line[i] == '\n';
 	return_val = (char *)malloc(sizeof(char) * (i + byte_for_n + 1));
 	if (return_val == NULL)
-		return (free_return(read_line));
+		return (free_return(read_line, NULL));
 	i = -1;
 	if (byte_for_n)
 		while (read_line[++i] != '\n')
@@ -69,42 +101,55 @@ static char	*get_return_val(char *read_line)
 	return (return_val);
 }
 
-char	*reset_read_line(char *read_line)
+char	*reset_read_line(t_fd_node *fd_node)
 {
+	char	*read_line;
 	char	*prev;
 	size_t	i;
 	size_t	j;
 
+	read_line = fd_node->read_line;
 	if (read_line == NULL)
 		return (0);
 	i = 0;
 	while (read_line[i] != '\0' && read_line[i] != '\n')
 		++i;
 	if (read_line[i] == '\0')
-		return (free_return(read_line));
+		return (free_return(read_line, fd_node));
 	prev = (char *)malloc(sizeof(char) * (gnl_strlen(read_line) - i + 1));
 	if (prev == NULL)
-		return (free_return(read_line));
+		return (free_return(read_line, fd_node));
 	++i;
 	j = 0;
 	while (read_line[i] != '\0')
 		prev[j++] = read_line[i++];
 	prev[j] = '\0';
-	free_return(read_line);
+	free_return(read_line, NULL);
 	return (prev);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*read_line = NULL;
-	char		*return_val;
+	static t_fd_node	*fd_list;
+	t_fd_node			*fd_node;
+	char				*return_val;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (0);
-	read_line = get_buffer_read(fd, read_line);
-	if (read_line == NULL)
+	if (fd_list == NULL)
+		fd_node = gnl_lstadd_front(&fd_list, fd);
+	else
+	{
+		fd_node = fd_list;
+		while (fd_node && fd_node->fd != fd)
+				fd_node = fd_node->next;
+		if (fd_node == NULL)
+			fd_node = gnl_lstadd_front(&fd_list, fd);
+	}
+	fd_node->read_line = get_buffer_read(fd_node->fd, fd_node->read_line);
+	if (fd_node->read_line == NULL)
 		return (0);
-	return_val = get_return_val(read_line);
-	read_line = reset_read_line(read_line);
+	return_val = get_return_val(fd_node->read_line);
+	fd_node->read_line = reset_read_line(fd_node);
 	return (return_val);
 }

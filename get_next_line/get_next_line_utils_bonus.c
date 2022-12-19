@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 14:00:48 by soohong           #+#    #+#             */
-/*   Updated: 2022/12/19 14:32:17 by soohong          ###   ########.fr       */
+/*   Updated: 2022/12/19 19:07:00 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
-char	*free_return(void *memory)
+char	*free_return(void *mem1, void *mem2)
 {
-	if (memory)
+	if (mem1)
 	{
-		free(memory);
-		memory = NULL;
+		free(mem1);
+		mem1 = NULL;
+	}
+	if (mem2)
+	{
+		free(mem2);
+		mem2 = NULL;
 	}
 	return (0);
 }
@@ -50,7 +55,7 @@ char	*gnl_strjoin(char *s1, char *s2)
 	s1_length = gnl_strlen(s1);
 	result = (char *)malloc(sizeof(char) * (s1_length + gnl_strlen(s2) + 1));
 	if (result == NULL)
-		return (free_return(s1));
+		return (free_return(s1, NULL));
 	while (s1[++i])
 		result[i] = s1[i];
 	i = -1;
