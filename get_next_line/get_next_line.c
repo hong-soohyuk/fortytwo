@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 14:00:15 by soohong           #+#    #+#             */
-/*   Updated: 2022/12/16 14:34:27 by soohong          ###   ########.fr       */
+/*   Updated: 2022/12/19 14:28:02 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,22 @@ static char	*get_buffer_read(int fd, char *read_line)
 		if (rd_size == -1)
 		{
 			if (read_line)
-				free(read_line);
-			free(buffer);
-			return (0);
+				free_return(read_line);
+			return (free_return(buffer));
 		}
 		buffer[rd_size] = '\0';
 		read_line = gnl_strjoin(read_line, buffer);
 		if (read_line == NULL)
-			return (0);
+			return (free_return(buffer));
 	}
 	free(buffer);
+	buffer = 0;
 	return (read_line);
 }
 
 static char	*get_return_val(char *read_line)
 {
+	int		byte_for_n;
 	char	*return_val;
 	size_t	i;
 
@@ -51,20 +52,19 @@ static char	*get_return_val(char *read_line)
 		return (0);
 	while (read_line[i] != '\0' && read_line[i] != '\n')
 		++i;
-	return_val = (char *)malloc(sizeof(char) * (i + 2));
+	byte_for_n = read_line[i] == '\n';
+	return_val = (char *)malloc(sizeof(char) * (i + byte_for_n + 1));
 	if (return_val == NULL)
-		return (0);
-	i = 0;
-	while (read_line[i] != '\0' && read_line[i] != '\n')
-	{
-		return_val[i] = read_line[i];
-		++i;
-	}
-	if (read_line[i] == '\n')
-	{
-		return_val[i] = read_line[i];
-		++i;
-	}
+		return (free_return(read_line));
+	i = -1;
+	if (byte_for_n)
+		while (read_line[++i] != '\n')
+			return_val[i] = read_line[i];
+	else
+		while (read_line[++i] != '\0')
+			return_val[i] = read_line[i];
+	if (byte_for_n)
+		return_val[i++] = '\n';
 	return_val[i] = '\0';
 	return (return_val);
 }
@@ -75,32 +75,28 @@ char	*reset_read_line(char *read_line)
 	size_t	i;
 	size_t	j;
 
+	if (read_line == NULL)
+		return (0);
 	i = 0;
 	while (read_line[i] != '\0' && read_line[i] != '\n')
 		++i;
 	if (read_line[i] == '\0')
-	{
-		free(read_line);
-		return (0);
-	}
+		return (free_return(read_line));
 	prev = (char *)malloc(sizeof(char) * (gnl_strlen(read_line) - i + 1));
 	if (prev == NULL)
-	{
-		free(read_line);
-		return (0);
-	}
+		return (free_return(read_line));
 	++i;
 	j = 0;
 	while (read_line[i] != '\0')
 		prev[j++] = read_line[i++];
 	prev[j] = '\0';
-	free(read_line);
+	free_return(read_line);
 	return (prev);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*read_line;
+	static char	*read_line = NULL;
 	char		*return_val;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
@@ -112,39 +108,3 @@ char	*get_next_line(int fd)
 	read_line = reset_read_line(read_line);
 	return (return_val);
 }
-//int main(void)
-//{
-//	int fd;
-//	char *line;
-//
-//	fd = open("newfile", O_RDONLY);
-//	if (fd < 0)
-//		return (1);
-//	line = get_next_line(fd);
-//	printf("Sentence: %s", line);
-//	line = get_next_line(fd);
-//	printf("Sentence: %s", line);
-//	line = get_next_line(fd);
-//	printf("Sentence: %s", line);
-//	line = get_next_line(fd);
-//	printf("Sentence: %s", line);
-//	line = get_next_line(fd);
-//	printf("Sentence: %s", line);
-//	line = get_next_line(fd);
-//	printf("Sentence: %s", line);
-//	line = get_next_line(fd);
-//	printf("Sentence: %s", line);
-//	line = get_next_line(fd);
-//	printf("Sentence: %s", line);
-//	line = get_next_line(fd);
-//	printf("Sentence: %s", line);
-//	line = get_next_line(fd);
-//	printf("Sentence: %s", line);
-//	line = get_next_line(fd);
-//	printf("Sentence: %s", line);
-//	line = get_next_line(fd);
-//	printf("Sentence: %s", line);
-//	free(line);
-//	close(fd);
-//	return (0);
-//}
