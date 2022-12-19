@@ -93,15 +93,21 @@ char	*reset_read_line(t_fd_node **fd_list, t_fd_node *fd_node)
 
 	read_line = fd_node->read_line;
 	if (read_line == NULL)
-		return (0);
+		return (deleteNode(fd_list, fd_node));
 	i = 0;
 	while (read_line[i] != '\0' && read_line[i] != '\n')
 		++i;
 	if (read_line[i] == '\0')
+	{
+		free(read_line);
 		return (deleteNode(fd_list, fd_node));
+	}
 	prev = (char *)malloc(sizeof(char) * (gnl_strlen(read_line) - i + 1));
 	if (prev == NULL)
+	{
+		free(read_line);
 		return (deleteNode(fd_list, fd_node));
+	}
 	++i;
 	j = 0;
 	while (read_line[i] != '\0')
