@@ -27,6 +27,5 @@ char	*free_return(void *memory);
 size_t	gnl_strlen(const char *s);
 char	*gnl_strjoin(char *s1, char *s2);
 char	*gnl_strchr(const char *s, int c);
-void	*gnl_memset(void *b, int c, size_t len);
 
 #endif

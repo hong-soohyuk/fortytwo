@@ -12,23 +12,6 @@
 
 #include "get_next_line_bonus.h"
 
-static t_fd_node	*terminate(t_fd_node **lst)
-{
-	t_fd_node	*temp;
-
-	if (*lst == 0)
-		return (0);
-	while (*lst)
-	{
-		temp = (*lst)->next;
-		free((*lst)->read_line);
-		free(*lst);
-		*lst = temp;
-	}
-	*lst = 0;
-	return (0);
-}
-
 static t_fd_node	*gnl_lstadd_front(t_fd_node **lst, int fd)
 {
 	t_fd_node	*fd_node;
@@ -37,7 +20,7 @@ static t_fd_node	*gnl_lstadd_front(t_fd_node **lst, int fd)
 		return (0);
 	fd_node = (t_fd_node *)malloc(sizeof(t_fd_node));
 	if (fd_node == NULL)
-		return (terminate(lst));
+		return (0);
 	fd_node->fd = fd;
 	fd_node->read_line = NULL;
 	if (*lst)
@@ -56,7 +39,7 @@ static char	*get_buffer_read(int fd, char *read_line)
 	buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (buffer == NULL)
 		return (0);
-	gnl_memset(buffer, 0, BUFFER_SIZE);
+	buffer[0] = 0;
 	rd_size = -1;
 	while (!gnl_strchr(buffer, '\n') && rd_size != 0)
 	{
@@ -101,7 +84,7 @@ static char	*get_return_val(char *read_line)
 	return (return_val);
 }
 
-char	*reset_read_line(t_fd_node *fd_node)
+char	*reset_read_line(t_fd_node **fd_list, t_fd_node *fd_node)
 {
 	char	*read_line;
 	char	*prev;
@@ -115,10 +98,10 @@ char	*reset_read_line(t_fd_node *fd_node)
 	while (read_line[i] != '\0' && read_line[i] != '\n')
 		++i;
 	if (read_line[i] == '\0')
-		return (free_return(read_line, fd_node));
+		return (deleteNode(fd_list, fd_node));
 	prev = (char *)malloc(sizeof(char) * (gnl_strlen(read_line) - i + 1));
 	if (prev == NULL)
-		return (free_return(read_line, fd_node));
+		return (deleteNode(fd_list, fd_node));
 	++i;
 	j = 0;
 	while (read_line[i] != '\0')
@@ -150,6 +133,6 @@ char	*get_next_line(int fd)
 	if (fd_node->read_line == NULL)
 		return (0);
 	return_val = get_return_val(fd_node->read_line);
-	fd_node->read_line = reset_read_line(fd_node);
+	fd_node->read_line = reset_read_line(&fd_list, fd_node);
 	return (return_val);
 }

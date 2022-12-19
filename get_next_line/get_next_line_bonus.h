@@ -29,11 +29,11 @@ typedef struct s_fd_node
 	struct s_fd_node	*next;
 }	t_fd_node;
 
-char		*get_next_line(int fd);
-char		*free_return(void *mem1, void *mem2);
-size_t		gnl_strlen(const char *s);
-char		*gnl_strjoin(char *s1, char *s2);
-char		*gnl_strchr(const char *s, int c);
-void		*gnl_memset(void *b, int c, size_t len);
+char	*get_next_line(int fd);
+char	*free_return(void *mem1, void *mem2);
+size_t	gnl_strlen(const char *s);
+char	*gnl_strjoin(char *s1, char *s2);
+char	*gnl_strchr(const char *s, int c);
+char	*deleteNode(t_fd_node **head, t_fd_node *node);
 
 #endif

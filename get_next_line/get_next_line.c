@@ -20,7 +20,7 @@ static char	*get_buffer_read(int fd, char *read_line)
 	buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (buffer == NULL)
 		return (0);
-	gnl_memset(buffer, 0, BUFFER_SIZE);
+	buffer[0] = 0;
 	rd_size = -1;
 	while (!gnl_strchr(buffer, '\n') && rd_size != 0)
 	{

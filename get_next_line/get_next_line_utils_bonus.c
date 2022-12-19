@@ -14,6 +14,7 @@
 
 char	*free_return(void *mem1, void *mem2)
 {
+
 	if (mem1)
 	{
 		free(mem1);
@@ -79,14 +80,35 @@ char	*gnl_strchr(const char *s, int c)
 	return (0);
 }
 
-void	*gnl_memset(void *b, int c, size_t len)
+char	*deleteNode(t_fd_node **head, t_fd_node *node)
 {
-	unsigned char	*p;
-	size_t			i;
-
-	p = b;
-	i = 0;
-	while (i < len)
-		*(p + i++) = (unsigned char)c;
-	return (b);
+	t_fd_node *temp;
+	//key found on the head node.
+	//move to head node to the next and free the head.
+	if ((*head)->fd == node->fd)
+	{
+		temp = *head;    //backup to free the memory
+		*head = (*head)->next;
+		free(temp);
+	}
+	else
+	{
+		t_fd_node *current = *head;
+		while(current->next != NULL)
+		{
+			//if yes, we need to delete the current->next node
+			if(current->next->fd == node->fd)
+			{
+				temp = current->next;
+				//node will be disconnected from the linked list.
+				current->next = current->next->next;
+				free(temp);
+				break;
+			}
+			//Otherwise, move the current node and proceed
+			else
+				current = current->next;
+		}
+	}
+	return (0);
 }
