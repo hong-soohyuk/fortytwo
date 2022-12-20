@@ -51,8 +51,7 @@ static char	*get_buffer_read(int fd, char *read_line)
 		if (read_line == NULL)
 			return (free_return(buffer, NULL));
 	}
-	free(buffer);
-	buffer = 0;
+	free_return(buffer, NULL);
 	return (read_line);
 }
 
@@ -84,7 +83,7 @@ static char	*get_return_val(char *read_line)
 	return (return_val);
 }
 
-char	*reset_read_line(t_fd_node **fd_list, t_fd_node *fd_node)
+void	reset_read_line(t_fd_node **fd_list, t_fd_node *fd_node)
 {
 	char	*read_line;
 	char	*prev;
@@ -93,20 +92,25 @@ char	*reset_read_line(t_fd_node **fd_list, t_fd_node *fd_node)
 
 	read_line = fd_node->read_line;
 	if (read_line == NULL)
-		return (deleteNode(fd_list, fd_node));
+	{
+		deleteNode(fd_list, fd_node);
+		return ;
+	}
 	i = 0;
 	while (read_line[i] != '\0' && read_line[i] != '\n')
 		++i;
 	if (read_line[i] == '\0')
 	{
-		free(read_line);
-		return (deleteNode(fd_list, fd_node));
+		free_return(read_line, NULL);
+		deleteNode(fd_list, fd_node);
+		return ;
 	}
 	prev = (char *)malloc(sizeof(char) * (gnl_strlen(read_line) - i + 1));
 	if (prev == NULL)
 	{
-		free(read_line);
-		return (deleteNode(fd_list, fd_node));
+		free_return(read_line, NULL);
+		deleteNode(fd_list, fd_node);
+		return ;
 	}
 	++i;
 	j = 0;
@@ -114,7 +118,8 @@ char	*reset_read_line(t_fd_node **fd_list, t_fd_node *fd_node)
 		prev[j++] = read_line[i++];
 	prev[j] = '\0';
 	free_return(read_line, NULL);
-	return (prev);
+	fd_node->read_line = prev;
+	return ;
 }
 
 char	*get_next_line(int fd)
@@ -137,8 +142,14 @@ char	*get_next_line(int fd)
 	}
 	fd_node->read_line = get_buffer_read(fd_node->fd, fd_node->read_line);
 	if (fd_node->read_line == NULL)
-		return (0);
+		return (deleteNode(&fd_list, fd_node));
 	return_val = get_return_val(fd_node->read_line);
-	fd_node->read_line = reset_read_line(&fd_list, fd_node);
+	if (return_val)
+		reset_read_line(&fd_list, fd_node);
+	else
+	{
+		free_return(fd_node->read_line, NULL);
+		return (deleteNode(&fd_list, fd_node));
+	}
 	return (return_val);
 }
