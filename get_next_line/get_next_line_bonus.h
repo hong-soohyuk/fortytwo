@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 14:00:40 by soohong           #+#    #+#             */
-/*   Updated: 2022/12/19 18:58:43 by soohong          ###   ########.fr       */
+/*   Updated: 2022/12/20 14:34:33 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ typedef struct s_fd_node
 }	t_fd_node;
 
 char	*get_next_line(int fd);
-char	*free_return(void *mem1, void *mem2);
+char	*free_return(t_fd_node **lst, t_fd_node *node, void *mem1, void *mem2);
 size_t	gnl_strlen(const char *s);
 char	*gnl_strjoin(char *s1, char *s2);
 char	*gnl_strchr(const char *s, int c);
-char	*deleteNode(t_fd_node **head, t_fd_node *node);
+void	delete_node(t_fd_node **head, t_fd_node *node);
 
 #endif

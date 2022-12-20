@@ -6,15 +6,14 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 14:00:48 by soohong           #+#    #+#             */
-/*   Updated: 2022/12/19 19:07:00 by soohong          ###   ########.fr       */
+/*   Updated: 2022/12/20 14:38:04 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-char	*free_return(void *mem1, void *mem2)
+char	*free_return(t_fd_node **lst, t_fd_node *node, void *mem1, void *mem2)
 {
-
 	if (mem1)
 	{
 		free(mem1);
@@ -25,6 +24,8 @@ char	*free_return(void *mem1, void *mem2)
 		free(mem2);
 		mem2 = NULL;
 	}
+	if (lst && node)
+		delete_node(lst, node);
 	return (0);
 }
 
@@ -56,7 +57,7 @@ char	*gnl_strjoin(char *s1, char *s2)
 	s1_length = gnl_strlen(s1);
 	result = (char *)malloc(sizeof(char) * (s1_length + gnl_strlen(s2) + 1));
 	if (result == NULL)
-		return (free_return(s1, NULL));
+		return (free_return(NULL, NULL, s1, NULL));
 	while (s1[++i])
 		result[i] = s1[i];
 	i = -1;
@@ -80,35 +81,31 @@ char	*gnl_strchr(const char *s, int c)
 	return (0);
 }
 
-char	*deleteNode(t_fd_node **head, t_fd_node *node)
+void	delete_node(t_fd_node **head, t_fd_node *node)
 {
-	t_fd_node *temp;
-	//key found on the head node.
-	//move to head node to the next and free the head.
+	t_fd_node	*temp;
+	t_fd_node	*current;
+
 	if ((*head)->fd == node->fd)
 	{
-		temp = *head;    //backup to free the memory
+		temp = *head;
 		*head = (*head)->next;
 		free(temp);
 	}
 	else
 	{
-		t_fd_node *current = *head;
-		while(current->next != NULL)
+		current = *head;
+		while (current->next != NULL)
 		{
-			//if yes, we need to delete the current->next node
-			if(current->next->fd == node->fd)
+			if (current->next->fd == node->fd)
 			{
 				temp = current->next;
-				//node will be disconnected from the linked list.
 				current->next = current->next->next;
 				free(temp);
-				break;
+				break ;
 			}
-			//Otherwise, move the current node and proceed
 			else
 				current = current->next;
 		}
 	}
-	return (0);
 }
