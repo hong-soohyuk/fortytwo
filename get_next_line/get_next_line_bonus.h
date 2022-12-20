@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 14:00:40 by soohong           #+#    #+#             */
-/*   Updated: 2022/12/20 14:34:33 by soohong          ###   ########.fr       */
+/*   Updated: 2022/12/20 20:50:56 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@
 # endif
 
 # include <stdlib.h>
-# include <stdio.h>
-# include <fcntl.h>
 # include <unistd.h>
 
 typedef struct s_fd_node
