@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 19:37:03 by soohong           #+#    #+#             */
-/*   Updated: 2022/12/20 20:48:56 by soohong          ###   ########.fr       */
+/*   Updated: 2022/12/21 12:25:54 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,35 @@
 
 int	print_by_format(va_list arg_pointer, char format)
 {
+	int	length;
+
+	length = 0;
 	if (format == 'c')
-		return (ft_putchar(va_arg(arg_pointer, int)));
+		length += ft_putchar(va_arg(arg_pointer, int));
 	else if (format == 's')
-		return (ft_putstr(va_arg(arg_pointer, char *)));
+		length += (ft_putstr(va_arg(arg_pointer, char *)));
 	else if (format == 'p')
-		return (0);
-	else if (format == 'd')
-		return (ft_putnbr_base(va_arg(arg_pointer, int), "0123456789"));
-	else if (format == 'i')
-		return (ft_putnbr_base(va_arg(arg_pointer, int), "0123456789"));
+	{
+		length += ft_putstr("0x");
+		length += ft_putnbr_base(
+				(unsigned long long)va_arg(arg_pointer, void *),
+				"0123456789abcdef");
+	}
+	else if (format == 'd' || format == 'i')
+		length += (ft_putnbr_base(va_arg(arg_pointer, int), "0123456789"));
 	else if (format == 'u')
-		return (ft_putnbr_base((long long)va_arg(arg_pointer, unsigned int), "0123456789"));
+		length += (ft_putnbr_base(
+					(long long)va_arg(arg_pointer, unsigned int),
+					"0123456789"));
 	else if (format == 'x')
-		return (ft_putnbr_base(va_arg(arg_pointer, int), "0123456789"));
+		length += (ft_putnbr_base(va_arg(arg_pointer, unsigned int),
+					"0123456789abcdef"));
 	else if (format == 'X')
-		return (ft_putnbr_base(va_arg(arg_pointer, int), "0123456789"));
+		length += (ft_putnbr_base(va_arg(arg_pointer, unsigned int),
+					"0123456789ABCDEF"));
 	else if (format == '%')
-		return (write(1, &"%", 1));
-	else
-		return (0);
+		length += (write(1, &"%", 1));
+	return (length);
 }
 
 int	ft_printf(const char *string, ...)
@@ -59,14 +68,15 @@ int	ft_printf(const char *string, ...)
 	return (len_printed);
 }
 
-#include <stdio.h>
-
-int main ()
-{
-	unsigned int i = 4294967295;
-	unsigned int j = 1;
-	ft_printf("mine:	%u\n", j);
-	printf("printf:	%u\n", i);
-	return(0);
-
-}
+//#include <stdio.h>
+//
+//int main ()
+//{
+//	int i = -5;
+//	ft_printf("mine:	%x\n", i);
+//	printf("printf:	%x\n", i);
+//	ft_printf("mine:	%X\n", i);
+//	printf("printf:	%X\n", i);
+//	return (0);
+//
+//}

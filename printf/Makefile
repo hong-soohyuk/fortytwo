@@ -6,7 +6,7 @@
 #    By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/20 15:58:18 by soohong           #+#    #+#              #
-#    Updated: 2022/12/20 16:15:10 by soohong          ###   ########.fr        #
+#    Updated: 2022/12/21 12:20:14 by soohong          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ FLAG = -Wall -Wextra -Werror
 NAME = libftprintf.a
 
 SRC = ft_printf.c\
-	  ft_~~.c\
+      ft_printf_utils.c\
+      ft_putnbr_base.c
 
 OBJ = $(SRC:%.c=%.o)
 
@@ -30,12 +31,12 @@ all : $(NAME)
 	$(GCC) $(FLAG) -c $< -o $@
 
 clean :
-	re -f $(OBJ)
+	rm -f $(OBJ)
 
 fclean : clean
 	rm -f $(NAME)
 
-re : fclean all
+re: fclean all
 
 .PHONY : libftprintf.a
 
