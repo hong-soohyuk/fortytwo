@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 19:37:03 by soohong           #+#    #+#             */
-/*   Updated: 2022/12/21 12:25:54 by soohong          ###   ########.fr       */
+/*   Updated: 2022/12/21 14:38:24 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,8 @@ int	print_by_format(va_list arg_pointer, char format)
 	else if (format == 's')
 		length += (ft_putstr(va_arg(arg_pointer, char *)));
 	else if (format == 'p')
-	{
-		length += ft_putstr("0x");
-		length += ft_putnbr_base(
-				(unsigned long long)va_arg(arg_pointer, void *),
-				"0123456789abcdef");
-	}
+		length += ft_print_address(
+				(unsigned long long)va_arg(arg_pointer, void *));
 	else if (format == 'd' || format == 'i')
 		length += (ft_putnbr_base(va_arg(arg_pointer, int), "0123456789"));
 	else if (format == 'u')
@@ -67,16 +63,3 @@ int	ft_printf(const char *string, ...)
 	va_end(arg_pointer);
 	return (len_printed);
 }
-
-//#include <stdio.h>
-//
-//int main ()
-//{
-//	int i = -5;
-//	ft_printf("mine:	%x\n", i);
-//	printf("printf:	%x\n", i);
-//	ft_printf("mine:	%X\n", i);
-//	printf("printf:	%X\n", i);
-//	return (0);
-//
-//}

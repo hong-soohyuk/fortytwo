@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 16:07:34 by soohong           #+#    #+#             */
-/*   Updated: 2022/12/21 12:00:16 by soohong          ###   ########.fr       */
+/*   Updated: 2022/12/21 14:21:27 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,6 @@ int	ft_printf(const char *string, ...);
 int	ft_putchar(int c);
 int	ft_putstr(char *s);
 int	ft_putnbr_base(long long long_nbr, char *base);
+int	ft_print_address(unsigned long long address);
 
 #endif

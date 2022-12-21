@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 19:50:21 by soohong           #+#    #+#             */
-/*   Updated: 2022/12/21 12:00:11 by soohong          ###   ########.fr       */
+/*   Updated: 2022/12/21 14:27:22 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int	ft_putstr(char *s)
 {
 	int	length;
 
+	if (s == NULL)
+		return (write(1, &"(null)", 6));
 	length = (int)ft_strlen(s);
 	write(1, s, length);
 	return (length);

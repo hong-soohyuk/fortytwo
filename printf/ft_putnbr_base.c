@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 20:22:45 by soohong           #+#    #+#             */
-/*   Updated: 2022/12/20 20:42:25 by soohong          ###   ########.fr       */
+/*   Updated: 2022/12/21 14:38:11 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,14 @@ static int	base_check(char *base)
 	return (i);
 }
 
-static void	calc_base(long long nbr, long long length, char *base, int *len_printed)
+static void	calc_base(unsigned long long nbr, int len, char *b, int *len_p)
 {
-	if (nbr >= length)
-		calc_base(nbr / length, length, base, len_printed);
-	*len_printed += write(1, &base[nbr % length], 1);
+	unsigned long long	ull;
+
+	ull = (unsigned long long)len;
+	if (nbr >= ull)
+		calc_base(nbr / ull, len, b, len_p);
+	*len_p += write(1, &b[nbr % ull], 1);
 }
 
 int	ft_putnbr_base(long long long_nbr, char *base)
@@ -58,7 +61,18 @@ int	ft_putnbr_base(long long long_nbr, char *base)
 			len_printed += write(1, "-", 1);
 			long_nbr *= -1;
 		}
-		calc_base(long_nbr, (long long)length, base, &len_printed);
+		calc_base(long_nbr, length, base, &len_printed);
 	}
+	return (len_printed);
+}
+
+int	ft_print_address(unsigned long long address)
+{
+	int	len_printed;
+
+	len_printed = ft_putstr("0x");
+	if (address == 0)
+		return (len_printed + write(1, &"0", 1));
+	calc_base(address, 16, "0123456789abcdef", &len_printed);
 	return (len_printed);
 }
