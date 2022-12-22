@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 19:37:03 by soohong           #+#    #+#             */
-/*   Updated: 2022/12/22 18:07:27 by soohong          ###   ########.fr       */
+/*   Updated: 2022/12/22 18:34:57 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,3 @@ int	ft_printf(const char *string, ...)
 	va_end(arg_pointer);
 	return (len_printed);
 }
-//
-//#include <stdio.h>
-//
-//int main ()
-//{
-//	//printf("%d",printf("%x", -10));
-//	//printf("%d",ft_printf("%x", -10));
-//	ft_printf("%x\n", -1);
-//	printf("%x\n", -1);
-//
-//}
