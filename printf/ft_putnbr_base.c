@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 20:22:45 by soohong           #+#    #+#             */
-/*   Updated: 2022/12/22 18:26:08 by soohong          ###   ########.fr       */
+/*   Updated: 2022/12/22 18:34:03 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int	base_check(char *base)
 static int	calc_base(unsigned long long nbr, int len, char *b, int *len_p)
 {
 	unsigned long long	ull;
-	int			write_val;
+	int					write_val;
 
 	ull = (unsigned long long)len;
 	write_val = 0;
