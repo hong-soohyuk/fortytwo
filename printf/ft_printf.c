@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 19:37:03 by soohong           #+#    #+#             */
-/*   Updated: 2022/12/22 18:34:57 by soohong          ###   ########.fr       */
+/*   Updated: 2022/12/22 18:44:54 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@ int	print_by_format(va_list arg_pointer, char format)
 	else if (format == 'd' || format == 'i')
 		return (ft_putnbr_base(va_arg(arg_pointer, int), "0123456789"));
 	else if (format == 'u')
-		return (ft_putnbr_base(
-				(long long)va_arg(arg_pointer, unsigned int),
+		return (ft_putnbr_base(va_arg(arg_pointer, unsigned int),
 				"0123456789"));
 	else if (format == 'x')
 		return (ft_putnbr_base(va_arg(arg_pointer, unsigned int),

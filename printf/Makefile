@@ -6,7 +6,7 @@
 #    By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/20 15:58:18 by soohong           #+#    #+#              #
-#    Updated: 2022/12/21 15:22:46 by soohong          ###   ########.fr        #
+#    Updated: 2022/12/23 19:51:33 by soohong          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,4 +38,4 @@ fclean : clean
 
 re: fclean all
 
-.PHONY : all bonus clean fclean re
+.PHONY : all clean fclean re
