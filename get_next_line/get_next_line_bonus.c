@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 14:00:15 by soohong           #+#    #+#             */
-/*   Updated: 2022/12/20 20:52:12 by soohong          ###   ########.fr       */
+/*   Updated: 2022/12/23 19:35:11 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static t_fd_node	*gnl_lstadd_front(t_fd_node **lst, int fd)
 {
 	t_fd_node	*fd_node;
 
-	if (lst == 0)
+	if (lst == NULL)
 		return (0);
 	fd_node = (t_fd_node *)malloc(sizeof(t_fd_node));
 	if (fd_node == NULL)
@@ -26,7 +26,7 @@ static t_fd_node	*gnl_lstadd_front(t_fd_node **lst, int fd)
 	if (*lst)
 		fd_node->next = *lst;
 	else
-		fd_node->next = 0;
+		fd_node->next = NULL;
 	*lst = fd_node;
 	return (fd_node);
 }
@@ -39,7 +39,7 @@ static char	*get_buffer_read(int fd, char *read_line)
 	buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (buffer == NULL)
 		return (0);
-	buffer[0] = 0;
+	buffer[0] = '\0';
 	rd_size = -1;
 	while (!gnl_strchr(buffer, '\n') && rd_size != 0)
 	{
@@ -91,8 +91,6 @@ char	*reset_read_line(t_fd_node **fd_list, t_fd_node *fd_node)
 	size_t	j;
 
 	read_line = fd_node->read_line;
-	if (read_line == NULL)
-		return (free_return(fd_list, fd_node, NULL, NULL));
 	i = 0;
 	while (read_line[i] != '\0' && read_line[i] != '\n')
 		++i;
@@ -133,9 +131,8 @@ char	*get_next_line(int fd)
 	if (fd_node->read_line == NULL)
 		return (free_return(&fd_list, fd_node, NULL, NULL));
 	return_val = get_return_val(fd_node->read_line);
-	if (return_val)
-		reset_read_line(&fd_list, fd_node);
-	else
+	if (return_val == NULL)
 		return (free_return(&fd_list, fd_node, fd_node->read_line, NULL));
+	reset_read_line(&fd_list, fd_node);
 	return (return_val);
 }

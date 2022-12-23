@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 14:00:15 by soohong           #+#    #+#             */
-/*   Updated: 2022/12/19 14:28:02 by soohong          ###   ########.fr       */
+/*   Updated: 2022/12/23 19:31:13 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static char	*get_buffer_read(int fd, char *read_line)
 	buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (buffer == NULL)
 		return (0);
-	buffer[0] = 0;
+	buffer[0] = '\0';
 	rd_size = -1;
 	while (!gnl_strchr(buffer, '\n') && rd_size != 0)
 	{
@@ -36,8 +36,7 @@ static char	*get_buffer_read(int fd, char *read_line)
 		if (read_line == NULL)
 			return (free_return(buffer));
 	}
-	free(buffer);
-	buffer = 0;
+	free_return(buffer);
 	return (read_line);
 }
 
@@ -75,8 +74,6 @@ char	*reset_read_line(char *read_line)
 	size_t	i;
 	size_t	j;
 
-	if (read_line == NULL)
-		return (0);
 	i = 0;
 	while (read_line[i] != '\0' && read_line[i] != '\n')
 		++i;

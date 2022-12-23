@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 14:00:48 by soohong           #+#    #+#             */
-/*   Updated: 2022/12/20 14:38:04 by soohong          ###   ########.fr       */
+/*   Updated: 2022/12/23 19:32:23 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ char	*gnl_strjoin(char *s1, char *s2)
 	while (s2[++i])
 		result[i + s1_length] = s2[i];
 	result[i + s1_length] = '\0';
-	free(s1);
+	free_return(NULL, NULL, s1, NULL);
 	return (result);
 }
 
