@@ -31,9 +31,10 @@ static int	ps_whitespace(char c)
 
 int	ps_atoi(const char *str)
 {
-	long long	value;
-	int			i;
-	int			sign;
+	long	value;
+	int		int_value;
+	int		i;
+	int		sign;
 
 	value = 0;
 	i = 0;
@@ -49,11 +50,9 @@ int	ps_atoi(const char *str)
 		value = (value * 10) + (str[i] - '0');
 		i++;
 	}
-	value = value * sign;
-	if (sign > 0 && value < 0)
+	int_value = (int)(value * sign);
+	if (sign > 0 && int_value < 0 || sign < 0 && int_value > 0)
 		return (-1);
-	else if (sign < 0 && value > 0)
-		return (0);
 	else
 		return ((int)value);
 }

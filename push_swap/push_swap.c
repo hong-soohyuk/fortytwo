@@ -14,6 +14,8 @@
 #include <stdio.h>
 void	print_queue(t_stack *a)
 {
+	if (!a)
+		return ;
 	t_node	*current;
 
 	current = a->head;
@@ -27,12 +29,12 @@ void	print_queue(t_stack *a)
 int	main(int argc, char **argv)
 {
 	t_stack	*a;
-	// t_stack	*b;
-
+	t_stack	*b;
+	
 	a = (t_stack *)malloc(sizeof(t_stack));
-	// b = (t_stack *)malloc(sizeof(t_stack));
+	b = (t_stack *)malloc(sizeof(t_stack));
 	if (argc == 1)
-		return (error_terminate());
+		return (error_terminate(a, b));
 	init_stacks(a, argv, argc);
 	print_queue(a);
 	// free(a);
