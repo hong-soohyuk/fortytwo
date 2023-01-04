@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-static size_t	s_len(char *s)
+static size_t	ps_strlen(char *s)
 {
 	size_t i;
 
@@ -26,6 +26,6 @@ void	ps_putstr(char *s)
 {
 	size_t length;
 
-	length = s_len(s);
+	length = ps_strlen(s);
 	write(1, s, length);
 }

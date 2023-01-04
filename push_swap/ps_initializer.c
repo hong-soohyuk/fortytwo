@@ -12,15 +12,55 @@
 
 #include "push_swap.h"
 
-void	init_stacks(int size, char **argv, t_stack *a, t_stack *b)
+static void	enqueue(t_stack * a, int value)
 {
-	a = (t_stack *)malloc(sizeof(t_stack));
-	a->list = (int *)malloc(sizeof(int) * (size - 1));
-	b = (t_stack *)malloc(sizeof(t_stack));
-	b->list = (int *)malloc(sizeof(int) * (size - 1));
+	t_node *new;
+
+	new = (t_node *)malloc(sizeof(t_node));
+	new->prev = NULL;
+	new->next = NULL;
+	new->value = value;
+	if (a->size == 0)
+	{
+		a->head = new;
+		a->tail = new;
+	}
+	else
+	{
+		a->tail->next = new;
+		new->prev = a->tail;
+		a->tail = new;
+	}
+	a->size++;
+}
+// void	dequeue(t_stack * a, int value){}
+
+static void check_enqueue(t_stack *a, char **table)
+{
+	//duplicate check
+	int	i;
+
+	i = -1;
+	while (table[++i])
+		enqueue(a, ps_atoi(table[i]));
+
 }
 
-int	validate_input(char *argv)
+static void	extract_nbr(t_stack *a, char **argv, int argc)
 {
+	int	i;
+	char	**split_table;
+
+	i = 0;
 	
+	while (++i < argc)
+	{
+		split_table = ps_split(argv[i], ' ');
+		check_enqueue(a, split_table);
+	}
+}
+
+void	init_stacks(t_stack *a, char **argv, int argc)
+{
+	extract_nbr(a, argv, argc);
 }

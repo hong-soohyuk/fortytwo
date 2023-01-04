@@ -16,11 +16,11 @@ FLAG = -Wall -Wextra -Werror
 
 NAME = push_swap
 
-SRC = ft_atoi.c\
-      pf_printf.c\
-      pf_putnbr.c\
-	  pf_putstr.c\
-	  ps_validator.c\
+SRC = ps_atoi.c\
+      ps_split.c\
+      ps_error.c\
+      ps_initializer.c\
+	  ps_putstr.c\
 	  push_swap.c\
 
 OBJ = $(SRC:%.c=%.o)
