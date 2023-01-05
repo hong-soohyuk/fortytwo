@@ -27,6 +27,26 @@ typedef struct s_stack
 	struct s_node	*tail;
 }	t_dequeue;
 
+enum e_cmd{
+	CMD_SA,
+	CMD_SB,
+	CMD_SS,
+	CMD_PA,
+	CMD_PB,
+	CMD_RA,
+	CMD_RB,
+	CMD_RR,
+	CMD_RRA,
+	CMD_RRB,
+	CMD_RRR
+};
+
+typedef struct s_cmds
+{
+	struct s_node	*head;
+	struct s_node	*tail;
+}	t_cmds;
+
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdio.h>
@@ -34,9 +54,18 @@ typedef struct s_stack
 #define ATOI_FAILURE 3000000000
 
 char	**ps_split(char const *s, char c);
-void	ps_putstr(char *s);
 void	init_dequeue(t_dequeue *a, char **argv, int argc);
 long	ps_atoi(const char *str);
 void	exit_safe(t_dequeue *a, t_dequeue *b, int exit_code);
-
+void	sa(t_dequeue *a, t_cmds *cmds);
+void	sb(t_dequeue *b, t_cmds *cmds);
+void	ss(t_dequeue *a, t_dequeue *b, t_cmds *cmds);
+void	pa(t_dequeue *a, t_cmds *cmds);
+void	pb(t_dequeue *b, t_cmds *cmds);
+void	ra(t_dequeue *a, t_cmds *cmds);
+void	rb(t_dequeue *b, t_cmds *cmds);
+void	rr(t_dequeue *a, t_dequeue *b, t_cmds *cmds);
+void	rra(t_dequeue *a, t_cmds *cmds);
+void	rrb(t_dequeue *b, t_cmds *cmds);
+void	rrr(t_dequeue *a, t_dequeue *b, t_cmds *cmds);
 #endif

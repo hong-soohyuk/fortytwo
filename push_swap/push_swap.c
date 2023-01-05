@@ -30,12 +30,17 @@ int	main(int argc, char **argv)
 {
 	t_dequeue	*a;
 	t_dequeue	*b;
-	
+	t_cmds		*cmds;
+
+	if (argc == 1)
+		exit_safe(NULL, NULL, EXIT_FAILURE);
 	a = (t_dequeue *)malloc(sizeof(t_dequeue));
 	b = (t_dequeue *)malloc(sizeof(t_dequeue));
-	if (argc == 1)
-		exit_safe(a, b, EXIT_FAILURE);
+	cmds = (t_cmds *)malloc(sizeof(t_cmds));
 	init_dequeue(a, argv, argc);
+	sa(a);
 	print_queue(a);
-	exit_safe(a, b, EXIT_SUCCESS);
+	// print_cmds();
+	free(cmds);
+	exit_safe(a, b, EXIT_SUCCECMD_SS);
 }
