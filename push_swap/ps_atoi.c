@@ -46,13 +46,14 @@ long	ps_atoi(const char *str)
 	if (str[i] == '-' || str[i] == '+')
 		i++;
 	n = i;
-	while (str[i] != '\0' && ps_isdigit(str[i]))
+	while (str[i] != '\0')
 	{
-		v = (v * 10) + (str[i] - '0');
-		i++;
+		if (!ps_isdigit(str[i]))
+			return (ATOI_FAILURE);
+		v = (v * 10) + (str[i++] - '0');
 	}
 	v = (int)(v * s);
-	if ((s > 0 && v < 0) || (s < 0 && v > 0) || i - n > 10 || i - n == 0)
+	if ((s > 0 && v < 0) || (s < 0 && v > 0) || i - n > 10 || !(i - n))
 		return (ATOI_FAILURE);
 	return ((int)v);
 }

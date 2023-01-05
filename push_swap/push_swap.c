@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
+
 void	print_queue(t_dequeue *a)
 {
 	if (!a)
