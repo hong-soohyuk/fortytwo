@@ -29,30 +29,30 @@ static int	ps_whitespace(char c)
 		return (0);
 }
 
-int	ps_atoi(const char *str)
+long	ps_atoi(const char *str)
 {
-	long	value;
-	int		int_value;
+	long	v;
+	int		n;
 	int		i;
-	int		sign;
+	int		s;
 
-	value = 0;
+	v = 0;
 	i = 0;
-	sign = 1;
+	s = 1;
 	while (ps_whitespace(str[i]))
 		i++;
 	if (str[i] == '-')
-		sign = -1;
+		s = -1;
 	if (str[i] == '-' || str[i] == '+')
 		i++;
+	n = i;
 	while (str[i] != '\0' && ps_isdigit(str[i]))
 	{
-		value = (value * 10) + (str[i] - '0');
+		v = (v * 10) + (str[i] - '0');
 		i++;
 	}
-	int_value = (int)(value * sign);
-	if (sign > 0 && int_value < 0 || sign < 0 && int_value > 0)
-		return (-1);
-	else
-		return ((int)value);
+	v = (int)(v * s);
+	if ((s > 0 && v < 0) || (s < 0 && v > 0) || i - n > 10 || i - n == 0)
+		return (ATOI_FAILURE);
+	return ((int)v);
 }

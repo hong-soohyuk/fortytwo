@@ -18,10 +18,10 @@ NAME = push_swap
 
 SRC = ps_atoi.c\
       ps_split.c\
-      ps_error.c\
-      ps_initializer.c\
 	  ps_putstr.c\
 	  push_swap.c\
+      ps_initializer.c\
+      ps_terminator.c\
 
 OBJ = $(SRC:%.c=%.o)
 

@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-static int	finalize_safely(char **table, int size)
+int	free_table(char **table, int size)
 {
 	int	i;
 
@@ -51,7 +51,7 @@ static int	fill_table(char **table, char *str, char c, int table_size)
 			str_i++;
 		table[table_i] = malloc(sizeof(char) * (str_i - start + 1));
 		if (table[table_i] == 0)
-			return (finalize_safely(table, table_i));
+			return (free_table(table, table_i));
 		else
 			fill_element(table[table_i], &str[start], (str_i - start));
 		table_i++;

@@ -25,15 +25,18 @@ typedef struct s_stack
 	int	size;
 	struct s_node	*head;
 	struct s_node	*tail;
-}	t_stack;
+}	t_dequeue;
 
 #include <stdlib.h>
 #include <unistd.h>
+#include <stdio.h>
+
+#define ATOI_FAILURE 3000000000
 
 char	**ps_split(char const *s, char c);
 void	ps_putstr(char *s);
-void	init_stacks(t_stack *a, char **argv, int argc);
-int		error_terminate();
-int		ps_atoi(const char *str);
+void	init_dequeue(t_dequeue *a, char **argv, int argc);
+long	ps_atoi(const char *str);
+void	exit_safe(t_dequeue *a, t_dequeue *b, int exit_code);
 
 #endif

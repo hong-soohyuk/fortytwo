@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 #include <stdio.h>
-void	print_queue(t_stack *a)
+void	print_queue(t_dequeue *a)
 {
 	if (!a)
 		return ;
@@ -28,16 +28,14 @@ void	print_queue(t_stack *a)
 
 int	main(int argc, char **argv)
 {
-	t_stack	*a;
-	t_stack	*b;
+	t_dequeue	*a;
+	t_dequeue	*b;
 	
-	a = (t_stack *)malloc(sizeof(t_stack));
-	b = (t_stack *)malloc(sizeof(t_stack));
+	a = (t_dequeue *)malloc(sizeof(t_dequeue));
+	b = (t_dequeue *)malloc(sizeof(t_dequeue));
 	if (argc == 1)
-		return (error_terminate(a, b));
-	init_stacks(a, argv, argc);
+		exit_safe(a, b, EXIT_FAILURE);
+	init_dequeue(a, argv, argc);
 	print_queue(a);
-	// free(a);
-	// free(b);
-	return (0);
+	exit_safe(a, b, EXIT_SUCCESS);
 }

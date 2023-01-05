@@ -12,15 +12,20 @@
 
 #include "push_swap.h"
 
-static int	enqueue(t_stack * a, int value)
+static void	free_table(char **table)
 {
-	t_node *new;
-	t_node *current;
+	int	i;
 
-	new = (t_node *)malloc(sizeof(t_node));
-	new->prev = NULL;
-	new->next = NULL;
-	new->value = value;
+	i = -1;
+	while (table[++i])
+		free(table[i]);
+	free(table);
+}
+
+static void	enqueue(t_dequeue *a, t_node *new, char **table)
+{
+	t_node	*current;
+
 	if (a->size == 0)
 	{
 		a->head = new;
@@ -31,8 +36,11 @@ static int	enqueue(t_stack * a, int value)
 		current = a->head;
 		while (current)
 		{
-			if (current->value == value)
-				return (error_terminate(a, NULL)); // free a
+			if (current->value == new->value)
+			{
+				free_table(table);
+				exit_safe(a, NULL, EXIT_FAILURE);
+			}
 			else
 				current = current->next;
 		}
@@ -41,31 +49,42 @@ static int	enqueue(t_stack * a, int value)
 		a->tail = new;
 	}
 	a->size++;
-	return (1);
 }
-// void	dequeue(t_stack * a, int value) {}
 
-static int check_enqueue(t_stack *a, char **table)
+static void	init_node(t_dequeue *a, long value, char **table)
 {
-	int	i;
+	t_node *new;
 
-	i = -1;
-	while (table[++i])
-		if (enqueue(a, ps_atoi(table[i])) == 0)
-			return (0);
-	return (1);
+	if (value == ATOI_FAILURE)
+	{
+		free_table(table);
+		exit_safe(a, NULL, EXIT_FAILURE);
+	}
+	new = (t_node *)malloc(sizeof(t_node));
+	if (new == NULL)
+	{
+		free_table(table);
+		exit_safe(a, NULL, EXIT_FAILURE);
+	}
+	new->prev = NULL;
+	new->next = NULL;
+	new->value = value;
+	enqueue(a, new, table);
 }
 
-void	init_stacks(t_stack *a, char **argv, int argc)
+void	init_dequeue(t_dequeue *a, char **argv, int argc)
 {
 	int		i;
-	char	**split_table;
+	int		j;
+	char	**table;
 
 	i = 0;
 	while (++i < argc)
 	{
-		split_table = ps_split(argv[i], ' ');
-		if (check_enqueue(a, split_table) == 0)
-			return ;
+		table = ps_split(argv[i], ' ');
+		j = -1;
+		while (table[++j])
+			init_node(a, ps_atoi(table[j]), table);
+		free_table(table);
 	}
 }
