@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: soohong <soohong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 17:43:31 by soohong           #+#    #+#             */
-/*   Updated: 2023/01/03 18:56:37 by soohong          ###   ########.fr       */
+/*   Updated: 2023/01/10 15:36:17 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,13 @@ char	**ps_split(char const *s, char c);
 void	init_dequeue(t_dequeue *a, char **argv, int argc);
 long	ps_atoi(const char *str);
 void	exit_safe(t_dequeue *a, t_dequeue *b, int exit_code);
+void	cmd_node(t_cmds *cmds, int cmd);
+void	stdout_cmds(t_cmds *cmds);
 void	sa(t_dequeue *a, t_cmds *cmds);
 void	sb(t_dequeue *b, t_cmds *cmds);
 void	ss(t_dequeue *a, t_dequeue *b, t_cmds *cmds);
-void	pa(t_dequeue *a, t_cmds *cmds);
-void	pb(t_dequeue *b, t_cmds *cmds);
+void	pa(t_dequeue *a, t_dequeue *b, t_cmds *cmds);
+void	pb(t_dequeue *b, t_dequeue *a, t_cmds *cmds);
 void	ra(t_dequeue *a, t_cmds *cmds);
 void	rb(t_dequeue *b, t_cmds *cmds);
 void	rr(t_dequeue *a, t_dequeue *b, t_cmds *cmds);

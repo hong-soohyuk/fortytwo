@@ -1,17 +1,28 @@
 #include "push_swap.h"
-
-void	pa(t_dequeue *a, t_cmds *cmds)
+static void	push(t_dequeue *src, t_dequeue *dest)
 {
-	(void)a;
-	(void)cmds;
+	t_node	*swap_node;
 
-	write(1, &"pa\n", 3);
+	swap_node = src->head;
+	src->head = src->head->next;
+	src->head->prev = NULL;
+	swap_node->prev = NULL;
+	swap_node->next = dest->head;
+	dest->head = swap_node;
 }
 
-void	pb(t_dequeue *b, t_cmds *cmds)
+void	pa(t_dequeue *a, t_dequeue *b, t_cmds *cmds)
 {
-	(void)b;
-	(void)cmds;
-	
-	write(1, &"pb\n", 3);
+	if (b->size == 0)
+		return ;
+	push(b, a);
+	cmd_node(cmds, CMD_PA);
+}
+
+void	pb(t_dequeue *b, t_dequeue *a, t_cmds *cmds)
+{
+	if (a->size == 0)
+		return ;
+	push(a, b);
+	cmd_node(cmds, CMD_PB);
 }

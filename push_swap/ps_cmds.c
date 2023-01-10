@@ -6,21 +6,11 @@
 /*   By: soohong <soohong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 17:18:34 by soohong           #+#    #+#             */
-/*   Updated: 2023/01/05 17:23:02 by soohong          ###   ########.fr       */
+/*   Updated: 2023/01/10 15:30:23 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-static size_t	ps_strlen(const char *s)
-{
-	size_t	length;
-
-	length = 0;
-	while (s[length])
-		length++;
-	return (length);
-}
 
 static void	stdout_cmd(int cmd)
 {
@@ -52,25 +42,43 @@ static void	stdout_cmd(int cmd)
 
 void	stdout_cmds(t_cmds *cmds)
 {
-	t_node	cmd;
-	t_node	next;
+	t_node	*cmd;
+	t_node	*next;
 
-	cmd = cmds.head;
+	cmd = cmds->head;
 	while (cmd)
 	{
 		next = cmd->next;
-		stdout_cmd(cmd);
+		stdout_cmd(cmd->value);
 		free(cmd);
 		cmd = next;
 	}
 	free(cmds);
 }
 
-// void	cmd_optimize()
-// {}
+// void	cmd_optimize(){}
 
-void	cmd_node(int cmd)
+void	cmd_node(t_cmds *cmds, int cmd)
 {
-	t_node	cmd;
+	t_node	*new;
+	t_node	*current;
 	
+	new = (t_node *)malloc(sizeof(t_node));
+	new->value = cmd;
+	new->prev = NULL;
+	new->next = NULL;
+	if (cmds->head == NULL)
+	{
+		cmds->head = new;
+		cmds->tail = new;
+	}
+	else
+	{
+		current = cmds->head;
+		while (current)
+			current = current->next;
+		cmds->tail->next = new;
+		new->prev = cmds->tail;
+		cmds->tail = new;
+	}
 }

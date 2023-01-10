@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: soohong <soohong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 17:43:26 by soohong           #+#    #+#             */
-/*   Updated: 2023/01/03 18:54:52 by soohong          ###   ########.fr       */
+/*   Updated: 2023/01/10 15:42:36 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	print_queue(t_dequeue *a)
+void	print_queue(t_dequeue *queue)
 {
-	if (!a)
+	if (!queue)
 		return ;
 	t_node	*current;
 
-	current = a->head;
+	current = queue->head;
 	while (current)
 	{
 		printf("%d\n", current->value);
@@ -38,9 +38,14 @@ int	main(int argc, char **argv)
 	b = (t_dequeue *)malloc(sizeof(t_dequeue));
 	cmds = (t_cmds *)malloc(sizeof(t_cmds));
 	init_dequeue(a, argv, argc);
-	sa(a);
+	// sa(a, cmds);
+	pb(b, a, cmds);
+	pb(b, a, cmds);
+	pb(b, a, cmds);
+	printf("A\n");
 	print_queue(a);
-	// print_cmds();
-	free(cmds);
-	exit_safe(a, b, EXIT_SUCCECMD_SS);
+	printf("B\n");
+	print_queue(b);
+	stdout_cmds(cmds);
+	exit_safe(a, b, EXIT_SUCCESS);
 }
