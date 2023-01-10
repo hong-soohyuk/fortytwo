@@ -1,16 +1,18 @@
 #include "push_swap.h"
 
-static void	rotate(t_dequeue *target)
+static void	rotate(t_dequeue *deq)
 {
 	t_node	*new_tail;
 
-	new_tail = target->head;
-	target->head = target->head->next;
-	target->head->prev = NULL;
-	target->tail->next = new_tail;
-	new_tail->prev = target->tail;
+	if (deq->size == 0)
+		return ;
+	new_tail = deq->head;
+	deq->head = deq->head->next;
+	deq->head->prev = NULL;
+	deq->tail->next = new_tail;
+	new_tail->prev = deq->tail;
 	new_tail->next = NULL;
-	target->tail = new_tail;
+	deq->tail = new_tail;
 }
 
 void	ra(t_dequeue *a, t_cmds *cmds)

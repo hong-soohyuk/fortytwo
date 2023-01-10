@@ -25,6 +25,6 @@ void	exit_safe(t_dequeue *a, t_dequeue *b, int exit_code)
 		free_deq(b);
 	if (exit_code)
 		write(2, &"Error\n", 6);
-	system("leaks push_swap");
+	// system("leaks push_swap");
 	exit(exit_code);
 }

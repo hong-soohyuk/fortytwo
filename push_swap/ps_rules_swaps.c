@@ -1,17 +1,17 @@
 #include "push_swap.h"
 
-	static void	swap(t_dequeue *queue)
+static void	swap(t_dequeue *queue)
 {
-	t_node	*node_a;
-	t_node	*node_b;
+	t_node	*curr_head;
+	t_node	*next_head;
 
-	node_a = queue->head;
-	node_b = queue->head->next;
-	node_a->prev = node_b;
-	node_a->next = node_b->next;
-	node_b->prev = NULL;
-	node_b->next = node_a;
-	queue->head = node_b;
+	curr_head = queue->head;
+	next_head = queue->head->next;
+	curr_head->prev = next_head;
+	curr_head->next = next_head->next;
+	next_head->prev = NULL;
+	next_head->next = curr_head;
+	queue->head = next_head;
 }
 
 void	sa(t_dequeue *a, t_cmds *cmds)

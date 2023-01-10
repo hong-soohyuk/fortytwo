@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ps_initializer.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: soohong <soohong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 17:43:34 by soohong           #+#    #+#             */
-/*   Updated: 2023/01/03 18:58:20 by soohong          ###   ########.fr       */
+/*   Updated: 2023/01/10 16:42:07 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,12 +72,18 @@ static void	init_node(t_dequeue *a, long value, char **table)
 	enqueue(a, new, table);
 }
 
-void	init_dequeue(t_dequeue *a, char **argv, int argc)
+void	init_dequeue(t_dequeue *a, t_dequeue *b, char **argv, int argc)
 {
 	int		i;
 	int		j;
 	char	**table;
-
+	
+	a->size = 0;
+	a->head = NULL;
+	a->tail = NULL;
+	b->size = 0;
+	b->head = NULL;
+	b->tail = NULL;
 	i = 0;
 	while (++i < argc)
 	{

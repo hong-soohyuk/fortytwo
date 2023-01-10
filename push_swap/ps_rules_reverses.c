@@ -1,16 +1,18 @@
 #include "push_swap.h"
 
-static void	reverse(t_dequeue *target)
+static void	reverse(t_dequeue *deq)
 {
 	t_node *new_head;
 
-	new_head = target->tail;
-	target->tail = target->tail->prev;
-	target->tail->next = NULL;
+	if (deq->size == 0)
+		return ;
+	new_head = deq->tail;
+	deq->tail = deq->tail->prev;
+	deq->tail->next = NULL;
 	new_head->prev = NULL;
-	new_head->next = target->head;
-	target->head->prev = new_head;
-	target->head = new_head;
+	new_head->next = deq->head;
+	deq->head->prev = new_head;
+	deq->head = new_head;
 }
 void	rra(t_dequeue *a, t_cmds *cmds)
 {

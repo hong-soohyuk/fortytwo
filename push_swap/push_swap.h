@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 17:43:31 by soohong           #+#    #+#             */
-/*   Updated: 2023/01/10 15:36:17 by soohong          ###   ########.fr       */
+/*   Updated: 2023/01/10 16:46:18 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ typedef struct s_cmds
 #define ATOI_FAILURE 3000000000
 
 char	**ps_split(char const *s, char c);
-void	init_dequeue(t_dequeue *a, char **argv, int argc);
+void	init_dequeue(t_dequeue *a, t_dequeue *b, char **argv, int argc);
 long	ps_atoi(const char *str);
 void	exit_safe(t_dequeue *a, t_dequeue *b, int exit_code);
 void	cmd_node(t_cmds *cmds, int cmd);
@@ -63,7 +63,7 @@ void	sa(t_dequeue *a, t_cmds *cmds);
 void	sb(t_dequeue *b, t_cmds *cmds);
 void	ss(t_dequeue *a, t_dequeue *b, t_cmds *cmds);
 void	pa(t_dequeue *a, t_dequeue *b, t_cmds *cmds);
-void	pb(t_dequeue *b, t_dequeue *a, t_cmds *cmds);
+void	pb(t_dequeue *a, t_dequeue *b, t_cmds *cmds);
 void	ra(t_dequeue *a, t_cmds *cmds);
 void	rb(t_dequeue *b, t_cmds *cmds);
 void	rr(t_dequeue *a, t_dequeue *b, t_cmds *cmds);
