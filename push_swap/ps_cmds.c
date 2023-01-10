@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 17:18:34 by soohong           #+#    #+#             */
-/*   Updated: 2023/01/10 15:30:23 by soohong          ###   ########.fr       */
+/*   Updated: 2023/01/10 18:06:03 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	cmd_node(t_cmds *cmds, int cmd)
 {
 	t_node	*new;
 	t_node	*current;
-	
+
 	new = (t_node *)malloc(sizeof(t_node));
 	new->value = cmd;
 	new->prev = NULL;

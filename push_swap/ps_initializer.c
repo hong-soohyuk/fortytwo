@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 17:43:34 by soohong           #+#    #+#             */
-/*   Updated: 2023/01/10 16:42:07 by soohong          ###   ########.fr       */
+/*   Updated: 2023/01/10 18:06:36 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void	enqueue(t_dequeue *a, t_node *new, char **table)
 
 static void	init_node(t_dequeue *a, long value, char **table)
 {
-	t_node *new;
+	t_node	*new;
 
 	if (value == ATOI_FAILURE)
 	{
@@ -77,7 +77,7 @@ void	init_dequeue(t_dequeue *a, t_dequeue *b, char **argv, int argc)
 	int		i;
 	int		j;
 	char	**table;
-	
+
 	a->size = 0;
 	a->head = NULL;
 	a->tail = NULL;

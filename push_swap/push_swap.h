@@ -6,23 +6,27 @@
 /*   By: soohong <soohong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 17:43:31 by soohong           #+#    #+#             */
-/*   Updated: 2023/01/10 16:46:18 by soohong          ###   ########.fr       */
+/*   Updated: 2023/01/10 18:12:21 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
+# include <stdlib.h>
+# include <unistd.h>
+# include <stdio.h>
+
 typedef struct s_node
 {
-	int	value;
+	int				value;
 	struct s_node	*prev;
 	struct s_node	*next;
 }	t_node;
 
-typedef struct s_stack
+typedef struct s_dequeue
 {
-	int	size;
+	int				size;
 	struct s_node	*head;
 	struct s_node	*tail;
 }	t_dequeue;
@@ -47,11 +51,7 @@ typedef struct s_cmds
 	struct s_node	*tail;
 }	t_cmds;
 
-#include <stdlib.h>
-#include <unistd.h>
-#include <stdio.h>
-
-#define ATOI_FAILURE 3000000000
+# define ATOI_FAILURE 3000000000
 
 char	**ps_split(char const *s, char c);
 void	init_dequeue(t_dequeue *a, t_dequeue *b, char **argv, int argc);

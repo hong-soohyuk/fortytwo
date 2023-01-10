@@ -2,7 +2,7 @@
 
 static void	reverse(t_dequeue *deq)
 {
-	t_node *new_head;
+	t_node	*new_head;
 
 	if (deq->size == 0)
 		return ;
@@ -14,6 +14,7 @@ static void	reverse(t_dequeue *deq)
 	deq->head->prev = new_head;
 	deq->head = new_head;
 }
+
 void	rra(t_dequeue *a, t_cmds *cmds)
 {
 	reverse(a);

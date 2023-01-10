@@ -1,8 +1,7 @@
 #include "push_swap.h"
 
-static void free_deq(t_dequeue *q)
+static void	free_deq(t_dequeue *q)
 {
-
 	t_node	*next;
 	t_node	*current;
 

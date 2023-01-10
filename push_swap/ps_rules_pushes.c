@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ps_rules_pushes.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: soohong <soohong@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/10 18:15:45 by soohong           #+#    #+#             */
+/*   Updated: 2023/01/10 18:23:19 by soohong          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-static void	push(t_dequeue *src, t_dequeue *dest)
+static t_node	*pop(t_dequeue *src)
 {
-	t_node	*swap_node;
+	t_node	*popped;
 
-	swap_node = src->head;
+	popped = src->head;
 	if (src->size == 1)
 	{
 		src->head = NULL;
@@ -15,19 +27,24 @@ static void	push(t_dequeue *src, t_dequeue *dest)
 		src->head = src->head->next;
 		src->head->prev = NULL;
 	}
+	src->size--;
+	return (popped);
+}
+
+static void	push(t_dequeue *dest, t_node *popped)
+{
 	if (dest->size == 0)
 	{
-		swap_node->next = NULL;
-		dest->head = swap_node;
-		dest->tail = swap_node;
+		popped->next = NULL;
+		dest->head = popped;
+		dest->tail = popped;
 	}
 	else
 	{
-		swap_node->next = dest->head;
-		dest->head->prev = swap_node;
-		dest->head = swap_node;
+		popped->next = dest->head;
+		dest->head->prev = popped;
+		dest->head = popped;
 	}
-	src->size--;
 	dest->size++;
 }
 
@@ -35,7 +52,7 @@ void	pa(t_dequeue *a, t_dequeue *b, t_cmds *cmds)
 {
 	if (b->size == 0)
 		return ;
-	push(b, a);
+	push(a, pop(b));
 	cmd_node(cmds, CMD_PA);
 }
 
@@ -43,6 +60,6 @@ void	pb(t_dequeue *a, t_dequeue *b, t_cmds *cmds)
 {
 	if (a->size == 0)
 		return ;
-	push(a, b);
+	push(b, pop(a));
 	cmd_node(cmds, CMD_PB);
 }
