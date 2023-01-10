@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: soohong <soohong@student.42.fr>            +#+  +:+       +#+        */
+/*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 17:43:26 by soohong           #+#    #+#             */
-/*   Updated: 2023/01/10 18:27:16 by soohong          ###   ########.fr       */
+/*   Updated: 2023/01/10 22:55:04 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ static void	print_queue(t_dequeue *a, t_dequeue *b)
 {
 	t_node	*current_a;
 	t_node	*current_b;
+
 	if (!a || !b)
 		return ;
-
 	int max = a->size > b->size ? a->size : b->size;
 	int	i = -1;
 	current_a = a->head;
@@ -63,23 +63,7 @@ int	main(int argc, char **argv)
 	b = (t_dequeue *)malloc(sizeof(t_dequeue));
 	cmds = (t_cmds *)malloc(sizeof(t_cmds));
 	init_dequeue(a, b, argv, argc);
-	sa(a, cmds);
-	pb(a, b, cmds);
-	pa(a, b, cmds);
-	pa(a, b, cmds);
-	pa(a, b, cmds);
-	pb(a, b, cmds);
-	pb(a, b, cmds);
-	pb(a, b, cmds);
-	rra(a, cmds);
-	rra(a, cmds);
-	sb(a, cmds);
-	ra(a, cmds);
-	rb(b, cmds);
-	rrb(b, cmds);
-	pb(a, b, cmds);
-	rra(a, cmds);
-	pb(a, b, cmds);
+	quick_sort(a, b, cmds);
 	print_queue(a, b);
 	stdout_cmds(cmds);
 	exit_safe(a, b, EXIT_SUCCESS);

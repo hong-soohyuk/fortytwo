@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: soohong <soohong@student.42.fr>            +#+  +:+       +#+        */
+/*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 17:43:31 by soohong           #+#    #+#             */
-/*   Updated: 2023/01/10 18:12:21 by soohong          ###   ########.fr       */
+/*   Updated: 2023/01/10 22:54:45 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ char	**ps_split(char const *s, char c);
 void	init_dequeue(t_dequeue *a, t_dequeue *b, char **argv, int argc);
 long	ps_atoi(const char *str);
 void	exit_safe(t_dequeue *a, t_dequeue *b, int exit_code);
+void	quick_sort(t_dequeue *a, t_dequeue *b, t_cmds *cmds);
 void	cmd_node(t_cmds *cmds, int cmd);
 void	stdout_cmds(t_cmds *cmds);
 void	sa(t_dequeue *a, t_cmds *cmds);
