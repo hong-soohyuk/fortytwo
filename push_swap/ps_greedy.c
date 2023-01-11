@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:39:08 by soohong           #+#    #+#             */
-/*   Updated: 2023/01/11 19:46:38 by soohong          ###   ########.fr       */
+/*   Updated: 2023/01/11 20:38:10 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ static int	get_best_a(t_dequeue *a, int btoa)
 		if (curr->value > btoa && a->tail->value < btoa)
 			break ;
 		if (a->size > 0 && curr->prev != NULL && curr->prev->value > btoa
-			&& curr->value > btoa && curr->prev->value > curr->value)
+			&& curr->value > btoa && curr->prev->value > curr->value) // 2 3 / 1
 			break ;
 		if (a->size > 0 && curr->prev != NULL && curr->prev->value < btoa
-			&& curr->value > btoa && curr->prev->value < curr->value)
+			&& curr->value > btoa && curr->prev->value < curr->value) // 1 3 / 2
 			break ;
 		if (a->size > 0 && curr->prev != NULL && curr->prev->value < btoa
-			&& curr->value < btoa && curr->prev->value > curr->value)
+			&& curr->value < btoa && curr->prev->value > curr->value) // 3 2 / 1
 			break ;
 		curr = curr->next;
 		rot_a++;
@@ -41,7 +41,7 @@ static int	get_best_a(t_dequeue *a, int btoa)
 	return (rot_a);
 }
 
-static void	set_bests(t_dequeue *a, t_dequeue *b, int *best_a, int *best_b)
+static void	get_min_rots(t_dequeue *a, t_dequeue *b, int *best_a, int *best_b)
 {
 	t_node	*curr_b;
 	int		best;
@@ -67,13 +67,33 @@ static void	set_bests(t_dequeue *a, t_dequeue *b, int *best_a, int *best_b)
 
 void	greedy_sort(t_dequeue *a, t_dequeue *b, t_cmds *cmds)
 {
-	int	bests[2];
+	int		rots[2];
+	int		min_index;
+	t_node	*curr;
+	
 
-	bests[0] = 0;
-	bests[1] = 0;
+	rots[0] = 0;
+	rots[1] = 0;
 	while (b->size != 0)
 	{
-		set_bests(a, b, &bests[0], &bests[1]);
-		rotate_deqs(a, b, cmds, bests);
+		get_min_rots(a, b, &rots[0], &rots[1]);
+		rotate_deqs(a, b, cmds, rots);
+	}
+	min_index = 0;
+	curr = a->head;
+	while (curr)
+	{
+		if (curr->next != NULL && curr->value > curr->next->value)
+			break;
+		curr = curr->next;
+		++min_index;
+	}
+	++min_index;
+	if (min_index < a->size)
+	{
+		if (min_index > a->size / 2)
+			rotate_a(a, cmds, min_index - a->size);
+		else
+			rotate_a(a, cmds, min_index);
 	}
 }

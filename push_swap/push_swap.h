@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 17:43:31 by soohong           #+#    #+#             */
-/*   Updated: 2023/01/11 19:37:15 by soohong          ###   ########.fr       */
+/*   Updated: 2023/01/11 20:03:51 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void	init_dequeue(t_dequeue *a, t_dequeue *b, char **argv, int argc);
 int		absolute(int a);
 void	exit_safe(t_dequeue *a, t_dequeue *b, int exit_code);
 void	partition(t_dequeue *a, t_dequeue *b, t_cmds *cmds);
+void	rotate_a(t_dequeue *a, t_cmds *cmds, int rot_a);
 void	rotate_deqs(t_dequeue *a, t_dequeue *b, t_cmds *cmds, int *bests);
 void	greedy_sort(t_dequeue *a, t_dequeue *b, t_cmds *cmds);
 void	cmd_node(t_cmds *cmds, int cmd);
