@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/03 17:43:26 by soohong           #+#    #+#             */
-/*   Updated: 2023/01/10 22:55:04 by soohong          ###   ########.fr       */
+/*   Created: 2023/01/11 10:47:16 by soohong           #+#    #+#             */
+/*   Updated: 2023/01/11 19:33:48 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	print_queue(t_dequeue *a, t_dequeue *b)
+static void	stdout_queue(t_dequeue *a, t_dequeue *b)
 {
 	t_node	*current_a;
 	t_node	*current_b;
@@ -23,32 +23,32 @@ static void	print_queue(t_dequeue *a, t_dequeue *b)
 	int	i = -1;
 	current_a = a->head;
 	current_b = b->head;
-	printf("|	A		|	B		|\n");
+	printf("|	A			|	B			|\n");
 	while (++i < max)
 	{
 		if (current_a && current_b)
 		{
-			printf("|	%d		|	%d		|\n", current_a->value, current_b->value);
+			printf("|	%d			|	%d			|\n", current_a->value, current_b->value);
 			current_a = current_a->next;
 			current_b = current_b->next;
 		}
 		else if (current_a == NULL)
 		{
-			printf("|			|	%d		|\n", current_b->value);
+			printf("|				|	%d			|\n", current_b->value);
 			current_b = current_b->next;
 		}
 		else if (current_b == NULL)
 		{
-			printf("|	%d		|			|\n", current_a->value);
+			printf("|	%d			|				|\n", current_a->value);
 			current_a = current_a->next;
 		}
 		else if (current_a == NULL && current_b == NULL)
 		{
-			printf("|	end		|	end		|\n");
+			printf("|	end			|	end			|\n");
 			break ;
 		}
 	}
-	printf("|	end		|	end		|\n");
+	printf("|	end			|	end			|\n");
 }
 
 int	main(int argc, char **argv)
@@ -63,8 +63,9 @@ int	main(int argc, char **argv)
 	b = (t_dequeue *)malloc(sizeof(t_dequeue));
 	cmds = (t_cmds *)malloc(sizeof(t_cmds));
 	init_dequeue(a, b, argv, argc);
-	quick_sort(a, b, cmds);
-	print_queue(a, b);
+	partition(a, b, cmds);
+	greedy_sort(a, b, cmds);
+	stdout_queue(a, b);
 	stdout_cmds(cmds);
 	exit_safe(a, b, EXIT_SUCCESS);
 }
