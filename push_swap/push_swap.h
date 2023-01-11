@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 17:43:31 by soohong           #+#    #+#             */
-/*   Updated: 2023/01/11 20:03:51 by soohong          ###   ########.fr       */
+/*   Updated: 2023/01/12 00:11:15 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct s_cmds
 
 # define ATOI_FAILURE 3000000000
 
+void	stdout_queue(t_dequeue *a, t_dequeue *b);
 char	**ps_split(char const *s, char c);
 long	ps_atoi(const char *str);
 void	init_dequeue(t_dequeue *a, t_dequeue *b, char **argv, int argc);
