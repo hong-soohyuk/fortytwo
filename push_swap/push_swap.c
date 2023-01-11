@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 10:47:16 by soohong           #+#    #+#             */
-/*   Updated: 2023/01/11 19:33:48 by soohong          ###   ########.fr       */
+/*   Updated: 2023/01/11 23:52:50 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,10 @@ static void	stdout_queue(t_dequeue *a, t_dequeue *b)
 
 	if (!a || !b)
 		return ;
-	int max = a->size > b->size ? a->size : b->size;
-	int	i = -1;
 	current_a = a->head;
 	current_b = b->head;
 	printf("|	A			|	B			|\n");
-	while (++i < max)
+	while (current_a || current_b)
 	{
 		if (current_a && current_b)
 		{
@@ -65,7 +63,7 @@ int	main(int argc, char **argv)
 	init_dequeue(a, b, argv, argc);
 	partition(a, b, cmds);
 	greedy_sort(a, b, cmds);
-	stdout_queue(a, b);
 	stdout_cmds(cmds);
+	stdout_queue(a, b);
 	exit_safe(a, b, EXIT_SUCCESS);
 }

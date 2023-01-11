@@ -6,7 +6,7 @@
 #    By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/03 17:43:02 by soohong           #+#    #+#              #
-#    Updated: 2023/01/11 20:28:40 by soohong          ###   ########.fr        #
+#    Updated: 2023/01/11 23:43:18 by soohong          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ SRC = ps_atoi.c\
 OBJ = $(SRC:%.c=%.o)
 
 $(NAME) : $(OBJ)
-	$(GCC) -o $(NAME) $(OBJ)
+	$(GCC) -o $(NAME) $(OBJ) -g
 
 all : $(NAME)
 

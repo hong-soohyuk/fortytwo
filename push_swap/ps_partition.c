@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 22:47:43 by soohong           #+#    #+#             */
-/*   Updated: 2023/01/11 19:47:12 by soohong          ###   ########.fr       */
+/*   Updated: 2023/01/11 23:32:31 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ static void	categorize(t_dequeue *a, t_dequeue *b, t_cmds *cmds, int *pivots)
 
 	i = -1;
 	length = a->size;
-	printf("pivot : big %d, small %d \n", pivots[0], pivots[1]);
 	while (++i < length)
 	{
 		if (a->head->value > pivots[0])

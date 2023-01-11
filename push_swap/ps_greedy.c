@@ -6,12 +6,11 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:39:08 by soohong           #+#    #+#             */
-/*   Updated: 2023/01/11 20:38:10 by soohong          ###   ########.fr       */
+/*   Updated: 2023/01/11 23:47:37 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
 static int	get_best_a(t_dequeue *a, int btoa)
 {
@@ -70,7 +69,6 @@ void	greedy_sort(t_dequeue *a, t_dequeue *b, t_cmds *cmds)
 	int		rots[2];
 	int		min_index;
 	t_node	*curr;
-	
 
 	rots[0] = 0;
 	rots[1] = 0;
@@ -84,7 +82,7 @@ void	greedy_sort(t_dequeue *a, t_dequeue *b, t_cmds *cmds)
 	while (curr)
 	{
 		if (curr->next != NULL && curr->value > curr->next->value)
-			break;
+			break ;
 		curr = curr->next;
 		++min_index;
 	}
