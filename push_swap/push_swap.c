@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 10:47:16 by soohong           #+#    #+#             */
-/*   Updated: 2023/01/12 00:46:17 by soohong          ###   ########.fr       */
+/*   Updated: 2023/01/12 01:15:08 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@
 // 	{
 // 		if (current_a && current_b)
 // 		{
-// 			printf("|	%d			|	%d			|\n", current_a->value, current_b->value);
+// 			printf("|	%d			|	%d			|\n",
+// current_a->value, current_b->value);
 // 			current_a = current_a->next;
 // 			current_b = current_b->next;
 // 		}

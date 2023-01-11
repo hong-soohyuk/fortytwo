@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 22:47:35 by soohong           #+#    #+#             */
-/*   Updated: 2023/01/11 19:51:39 by soohong          ###   ########.fr       */
+/*   Updated: 2023/01/12 01:06:53 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ static void	free_deq(t_dequeue *q)
 	while (current)
 	{
 		next = current->next;
-		// printf("%d is freed \n", current->value);
 		free(current);
 		current = next;
 	}

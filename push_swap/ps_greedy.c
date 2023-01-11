@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:39:08 by soohong           #+#    #+#             */
-/*   Updated: 2023/01/12 00:45:57 by soohong          ###   ########.fr       */
+/*   Updated: 2023/01/12 01:14:44 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,13 @@ static int	get_min_ra(t_dequeue *a, int btoa)
 		if (curr->prev == NULL && find_null_loc(a, btoa))
 			break ;
 		if (a->size > 0 && curr->prev != NULL && curr->prev->value > btoa
-			&& curr->value > btoa && curr->prev->value > curr->value) // 2 3 / 1
+			&& curr->value > btoa && curr->prev->value > curr->value)
 			break ;
 		if (a->size > 0 && curr->prev != NULL && curr->prev->value < btoa
-			&& curr->value > btoa && curr->prev->value < curr->value) // 1 3 / 2
+			&& curr->value > btoa && curr->prev->value < curr->value)
 			break ;
 		if (a->size > 0 && curr->prev != NULL && curr->prev->value < btoa
-			&& curr->value < btoa && curr->prev->value > curr->value) // 3 2 / 1
+			&& curr->value < btoa && curr->prev->value > curr->value)
 			break ;
 		curr = curr->next;
 		rot_a++;
@@ -81,19 +81,11 @@ static void	get_min_rots(t_dequeue *a, t_dequeue *b, int *best_a, int *best_b)
 	}
 }
 
-void	greedy_sort(t_dequeue *a, t_dequeue *b, t_cmds *cmds)
+static	void	ascending_sort(t_dequeue *a, t_cmds *cmds)
 {
-	int		rots[2];
 	int		min_index;
 	t_node	*curr;
 
-	while (b->size != 0)
-	{
-		rots[0] = 0;
-		rots[1] = 0;
-		get_min_rots(a, b, &rots[0], &rots[1]);
-		rotate_deqs(a, b, cmds, rots);
-	}
 	min_index = 0;
 	curr = a->head;
 	while (curr)
@@ -111,4 +103,18 @@ void	greedy_sort(t_dequeue *a, t_dequeue *b, t_cmds *cmds)
 		else
 			rotate_a(a, cmds, min_index);
 	}
+}
+
+void	greedy_sort(t_dequeue *a, t_dequeue *b, t_cmds *cmds)
+{
+	int		rots[2];
+
+	while (b->size != 0)
+	{
+		rots[0] = 0;
+		rots[1] = 0;
+		get_min_rots(a, b, &rots[0], &rots[1]);
+		rotate_deqs(a, b, cmds, rots);
+	}
+	ascending_sort(a, cmds);
 }
