@@ -6,13 +6,11 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 22:47:35 by soohong           #+#    #+#             */
-/*   Updated: 2023/01/12 18:52:55 by soohong          ###   ########.fr       */
+/*   Updated: 2023/01/13 00:41:22 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 static void	free_deq(t_dequeue *q)
 {
@@ -37,6 +35,5 @@ void	exit_safe(t_dequeue *a, t_dequeue *b, int exit_code)
 		free_deq(b);
 	if (exit_code)
 		write(2, &"Error\n", 6);
-	// system("leaks push_swap");
 	exit(exit_code);
 }

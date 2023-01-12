@@ -6,10 +6,9 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:39:08 by soohong           #+#    #+#             */
-/*   Updated: 2023/01/12 23:47:51 by soohong          ###   ########.fr       */
+/*   Updated: 2023/01/13 00:38:06 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "push_swap.h"
 
@@ -74,10 +73,9 @@ static void	get_min_rots(t_dequeue *a, t_dequeue *b, int *bests)
 	while (curr_b)
 	{
 		rot_a = get_min_ra(a, curr_b->value);
+		rot_b = i;
 		if (i > b->size / 2)
 			rot_b = (i - b->size);
-		else
-			rot_b = i;
 		if (absolute(rot_a) + absolute(rot_b) < min_rots)
 		{
 			min_rots = absolute(rot_a) + absolute(rot_b);
