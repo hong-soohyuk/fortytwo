@@ -6,11 +6,13 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:39:08 by soohong           #+#    #+#             */
-/*   Updated: 2023/01/12 01:14:44 by soohong          ###   ########.fr       */
+/*   Updated: 2023/01/12 12:03:55 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdio.h>
+#include <unistd.h>
 
 static int	find_null_loc(t_dequeue *a, int btoa)
 {
@@ -83,26 +85,22 @@ static void	get_min_rots(t_dequeue *a, t_dequeue *b, int *best_a, int *best_b)
 
 static	void	ascending_sort(t_dequeue *a, t_cmds *cmds)
 {
-	int		min_index;
+	int		i;
 	t_node	*curr;
 
-	min_index = 0;
+	i = 0;
 	curr = a->head;
-	while (curr)
+	while (curr->value != a->min)
 	{
-		if (curr->next != NULL && curr->value > curr->next->value)
-			break ;
+		++i;
 		curr = curr->next;
-		++min_index;
 	}
-	++min_index;
-	if (min_index < a->size)
-	{
-		if (min_index > a->size / 2)
-			rotate_a(a, cmds, min_index - a->size);
-		else
-			rotate_a(a, cmds, min_index);
-	}
+	if (i > a->size / 2)
+		while (a->head->value != a->min)
+			rra(a, cmds);
+	else
+		while (a->head->value != a->min)
+			ra(a, cmds);
 }
 
 void	greedy_sort(t_dequeue *a, t_dequeue *b, t_cmds *cmds)
@@ -115,6 +113,9 @@ void	greedy_sort(t_dequeue *a, t_dequeue *b, t_cmds *cmds)
 		rots[1] = 0;
 		get_min_rots(a, b, &rots[0], &rots[1]);
 		rotate_deqs(a, b, cmds, rots);
+		printf("after one sort \n");
+		stdout_queue(a, b);
+		printf("\n");
 	}
 	ascending_sort(a, cmds);
 }

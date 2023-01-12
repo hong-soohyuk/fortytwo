@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 22:47:43 by soohong           #+#    #+#             */
-/*   Updated: 2023/01/11 23:32:31 by soohong          ###   ########.fr       */
+/*   Updated: 2023/01/12 11:47:48 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ void	partition(t_dequeue *a, t_dequeue *b, t_cmds *cmds)
 		current = current->next;
 	}
 	quicksort(array, 0, a->size - 1);
+	a->min = array[0];
 	pivots[0] = array[(a->size / 3) * 2];
 	pivots[1] = array[a->size / 3];
 	categorize(a, b, cmds, pivots);

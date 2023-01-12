@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 17:43:31 by soohong           #+#    #+#             */
-/*   Updated: 2023/01/12 00:11:15 by soohong          ###   ########.fr       */
+/*   Updated: 2023/01/12 11:47:21 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct s_node
 
 typedef struct s_dequeue
 {
+	int				min;
 	int				size;
 	struct s_node	*head;
 	struct s_node	*tail;

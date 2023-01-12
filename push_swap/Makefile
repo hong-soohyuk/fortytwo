@@ -6,7 +6,7 @@
 #    By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/03 17:43:02 by soohong           #+#    #+#              #
-#    Updated: 2023/01/11 23:43:18 by soohong          ###   ########.fr        #
+#    Updated: 2023/01/12 12:00:26 by soohong          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ $(NAME) : $(OBJ)
 all : $(NAME)
 
 %.o : %.c
-	$(GCC) $(FLAG) -c $< -o $@
+	$(GCC) $(FLAG) -c $< -o $@ -g
 
 clean :
 	rm -f $(OBJ)
