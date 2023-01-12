@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 22:47:27 by soohong           #+#    #+#             */
-/*   Updated: 2023/01/12 18:52:02 by soohong          ###   ########.fr       */
+/*   Updated: 2023/01/12 23:43:23 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void	swap(t_dequeue *queue)
 {
-	int temp;
-	
+	int	temp;
+
 	temp = queue->head->value;
 	queue->head->value = queue->head->next->value;
 	queue->head->next->value = temp;

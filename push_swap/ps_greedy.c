@@ -6,13 +6,12 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:39:08 by soohong           #+#    #+#             */
-/*   Updated: 2023/01/12 18:53:17 by soohong          ###   ########.fr       */
+/*   Updated: 2023/01/12 23:47:51 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "push_swap.h"
-#include <stdio.h>
 
 static int	find_null_loc(t_dequeue *a, int btoa)
 {
@@ -56,36 +55,37 @@ static int	get_min_ra(t_dequeue *a, int btoa)
 	}
 	if (rot_a > a->size / 2)
 		return (rot_a - a->size);
-	return (rot_a);
+	else
+		return (rot_a);
 }
 
-static void	get_min_rots(t_dequeue *a, t_dequeue *b, int *best_a, int *best_b)
+static void	get_min_rots(t_dequeue *a, t_dequeue *b, int *bests)
 {
 	t_node	*curr_b;
-	int		best;
+	int		min_rots;
 	int		rot_a;
+	int		i;
 	int		rot_b;
-	int		abs_b;
 
 	curr_b = b->head;
-	best = 2147483647;
+	min_rots = 2147483647;
+	i = 0;
 	rot_b = 0;
-	abs_b = 0;
 	while (curr_b)
 	{
 		rot_a = get_min_ra(a, curr_b->value);
-		if (rot_b > b->size / 2)
-			abs_b = (rot_b - b->size);
-		abs_b = rot_b;
-		if (absolute(rot_a) + absolute(abs_b) < best)
+		if (i > b->size / 2)
+			rot_b = (i - b->size);
+		else
+			rot_b = i;
+		if (absolute(rot_a) + absolute(rot_b) < min_rots)
 		{
-
-			best = absolute(rot_a) + absolute(abs_b);
-			*best_a = rot_a;
-			*best_b = rot_b;
+			min_rots = absolute(rot_a) + absolute(rot_b);
+			bests[0] = rot_a;
+			bests[1] = rot_b;
 		}
 		curr_b = curr_b->next;
-		rot_b++;
+		i++;
 	}
 }
 
@@ -117,7 +117,7 @@ void	greedy_sort(t_dequeue *a, t_dequeue *b, t_cmds *cmds)
 	{
 		rots[0] = 0;
 		rots[1] = 0;
-		get_min_rots(a, b, &rots[0], &rots[1]);
+		get_min_rots(a, b, rots);
 		rotate_deqs(a, b, cmds, rots);
 	}
 	ascending_sort(a, cmds);

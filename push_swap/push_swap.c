@@ -6,11 +6,12 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 10:47:16 by soohong           #+#    #+#             */
-/*   Updated: 2023/01/12 19:00:43 by soohong          ###   ########.fr       */
+/*   Updated: 2023/01/12 23:07:55 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdio.h>
 
 void	stdout_queue(t_dequeue *a, t_dequeue *b)
 {
@@ -58,7 +59,6 @@ int	main(int argc, char **argv)
 
 	if (argc == 1)
 		exit_safe(NULL, NULL, EXIT_FAILURE);
-		
 	a = (t_dequeue *)malloc(sizeof(t_dequeue));
 	b = (t_dequeue *)malloc(sizeof(t_dequeue));
 	cmds = (t_cmds *)malloc(sizeof(t_cmds));
