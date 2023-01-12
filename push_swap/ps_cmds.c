@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 17:18:34 by soohong           #+#    #+#             */
-/*   Updated: 2023/01/10 22:47:14 by soohong          ###   ########.fr       */
+/*   Updated: 2023/01/13 00:31:19 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,23 +40,43 @@ static void	stdout_cmd(int cmd)
 		write(1, &"??\n", 3);
 }
 
-void	stdout_cmds(t_cmds *cmds)
+static void	merge_cmds(t_node **head, t_node *del, int value_of_cmd)
 {
-	t_node	*cmd;
-	t_node	*next;
-
-	cmd = cmds->head;
-	while (cmd)
-	{
-		next = cmd->next;
-		stdout_cmd(cmd->value);
-		free(cmd);
-		cmd = next;
-	}
-	free(cmds);
+	if (*head == NULL || del == NULL)
+		return ;
+	if (del->next != NULL)
+		del->next->value = value_of_cmd;
+	if (*head == del)
+		*head = del->next;
+	if (del->next != NULL)
+		del->next->prev = del->prev;
+	if (del->prev != NULL)
+		del->prev->next = del->next;
+	free(del);
 }
 
-// void	cmd_optimize(){}
+void	cmd_optimize(t_cmds *cmds)
+{
+	t_node	*curr;
+
+	curr = cmds->head;
+	while (curr)
+	{
+		if (curr->next != NULL
+			&& curr->value == CMD_RA && curr->next->value == CMD_RB)
+			merge_cmds(&cmds->head, curr, CMD_RR);
+		else if (curr->next != NULL
+			&& curr->value == CMD_RB && curr->next->value == CMD_RA)
+			merge_cmds(&cmds->head, curr, CMD_RR);
+		else if (curr->next != NULL
+			&& curr->value == CMD_RRA && curr->next->value == CMD_RRB)
+			merge_cmds(&cmds->head, curr, CMD_RRR);
+		else if (curr->next != NULL
+			&& curr->value == CMD_RRB && curr->next->value == CMD_RRA)
+			merge_cmds(&cmds->head, curr, CMD_RRR);
+		curr = curr->next;
+	}
+}
 
 void	cmd_node(t_cmds *cmds, int cmd)
 {
@@ -81,4 +101,21 @@ void	cmd_node(t_cmds *cmds, int cmd)
 		new->prev = cmds->tail;
 		cmds->tail = new;
 	}
+}
+
+void	stdout_cmds(t_cmds *cmds)
+{
+	t_node	*cmd;
+	t_node	*next;
+
+	cmd_optimize(cmds);
+	cmd = cmds->head;
+	while (cmd)
+	{
+		next = cmd->next;
+		stdout_cmd(cmd->value);
+		free(cmd);
+		cmd = next;
+	}
+	free(cmds);
 }
