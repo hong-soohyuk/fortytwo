@@ -6,12 +6,11 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 22:47:43 by soohong           #+#    #+#             */
-/*   Updated: 2023/01/12 18:59:39 by soohong          ###   ########.fr       */
+/*   Updated: 2023/01/13 01:24:55 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
 static void	sort_swap(int *a, int *b)
 {
@@ -48,6 +47,36 @@ static void	quicksort(int *array, int left, int right)
 	}
 }
 
+void	sort_for_five(t_dequeue *a, t_dequeue *b, t_cmds *cmds, int pivot)
+{
+	int	i;
+	int	pb_count;
+
+	i = 0;
+	pb_count = 1 + (a->size == 5);
+	while (i < a->size)
+	{
+		if (pb_count == 0)
+			break ;
+		if (a->tail->value < pivot)
+			rra(a, cmds);
+		if (a->head->value < pivot)
+		{
+			pb(a, b, cmds);
+			--pb_count;
+		}
+		else
+			ra(a, cmds);
+		i++;
+	}
+	hardsort(a, cmds);
+	if (b->head->next != NULL && b->head->value < b->head->next->value)
+		sb(b, cmds);
+	if (a->size == 5)
+		pa(a, b, cmds);
+	pa(a, b, cmds);
+}
+
 void	hardsort(t_dequeue *a, t_cmds *cmds)
 {
 	int	first;
@@ -57,12 +86,12 @@ void	hardsort(t_dequeue *a, t_cmds *cmds)
 	first = a->head->value;
 	second = a->head->next->value;
 	third = a->tail->value;
-	if (first < second && second > third && first < third) //  1 3 2
+	if (first < second && second > third && first < third)
 	{
 		sa(a, cmds);
 		ra(a, cmds);
 	}
-	else if (first > second && second < third && third > first) // 2 1 3
+	else if (first > second && second < third && third > first)
 		sa(a, cmds);
 	else if (first > third && second > third && first < second)
 		rra(a, cmds);
@@ -121,6 +150,9 @@ void	partition(t_dequeue *a, t_dequeue *b, t_cmds *cmds)
 	a->min = array[0];
 	pivots[0] = array[(a->size / 3) * 2];
 	pivots[1] = array[a->size / 3];
-	categorize(a, b, cmds, pivots);
+	if (a->size == 5)
+		sort_for_five(a, b, cmds, array[2]);
+	else
+		categorize(a, b, cmds, pivots);
 	free(array);
 }
