@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:39:08 by soohong           #+#    #+#             */
-/*   Updated: 2023/01/12 12:03:55 by soohong          ###   ########.fr       */
+/*   Updated: 2023/01/12 14:24:11 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,8 @@ void	greedy_sort(t_dequeue *a, t_dequeue *b, t_cmds *cmds)
 {
 	int		rots[2];
 
+		printf("before greedy \n");
+		stdout_queue(a, b);
 	while (b->size != 0)
 	{
 		rots[0] = 0;
