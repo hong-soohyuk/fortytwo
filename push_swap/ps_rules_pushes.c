@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 18:15:45 by soohong           #+#    #+#             */
-/*   Updated: 2023/01/11 19:33:53 by soohong          ###   ########.fr       */
+/*   Updated: 2023/01/12 18:52:35 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,25 +27,26 @@ static t_node	*pop(t_dequeue *src)
 		src->head = src->head->next;
 		src->head->prev = NULL;
 	}
-	src->size--;
+	popped->prev = NULL;
+	popped->next = NULL;
+	(src->size)--;
 	return (popped);
 }
 
-static void	push(t_dequeue *dest, t_node *popped)
+static void	push(t_dequeue *dest, t_node *pushed)
 {
 	if (dest->size == 0)
 	{
-		popped->next = NULL;
-		dest->head = popped;
-		dest->tail = popped;
+		dest->head = pushed;
+		dest->tail = pushed;
 	}
 	else
 	{
-		popped->next = dest->head;
-		dest->head->prev = popped;
-		dest->head = popped;
+		pushed->next = dest->head;
+		dest->head->prev = pushed;
+		dest->head = pushed;
 	}
-	dest->size++;
+	(dest->size)++;
 }
 
 void	pa(t_dequeue *a, t_dequeue *b, t_cmds *cmds)

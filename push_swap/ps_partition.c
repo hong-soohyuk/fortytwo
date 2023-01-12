@@ -6,11 +6,12 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 22:47:43 by soohong           #+#    #+#             */
-/*   Updated: 2023/01/12 11:47:48 by soohong          ###   ########.fr       */
+/*   Updated: 2023/01/12 18:59:39 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdio.h>
 
 static void	sort_swap(int *a, int *b)
 {
@@ -47,7 +48,7 @@ static void	quicksort(int *array, int left, int right)
 	}
 }
 
-static void	hardsort(t_dequeue *a, t_cmds *cmds)
+void	hardsort(t_dequeue *a, t_cmds *cmds)
 {
 	int	first;
 	int	second;
@@ -56,21 +57,21 @@ static void	hardsort(t_dequeue *a, t_cmds *cmds)
 	first = a->head->value;
 	second = a->head->next->value;
 	third = a->tail->value;
-	if (first < second && second > third)
+	if (first < second && second > third && first < third) //  1 3 2
 	{
 		sa(a, cmds);
 		ra(a, cmds);
 	}
-	else if (first > second && second < third)
+	else if (first > second && second < third && third > first) // 2 1 3
 		sa(a, cmds);
-	else if (first < third && second > third)
+	else if (first > third && second > third && first < second)
 		rra(a, cmds);
-	else if (first > second && second > third)
+	else if (first > second && second > third && first > third)
 	{
 		sa(a, cmds);
 		rra(a, cmds);
 	}
-	else if (first > second && second < third)
+	else if (first > second && second < third && first > third)
 		ra(a, cmds);
 }
 

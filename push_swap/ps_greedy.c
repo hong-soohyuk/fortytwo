@@ -6,13 +6,13 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:39:08 by soohong           #+#    #+#             */
-/*   Updated: 2023/01/12 14:24:11 by soohong          ###   ########.fr       */
+/*   Updated: 2023/01/12 18:53:17 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #include "push_swap.h"
 #include <stdio.h>
-#include <unistd.h>
 
 static int	find_null_loc(t_dequeue *a, int btoa)
 {
@@ -42,13 +42,13 @@ static int	get_min_ra(t_dequeue *a, int btoa)
 	{
 		if (curr->prev == NULL && find_null_loc(a, btoa))
 			break ;
-		if (a->size > 0 && curr->prev != NULL && curr->prev->value > btoa
+		if (curr->prev != NULL && curr->prev->value > btoa
 			&& curr->value > btoa && curr->prev->value > curr->value)
 			break ;
-		if (a->size > 0 && curr->prev != NULL && curr->prev->value < btoa
+		if (curr->prev != NULL && curr->prev->value < btoa
 			&& curr->value > btoa && curr->prev->value < curr->value)
 			break ;
-		if (a->size > 0 && curr->prev != NULL && curr->prev->value < btoa
+		if (curr->prev != NULL && curr->prev->value < btoa
 			&& curr->value < btoa && curr->prev->value > curr->value)
 			break ;
 		curr = curr->next;
@@ -65,16 +65,22 @@ static void	get_min_rots(t_dequeue *a, t_dequeue *b, int *best_a, int *best_b)
 	int		best;
 	int		rot_a;
 	int		rot_b;
+	int		abs_b;
 
 	curr_b = b->head;
 	best = 2147483647;
 	rot_b = 0;
+	abs_b = 0;
 	while (curr_b)
 	{
 		rot_a = get_min_ra(a, curr_b->value);
-		if (absolute(rot_a) + rot_b < best)
+		if (rot_b > b->size / 2)
+			abs_b = (rot_b - b->size);
+		abs_b = rot_b;
+		if (absolute(rot_a) + absolute(abs_b) < best)
 		{
-			best = absolute(rot_a) + rot_b;
+
+			best = absolute(rot_a) + absolute(abs_b);
 			*best_a = rot_a;
 			*best_b = rot_b;
 		}
@@ -107,17 +113,12 @@ void	greedy_sort(t_dequeue *a, t_dequeue *b, t_cmds *cmds)
 {
 	int		rots[2];
 
-		printf("before greedy \n");
-		stdout_queue(a, b);
 	while (b->size != 0)
 	{
 		rots[0] = 0;
 		rots[1] = 0;
 		get_min_rots(a, b, &rots[0], &rots[1]);
 		rotate_deqs(a, b, cmds, rots);
-		printf("after one sort \n");
-		stdout_queue(a, b);
-		printf("\n");
 	}
 	ascending_sort(a, cmds);
 }
