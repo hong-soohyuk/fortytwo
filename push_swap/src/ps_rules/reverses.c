@@ -6,12 +6,11 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 22:47:22 by soohong           #+#    #+#             */
-/*   Updated: 2023/01/12 18:52:43 by soohong          ###   ########.fr       */
+/*   Updated: 2023/01/13 12:14:35 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-#include <stdio.h>
+#include "../includes/push_swap.h"
 
 static void	reverse(t_dequeue *deq)
 {

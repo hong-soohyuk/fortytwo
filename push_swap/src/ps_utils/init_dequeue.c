@@ -6,11 +6,11 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 17:43:34 by soohong           #+#    #+#             */
-/*   Updated: 2023/01/12 18:13:50 by soohong          ###   ########.fr       */
+/*   Updated: 2023/01/13 12:16:29 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 static void	free_table(char **table)
 {

@@ -1,51 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_partition.c                                     :+:      :+:    :+:   */
+/*   sort_under6.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 22:47:43 by soohong           #+#    #+#             */
-/*   Updated: 2023/01/13 01:24:55 by soohong          ###   ########.fr       */
+/*   Updated: 2023/01/13 13:09:20 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-
-static void	sort_swap(int *a, int *b)
-{
-	int	temp;
-
-	temp = *a;
-	*a = *b;
-	*b = temp;
-}
-
-static void	quicksort(int *array, int left, int right)
-{
-	int	i;
-	int	j;
-	int	pivot;
-
-	if (left < right)
-	{
-		pivot = left;
-		i = left;
-		j = right;
-		while (i < j)
-		{
-			while (array[i] <= array[pivot] && i < right)
-				i++;
-			while (array[j] > array[pivot])
-				j--;
-			if (i < j)
-				sort_swap(&array[i], &array[j]);
-		}
-		sort_swap(&array[pivot], &array[j]);
-		quicksort(array, left, j - 1);
-		quicksort(array, j + 1, right);
-	}
-}
+#include "../includes/push_swap.h"
 
 void	sort_for_five(t_dequeue *a, t_dequeue *b, t_cmds *cmds, int pivot)
 {

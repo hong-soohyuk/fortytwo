@@ -6,11 +6,11 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 22:47:35 by soohong           #+#    #+#             */
-/*   Updated: 2023/01/13 00:41:22 by soohong          ###   ########.fr       */
+/*   Updated: 2023/01/13 12:16:37 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 static void	free_deq(t_dequeue *q)
 {

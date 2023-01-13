@@ -6,11 +6,11 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 10:47:16 by soohong           #+#    #+#             */
-/*   Updated: 2023/01/13 01:39:53 by soohong          ###   ########.fr       */
+/*   Updated: 2023/01/13 13:24:57 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "includes/push_swap.h"
 
 int	is_sorted(t_dequeue *a)
 {
@@ -35,7 +35,7 @@ int	main(int argc, char **argv)
 	t_cmds		*cmds;
 
 	if (argc == 1)
-		exit_safe(NULL, NULL, EXIT_FAILURE);
+		exit_safe(NULL, NULL, EXIT_SUCCESS);
 	a = (t_dequeue *)malloc(sizeof(t_dequeue));
 	b = (t_dequeue *)malloc(sizeof(t_dequeue));
 	cmds = (t_cmds *)malloc(sizeof(t_cmds));

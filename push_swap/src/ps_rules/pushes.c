@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/10 18:15:45 by soohong           #+#    #+#             */
-/*   Updated: 2023/01/12 18:52:35 by soohong          ###   ########.fr       */
+/*   Created: 2023/01/13 12:00:39 by soohong           #+#    #+#             */
+/*   Updated: 2023/01/13 12:14:30 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 static t_node	*pop(t_dequeue *src)
 {

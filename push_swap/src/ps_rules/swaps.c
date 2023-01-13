@@ -6,11 +6,11 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 22:47:27 by soohong           #+#    #+#             */
-/*   Updated: 2023/01/12 23:43:23 by soohong          ###   ########.fr       */
+/*   Updated: 2023/01/13 12:14:47 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 static void	swap(t_dequeue *queue)
 {

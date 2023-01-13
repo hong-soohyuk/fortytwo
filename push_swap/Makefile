@@ -6,7 +6,7 @@
 #    By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/03 17:43:02 by soohong           #+#    #+#              #
-#    Updated: 2023/01/12 23:03:54 by soohong          ###   ########.fr        #
+#    Updated: 2023/01/13 13:06:08 by soohong          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,19 +16,23 @@ FLAG = -Wall -Wextra -Werror
 
 NAME = push_swap
 
-SRC = ps_atoi.c\
-      ps_cmds.c\
-      ps_greedy_utils.c\
-      ps_greedy.c\
-      ps_initializer.c\
-	ps_partition.c\
-      ps_rules_pushes.c\
-      ps_rules_reverses.c\
-      ps_rules_rotates.c\
-      ps_rules_swaps.c\
-      ps_split.c\
-      ps_terminator.c\
-	push_swap.c\
+SRCDIR = ./src
+
+SRC = $(SRCDIR)/ps_libft/atoi.c\
+      $(SRCDIR)/ps_libft/split.c\
+      $(SRCDIR)/ps_greedy_sort/greedy_utils.c\
+      $(SRCDIR)/ps_greedy_sort/greedy.c\
+      $(SRCDIR)/ps_utils/cmds.c\
+      $(SRCDIR)/ps_utils/init_dequeue.c\
+	$(SRCDIR)/ps_utils/partition.c\
+      $(SRCDIR)/ps_utils/terminator.c\
+      $(SRCDIR)/ps_rules/pushes.c\
+      $(SRCDIR)/ps_rules/reverses.c\
+      $(SRCDIR)/ps_rules/rotates.c\
+      $(SRCDIR)/ps_rules/swaps.c\
+	$(SRCDIR)/push_swap.c\
+
+INCLUDES = -I $(SRCDIR)/includes
 
 OBJ = $(SRC:%.c=%.o)
 
