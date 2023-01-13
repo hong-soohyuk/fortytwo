@@ -6,11 +6,11 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 22:47:43 by soohong           #+#    #+#             */
-/*   Updated: 2023/01/13 14:08:19 by soohong          ###   ########.fr       */
+/*   Updated: 2023/01/13 15:45:28 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "../headers/push_swap.h"
 
 static void	sort_swap(int *a, int *b)
 {

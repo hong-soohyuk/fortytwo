@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_rules_swaps.c                                   :+:      :+:    :+:   */
+/*   swaps.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 22:47:27 by soohong           #+#    #+#             */
-/*   Updated: 2023/01/13 12:14:47 by soohong          ###   ########.fr       */
+/*   Updated: 2023/01/13 15:45:28 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "../headers/push_swap.h"
 
 static void	swap(t_dequeue *queue)
 {

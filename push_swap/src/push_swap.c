@@ -6,11 +6,11 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 10:47:16 by soohong           #+#    #+#             */
-/*   Updated: 2023/01/13 13:58:41 by soohong          ###   ########.fr       */
+/*   Updated: 2023/01/13 15:45:28 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/push_swap.h"
+#include "headers/push_swap.h"
 
 int	is_sorted(t_dequeue *a)
 {
