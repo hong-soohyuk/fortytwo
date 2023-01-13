@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 13:41:15 by soohong           #+#    #+#             */
-/*   Updated: 2023/01/13 15:45:28 by soohong          ###   ########.fr       */
+/*   Updated: 2023/01/13 17:06:26 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ static void	hardsort_for_five(t_dequeue *a, t_dequeue *b, int m, t_cmds *cmds)
 
 void	sort_under_six(t_dequeue *a, t_dequeue *b, t_cmds *cmds, int middle)
 {
-	if (a->size == 2 && b->head->value < b->head->next->value)
+	if (a->size == 2 && a->head->value > a->head->next->value)
 		sa(a, cmds);
 	if (a->size == 3)
 		hardsort_for_three(a, cmds);
