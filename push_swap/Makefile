@@ -6,7 +6,7 @@
 #    By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/03 17:43:02 by soohong           #+#    #+#              #
-#    Updated: 2023/01/13 13:06:08 by soohong          ###   ########.fr        #
+#    Updated: 2023/01/13 14:06:47 by soohong          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRC = $(SRCDIR)/ps_libft/atoi.c\
       $(SRCDIR)/ps_utils/cmds.c\
       $(SRCDIR)/ps_utils/init_dequeue.c\
 	$(SRCDIR)/ps_utils/partition.c\
+      $(SRCDIR)/ps_utils/sort_under_six.c\
       $(SRCDIR)/ps_utils/terminator.c\
       $(SRCDIR)/ps_rules/pushes.c\
       $(SRCDIR)/ps_rules/reverses.c\

@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 10:47:16 by soohong           #+#    #+#             */
-/*   Updated: 2023/01/13 13:24:57 by soohong          ###   ########.fr       */
+/*   Updated: 2023/01/13 13:58:41 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,6 @@ int	main(int argc, char **argv)
 	init_dequeue(a, b, argv, argc);
 	if (is_sorted(a))
 		exit_safe(a, b, EXIT_SUCCESS);
-	if (argc == 4)
-		hardsort(a, cmds);
 	else
 	{
 		partition(a, b, cmds);
