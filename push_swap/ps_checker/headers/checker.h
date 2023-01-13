@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 14:19:18 by soohong           #+#    #+#             */
-/*   Updated: 2023/01/13 15:21:31 by soohong          ###   ########.fr       */
+/*   Updated: 2023/01/13 16:43:54 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ char	*gnl_strchr(const char *s, int c);
 char	**ps_split(char const *s, char c);
 long	ps_atoi(const char *str);
 int		ps_strcmp(char *s1, char *s2);
-
 void	sa(t_dequeue *a);
 void	sb(t_dequeue *b);
 void	ss(t_dequeue *a, t_dequeue *b);
@@ -54,7 +53,6 @@ void	rr(t_dequeue *a, t_dequeue *b);
 void	rra(t_dequeue *a);
 void	rrb(t_dequeue *b);
 void	rrr(t_dequeue *a, t_dequeue *b);
-
 void	init_dequeue(t_dequeue *a, t_dequeue *b, char **argv, int argc);
 void	exit_safe(t_dequeue *a, t_dequeue *b, int exit_code);
 
