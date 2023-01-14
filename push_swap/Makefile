@@ -6,7 +6,7 @@
 #    By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/03 17:43:02 by soohong           #+#    #+#              #
-#    Updated: 2023/01/13 16:39:33 by soohong          ###   ########.fr        #
+#    Updated: 2023/01/14 18:14:56 by soohong          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,14 +58,14 @@ $(NAME) : $(OBJ)
 	$(GCC) -o $(NAME) $(OBJ)
 
 $(BONUS_NAME) : $(BONUS_OBJ)
-	$(GCC) -o $(BONUS_INCLUDES) $(BONUS_NAME) $(BONUS_OBJ)
+	$(GCC) -o $(BONUS_NAME) $(BONUS_OBJ)
 
 all : $(NAME)
 
 bonus : $(BONUS_NAME)
 
 %.o : %.c
-	$(GCC) $(FLAG) $(INCLUDES) -c $< -o $@ -g
+	$(GCC) $(FLAG) -c $< -o $@ -g
 
 clean :
 	rm -f $(OBJ) $(BONUS_OBJ)
