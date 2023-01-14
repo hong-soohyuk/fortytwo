@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 22:47:22 by soohong           #+#    #+#             */
-/*   Updated: 2023/01/14 18:23:27 by soohong          ###   ########.fr       */
+/*   Updated: 2023/01/14 18:29:18 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,10 @@ void	rrb(t_dequeue *b, t_cmds *cmds)
 
 void	rrr(t_dequeue *a, t_dequeue *b, t_cmds *cmds)
 {
-	if (a->size != 0 && a->size != 1)
+	if (a->size != 0 && a->size != 1 && b->size != 0 && b->size != 1)
+	{
 		reverse(a);
-	if (b->size != 0 && b->size != 1)
 		reverse(b);
-	cmd_node(cmds, CMD_RRR);
+		cmd_node(cmds, CMD_RRR);
+	}
 }
