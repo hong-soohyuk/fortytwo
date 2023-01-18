@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 17:43:34 by soohong           #+#    #+#             */
-/*   Updated: 2023/01/13 15:45:28 by soohong          ###   ########.fr       */
+/*   Updated: 2023/01/18 12:14:07 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,11 @@ void	init_dequeue(t_dequeue *a, t_dequeue *b, char **argv, int argc)
 		j = -1;
 		while (table[++j])
 			init_node(a, ps_atoi(table[j]), table);
+		if (j == 0)
+		{
+			free_table(table);
+			exit_safe(a, NULL, EXIT_FAILURE);
+		}
 		free_table(table);
 	}
 }
