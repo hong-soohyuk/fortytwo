@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 10:47:16 by soohong           #+#    #+#             */
-/*   Updated: 2023/01/13 15:45:28 by soohong          ###   ########.fr       */
+/*   Updated: 2023/01/18 12:04:09 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	main(int argc, char **argv)
 	b = (t_dequeue *)malloc(sizeof(t_dequeue));
 	cmds = (t_cmds *)malloc(sizeof(t_cmds));
 	init_dequeue(a, b, argv, argc);
-	if (is_sorted(a))
+	if (is_sorted(a) && b->size == 0)
 		exit_safe(a, b, EXIT_SUCCESS);
 	else
 	{
