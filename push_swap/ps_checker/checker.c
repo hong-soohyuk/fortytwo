@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 17:18:29 by soohong           #+#    #+#             */
-/*   Updated: 2023/01/18 12:03:52 by soohong          ###   ########.fr       */
+/*   Updated: 2023/01/18 12:23:34 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ int	main(int argc, char **argv)
 {
 	t_dequeue	*a;
 	t_dequeue	*b;
+
 	a = (t_dequeue *)malloc(sizeof(t_dequeue));
 	b = (t_dequeue *)malloc(sizeof(t_dequeue));
 	init_dequeue(a, b, argv, argc);
