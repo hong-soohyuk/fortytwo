@@ -4,8 +4,9 @@
 
 - [libft](#1.-libft)
 - [get_next_line](#2.-get_next_line)
-- [born2beroot](#3.-born2beroot)
-- [push_swap](#4.-push_swap)
+- [printf](#3.-printf)
+- [born2beroot](#4.-born2beroot)
+- [push_swap](#5.-push_swap)
 
 ## 1. libft
 
@@ -73,7 +74,11 @@ char	*get_next_line(int fd)
 
 -----
 
-## 3. born2beroot
+## 3. printf
+
+-----
+
+## 4. born2beroot
 virtual machine에 linux를 설치하고, package manager, sudo, password policy, ufw를 학습.
 
 - ### 1) vm?
@@ -107,4 +112,24 @@ Uncomplicated Firewall은 말 그대로 복잡하지 않고 간단한 명령어�
 
 -----
 
-## 4. push_swap
+## 5. push_swap
+
+a와 b라는 두 개의 Stack(과제는 dequeue로 구현)가 주어지며,
+
+프로그램의 인자로 주어지는 값들을 parsing 하여 stack a에 차례대로 넣은 후,
+
+과제에서 주어진 명령어들에 따라 스택을 조정해 최종적으로 오름차순 정렬된 stack a를 만드는 프로그램을 작성한다.
+
+| the rules			| functionality                  |
+| ----------------- |:-----------------|
+| sa (swap a)		| Swap the first 2 elements at the top of stack a. |
+| sb (swap b)		| Swap the first 2 elements at the top of stack b. |
+| ss (swap a, b)	| sa and sb at the same time. |
+| pa (push a)		| Take the first element at the top of b and put it at the top of a. |
+| pb (push b)		| Take the first element at the top of b and put it at the top of b. |
+| ra (rotate a)		| Shift up all elements of stack a by 1. |
+| rb (rotate b)		| Shift up all elements of stack b by 1. |
+| rr (rotate a, b)	| ra and rb at the same time. |
+| rra (reverse a)	| Shift down all elements of stack a by 1.|
+| rrb (reverse a)	|  Shift down all elements of stack b by 1. |
+| rrr (reverse a, b)| rra and rrb at the same time.|
