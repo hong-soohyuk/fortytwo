@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 22:46:58 by soohong           #+#    #+#             */
-/*   Updated: 2023/01/13 15:45:28 by soohong          ###   ########.fr       */
+/*   Updated: 2023/01/31 14:56:51 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ long	ps_atoi(const char *str)
 			return (ATOI_FAILURE);
 		v = (v * 10) + (str[i++] - '0');
 	}
-	v = (int)(v * s);
-	if ((s > 0 && v < 0) || (s < 0 && v > 0) || i - n > 10 || !(i - n))
+	v = (v * s);
+	if (v > INT_MAX || v < INT_MIN || i - n > 10 || !(i - n))
 		return (ATOI_FAILURE);
 	return ((int)v);
 }

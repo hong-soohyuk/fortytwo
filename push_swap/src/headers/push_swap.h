@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 17:43:31 by soohong           #+#    #+#             */
-/*   Updated: 2023/01/13 13:53:16 by soohong          ###   ########.fr       */
+/*   Updated: 2023/01/31 14:56:20 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ typedef struct s_cmds
 }	t_cmds;
 
 # define ATOI_FAILURE 3000000000
+# define INT_MAX 2147483647
+# define INT_MIN -2147483648
 
 void	stdout_queue(t_dequeue *a, t_dequeue *b);
 char	**ps_split(char const *s, char c);

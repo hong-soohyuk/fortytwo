@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 14:19:18 by soohong           #+#    #+#             */
-/*   Updated: 2023/01/13 16:43:54 by soohong          ###   ########.fr       */
+/*   Updated: 2023/01/31 14:56:45 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # define BUFFER_SIZE 5
 # define ATOI_FAILURE 3000000000
+# define INT_MAX 2147483647
+# define INT_MIN -2147483648
 
 # include <stdlib.h>
 # include <unistd.h>
