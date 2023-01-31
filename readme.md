@@ -2,13 +2,12 @@
 
 42서울에서 진행하는 ecole42 본 과정 과제를 기록하기 위한 repository.
 
+- [libft](#1.-libft)
+- [get_next_line](#2.-get_next_line)
+- [born2beroot](#3.-born2beroot)
+- [push_swap](#4.-push_swap)
 
-- [libft](libft)
-- [get_next_line](get_next_line)
-- [born2beroot](born2beroot)
-- [push_swap](push_swap)
-
-## libft
+## 1. libft
 
 ```shell
 cd ./libft
@@ -72,7 +71,9 @@ char	*get_next_line(int fd)
 - ### 3) LinkedList의 활용
 한 프로그램 안에서 여러 fd를 동시에 열어서 파일들을 읽어들일 경우 다른 파일(fd)을 읽은 다음 다시 원래의 파일(fd)을 읽을 경우 이전까지 반환한 값 부터 다시 반환 가능해야한다.
 
-### 3. born2beroot
+-----
+
+## 3. born2beroot
 virtual machine에 linux를 설치하고, package manager, sudo, password policy, ufw를 학습.
 
 - ### 1) vm?
@@ -104,6 +105,6 @@ Uncomplicated Firewall은 말 그대로 복잡하지 않고 간단한 명령어�
 
 추가로, sudo 권한을 편집할 수 있는 `visudo`에서 `requiretty` 을 설정하는데, cron와 같은 daemon이 함부로 sudo 명령어를 실행하지 않게 하기 위한 설정이다.
 
-### 4. push_swap
+-----
 
-
+## 4. push_swap
