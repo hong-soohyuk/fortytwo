@@ -2,13 +2,13 @@
 
 42서울에서 진행하는 ecole42 본 과정 과제를 기록하기 위한 repository.
 
-- [libft](#1.-libft)
-- [get_next_line](#2.-get_next_line)
-- [printf](#3.-printf)
-- [born2beroot](#4.-born2beroot)
-- [push_swap](#5.-push_swap)
+- [libft](#libft)
+- [get_next_line](#get_next_line)
+- [printf](#printf)
+- [born2beroot](#born2beroot)
+- [push_swap](#push_swap)
 
-## 1. libft
+## libft
 
 ```shell
 cd ./libft
@@ -33,7 +33,7 @@ make bonus
 
 -----
 
-## 2. get_next_line
+## get_next_line
 
 fd를 통해 파일에 접근해 파일의 내용을 한 줄(`'\n'`) 단위로 나누어 반환하는 함수 작성.
 
@@ -74,11 +74,11 @@ char	*get_next_line(int fd)
 
 -----
 
-## 3. printf
+## printf
 
 -----
 
-## 4. born2beroot
+## born2beroot
 virtual machine에 linux를 설치하고, package manager, sudo, password policy, ufw를 학습.
 
 - ### 1) vm?
@@ -112,7 +112,7 @@ Uncomplicated Firewall은 말 그대로 복잡하지 않고 간단한 명령어�
 
 -----
 
-## 5. push_swap
+## push_swap
 
 a와 b라는 두 개의 Stack(과제는 dequeue로 구현)가 주어지며,
 
