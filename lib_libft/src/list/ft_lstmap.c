@@ -6,11 +6,11 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 14:18:33 by soohong           #+#    #+#             */
-/*   Updated: 2022/11/17 15:29:46 by soohong          ###   ########.fr       */
+/*   Updated: 2023/02/20 17:19:12 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/libft.h"
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {

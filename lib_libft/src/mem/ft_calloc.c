@@ -6,12 +6,11 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 02:26:25 by soohong           #+#    #+#             */
-/*   Updated: 2022/11/14 22:53:09 by soohong          ###   ########.fr       */
+/*   Updated: 2023/02/20 17:20:52 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdlib.h>
+#include "../../includes/libft.h"
 
 void	*ft_calloc(size_t count, size_t size)
 {
