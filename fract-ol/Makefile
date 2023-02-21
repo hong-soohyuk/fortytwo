@@ -6,7 +6,7 @@
 #    By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/03 17:43:02 by soohong           #+#    #+#              #
-#    Updated: 2023/02/21 14:44:34 by soohong          ###   ########.fr        #
+#    Updated: 2023/02/21 19:42:53 by soohong          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,9 @@ HEADER = includes
 SRCDIR  = ./srcs
 OBJDIR  = ./objects
 
+LMLX =  -Lmlx -lmlx -framework OpenGl -framework Appkit
+LFT = -L libft -lft
+
 SOURCES = main.c \
 
 SRCS = $(addprefix $(SRCDIR)/,$(SOURCES))
@@ -49,7 +52,7 @@ makedir:
 	@mkdir -p objects
 
 $(NAME): $(OBJS)
-	$(CC) -o $(NAME) $(OBJS) -Lmlx -lmlx -framework OpenGl -framework Appkit
+	$(CC) -o $(NAME) $(OBJS) $(LMLX) $(LFT)
 	@echo "$(GREEN)Project successfully compiled"
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c $(HEADER)/$(NAME).h
