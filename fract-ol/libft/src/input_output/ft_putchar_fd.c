@@ -6,11 +6,11 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 17:21:52 by soohong           #+#    #+#             */
-/*   Updated: 2022/11/14 22:35:48 by soohong          ###   ########.fr       */
+/*   Updated: 2023/02/20 17:19:55 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "../../includes/libft.h"
 
 void	ft_putchar_fd(char c, int fd)
 {

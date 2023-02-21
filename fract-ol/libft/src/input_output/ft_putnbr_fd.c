@@ -6,11 +6,11 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 19:13:57 by soohong           #+#    #+#             */
-/*   Updated: 2022/11/15 14:03:42 by soohong          ###   ########.fr       */
+/*   Updated: 2023/02/20 17:19:37 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "../../includes/libft.h"
 
 static int	digit_count(int n)
 {
