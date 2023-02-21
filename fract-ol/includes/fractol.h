@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 14:55:04 by soohong           #+#    #+#             */
-/*   Updated: 2023/02/21 14:27:25 by soohong          ###   ########.fr       */
+/*   Updated: 2023/02/21 19:02:08 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,30 +22,22 @@
 # define HEIGHT		1080
 # define WIDTH		1920
 # define HELP_COLOR	800
-
-enum	e_fractol
-{
-	MANDELBROT,
-	JULIA,
-	PHOENIX,
-	BARNSLEY,
-	FLAME,
-	FLOWERBROT
-};
+# define MANDELBROT	"Mandelbrot"
+# define JULIA		"Juila"
 
 typedef struct s_mlx
 {
 	void	*mlx;
 	void	*window;
-	int		*image;
-}	t_mlx;
-
-typedef struct s_image
-{
+	void	*image;
 	char	*data;
 	int		bits_per_pixel;
 	int		sizeline;
 	int		endian;
+}	t_mlx;
+
+typedef struct s_image
+{
 }	t_image;
 
 #endif

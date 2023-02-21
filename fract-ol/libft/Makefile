@@ -6,7 +6,7 @@
 #    By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/18 00:27:24 by soohong           #+#    #+#              #
-#    Updated: 2023/02/20 16:58:31 by soohong          ###   ########.fr        #
+#    Updated: 2023/02/21 19:24:09 by soohong          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ ft_strnstr.c ft_tolower.c ft_isalpha.c ft_itoa.c \
 ft_striteri.c ft_strlen.c ft_strrchr.c ft_toupper.c \
 ft_isascii.c ft_split.c ft_strjoin.c ft_strmapi.c \
 ft_strtrim.c ft_isdigit.c ft_strchr.c ft_strlcat.c \
-ft_strncmp.c ft_substr.c
+ft_strncmp.c ft_strcmp.c ft_substr.c
 
 OBJDIR = objects/
 
