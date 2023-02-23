@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 14:55:04 by soohong           #+#    #+#             */
-/*   Updated: 2023/02/23 21:33:49 by soohong          ###   ########.fr       */
+/*   Updated: 2023/02/23 21:47:58 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,12 @@
 # define MAX_ITER	256
 # define MANDELBROT	"Mandelbrot"
 # define JULIA		"Juila"
+
+typedef struct s_complex
+{
+	double	real;
+	double	imaginary;
+}	t_complex;
 
 typedef struct s_mlx
 {

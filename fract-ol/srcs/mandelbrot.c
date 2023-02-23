@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 20:22:51 by soohong           #+#    #+#             */
-/*   Updated: 2023/02/23 21:33:53 by soohong          ###   ########.fr       */
+/*   Updated: 2023/02/23 21:49:46 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,21 @@
 
 static int	mandelbrot_code(double i, double j, t_mlx *mlx)
 {
-	double	x;
-	double	y;
-	double	x0;
-	double	y0;
-	double	temp;
-	int		n;
+	t_complex	p;
+	t_complex	s;
+	double		temp;
+	int			n;
 
-	x0 = (i - OFFSET_X) * mlx->scale;
-	y0 = (OFFSET_Y - j) * mlx->scale;
-	x = 0;
-	y = 0;
+	s.real = (i - OFFSET_X) * mlx->scale;
+	s.imaginary = (OFFSET_Y - j) * mlx->scale;
+	p.real = 0;
+	p.imaginary = 0;
 	n = 0;
-	while ((x * x) + (y * y) <= 4 && n < MAX_ITER)
+	while ((p.real * p.real) + (p.imaginary * p.imaginary) <= 4 && n < MAX_ITER)
 	{
-		temp = x * x - y * y + x0;
-		y = 2 * x * y + y0;
-		x = temp;
+		temp = p.real * p.real - p.imaginary * p.imaginary + s.real;
+		p.imaginary = 2 * p.real * p.imaginary + s.imaginary;
+		p.real = temp;
 		n++;
 	}
 	return (n);
