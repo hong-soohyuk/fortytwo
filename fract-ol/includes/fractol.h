@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 14:55:04 by soohong           #+#    #+#             */
-/*   Updated: 2023/02/23 19:27:52 by soohong          ###   ########.fr       */
+/*   Updated: 2023/02/23 21:33:49 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@
 
 
 # define TITLE		"fract-ol"
-# define HEIGHT		400
-# define WIDTH		400
-# define OFFSET_X	200
-# define OFFSET_Y	200
-# define MAX_ITER	128
+# define HEIGHT		800
+# define WIDTH		800
+# define OFFSET_X	400
+# define OFFSET_Y	400
+# define MAX_ITER	256
 # define MANDELBROT	"Mandelbrot"
 # define JULIA		"Juila"
 
@@ -36,14 +36,14 @@ typedef struct s_mlx
 	int		bits_per_pixel;
 	int		sizeline;
 	int		endian;
+	double	scale;
 }	t_mlx;
 
-int		mouse_hook(int mousecode, t_mlx *mlx);
+int		mouse_hook(int mousecode, int x, int y, t_mlx *mlx);
 int		key_hook(int keycode, t_mlx *mlx);
 int		exit_hook();
-int		mandelbrot_code(double i, double j);
-void	print_mandelbrot(t_mlx *mlx);
-void	mandelbrot(t_mlx mlx);
+int		get_color(int n);
+void	mandelbrot(t_mlx *mlx);
 void	mlx_pix_put(t_mlx *mlx, int x, int y, int color);
 
 #endif
