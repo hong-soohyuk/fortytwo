@@ -1,69 +1,68 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Mandelbrot.c                                       :+:      :+:    :+:   */
+/*   mandelbrot.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 20:22:51 by soohong           #+#    #+#             */
-/*   Updated: 2023/02/21 20:22:52 by soohong          ###   ########.fr       */
+/*   Updated: 2023/02/23 19:45:10 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
-#include <stdlib.h>
 
-int	mandelbrot_code(double i, double j, t_mlx *mlx)
+int	mandelbrot_code(double i, double j)
 {
-	t_complex	z;
-	t_complex	c;
-	double		temp;
-	int			n;
+	double	x;
+	double	y;
+	double	x0;
+	double	y0;
+	double	temp;
+	int		n;
 
-	z.real = 0;
-	z.image = 0;
-	// c.real = mlx.
-	return (0);
+	x0 = (i - OFFSET_X) * 0.01;
+	y0 = (OFFSET_Y - j) * 0.01;
+	x = 0;
+	y = 0;
+	n = 0;
+	while ((x * x) + (y * y) <= 4 && n < MAX_ITER)
+	{
+		temp = x * x - y * y + x0;
+		y = 2 * x * y + y0;
+		x = temp;
+		n++;
+	}
+	return (n);
 }
 
-void	print_mandelbrot(t_mlx *mlx)
+int	get_color(int n, int base)
+{
+	return (base / n);
+}
+
+void	mandelbrot(t_mlx mlx)
 {
 	double	i;
 	double	j;
 	int		n;
 	
-	mlx_clear_window(mlx->mlx, mlx->window);
+	mlx_clear_window(mlx.mlx, mlx.window);
 	i = 0;
 	while (i < WIDTH)
 	{
 		j = 0;
 		while (j < HEIGHT)
 		{
-			n = mandelbrot_code(i, j, mlx);
-			// if (n == N_MAX)
-			mlx_pixel_put(mlx->mlx, mlx->window, i, j, 0x00000000);
-			//else
-			// mlx_pixel_put(mlx->mlx, mlx->window, i, j, 0x00000000);
+			n = mandelbrot_code(i, j);
+			if (n == MAX_ITER)
+				mlx_pix_put(&mlx, i, j, 0x00000000);
+			else
+				mlx_pix_put(&mlx, i, j, get_color(n, 0x00FFFFFF));
 			j++;
 		}
 		++i;
 	}
-	mlx_put_image_to_window(mlx->mlx, mlx->window, mlx->image, 0, 0);
-}
-
-void	mandelbrot(void)
-{
-	t_mlx mlx;
-
-	mlx.mlx = mlx_init();
-	mlx.window = mlx_new_window(mlx.mlx, WIDTH, HEIGHT, TITLE);
-	mlx.image = mlx_new_image(mlx.mlx, WIDTH, HEIGHT);
-	mlx_get_data_addr(mlx.image, &mlx.bits_per_pixel, &mlx.sizeline, &mlx.endian);
-	//setting
-	//print mandel
-	mlx_mouse_hook(mlx.window, mouse_hook, &mlx);
-	mlx_key_hook(mlx.window, key_hook, &mlx);
-	mlx_hook(mlx.window, 17, 0, exit_hook, &mlx);
-	mlx_loop(mlx.mlx);
+	mlx_put_image_to_window(mlx.mlx, mlx.window, mlx.image, 0, 0);
 	return ;
 }

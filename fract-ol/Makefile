@@ -6,7 +6,7 @@
 #    By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/03 17:43:02 by soohong           #+#    #+#              #
-#    Updated: 2023/02/21 20:22:27 by soohong          ###   ########.fr        #
+#    Updated: 2023/02/23 16:13:39 by soohong          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,8 @@ CYAN        = \033[1;36m
 WHITE       = \033[1;37m
 
 CC = cc
-FLAG = -Wall -Wextra -Werror
+# FLAG = -Wall -Wextra -Werror
+FLAG = -w
 
 NAME = fractol
 
@@ -37,6 +38,8 @@ LMLX =  -Lmlx -lmlx -framework OpenGl -framework Appkit
 LFT = -L libft -lft
 
 SOURCES = fractol.c \
+mandelbrot.c \
+hooks.c \
 
 SRCS = $(addprefix $(SRCDIR)/,$(SOURCES))
 OBJS = $(addprefix $(OBJDIR)/,$(SOURCES:%.c=%.o))

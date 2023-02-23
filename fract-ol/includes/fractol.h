@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 14:55:04 by soohong           #+#    #+#             */
-/*   Updated: 2023/02/21 20:22:04 by soohong          ###   ########.fr       */
+/*   Updated: 2023/02/23 19:27:52 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,38 +19,31 @@
 
 
 # define TITLE		"fract-ol"
-# define HEIGHT		1080
-# define WIDTH		1920
-# define HELP_COLOR	800
+# define HEIGHT		400
+# define WIDTH		400
+# define OFFSET_X	200
+# define OFFSET_Y	200
+# define MAX_ITER	128
 # define MANDELBROT	"Mandelbrot"
 # define JULIA		"Juila"
-
-typedef struct s_complex
-{
-	double	real;
-	double	image;
-}	t_complex;
 
 typedef struct s_mlx
 {
 	void	*mlx;
 	void	*window;
 	void	*image;
-	char	*data;
+	char	*address;
 	int		bits_per_pixel;
 	int		sizeline;
 	int		endian;
 }	t_mlx;
 
-typedef struct s_image
-{
-}	t_image;
-
-#endif
-
 int		mouse_hook(int mousecode, t_mlx *mlx);
 int		key_hook(int keycode, t_mlx *mlx);
 int		exit_hook();
-int		mandelbrot_code(double i, double j, t_mlx *mlx);
+int		mandelbrot_code(double i, double j);
 void	print_mandelbrot(t_mlx *mlx);
-void	mandelbrot(void);
+void	mandelbrot(t_mlx mlx);
+void	mlx_pix_put(t_mlx *mlx, int x, int y, int color);
+
+#endif

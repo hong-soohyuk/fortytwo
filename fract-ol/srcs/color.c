@@ -1,46 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hooks.c                                            :+:      :+:    :+:   */
+/*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 20:20:01 by soohong           #+#    #+#             */
-/*   Updated: 2023/02/23 19:32:25 by soohong          ###   ########.fr       */
+/*   Updated: 2023/02/23 19:35:21 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-int	mouse_hook(int mousecode, t_mlx *mlx)
+
+
+int	create_trgb(int t, int r, int g, int b)
 {
-	(void)mlx;
-	if (mousecode == 4)
-		ft_putstr_fd("scroll up", 1);
-	else if (mousecode == 5)
-		ft_putstr_fd("scroll down", 1);
-	return (0);
+	return (t << 24 | r << 16 | g << 8 | b);
 }
 
-int	key_hook(int keycode, t_mlx *mlx)
+int	get_t(int trgb)
 {
-	if(keycode == 53)
-	{
-		mlx_destroy_window(mlx->mlx, mlx->window);
-		exit(0);
-	}
-	return (0);
+	return (trgb & (0xFF << 24));
 }
 
-int	exit_hook()
+int	get_r(int trgb)
 {
-	exit(0);
+	return (trgb & (0xFF << 16));
 }
 
-void	mlx_pix_put(t_mlx *mlx, int x, int y, int color)
+int	get_g(int trgb)
 {
-	char	*dst;
-	
-	dst = mlx->address + (y * mlx->sizeline + x * (mlx->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
+	return (trgb & (0xFF << 8));
+}
+
+int	get_b(int trgb)
+{
+	return (trgb & 0xFF);
 }
