@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 20:22:47 by soohong           #+#    #+#             */
-/*   Updated: 2023/02/26 13:12:22 by soohong          ###   ########.fr       */
+/*   Updated: 2023/02/26 15:43:09 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ void	default_config(t_mlx *mlx)
 	mlx->move_x = 0.0f;
 	mlx->move_y = 0.0f;
 	mlx->zoom = 1.0f;
-	mlx->max_iter = 100;
+	mlx->max_iter = 256;
+	mlx->color_set = 0;
 	mlx->julia_active = 0;
 }
 

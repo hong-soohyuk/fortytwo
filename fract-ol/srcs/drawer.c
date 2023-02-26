@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 10:33:40 by soohong           #+#    #+#             */
-/*   Updated: 2023/02/26 12:33:49 by soohong          ###   ########.fr       */
+/*   Updated: 2023/02/26 15:30:57 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	pixel_loop(t_mlx *mlx)
 		while (width < WIDTH)
 		{
 			mlx_pix_put(mlx, width, height,
-				get_color(mlx->fractal_function(mlx, width, height), mlx->max_iter));
+				set_color(mlx, mlx->fractal_function(mlx, width, height)));
 			++width;
 		}
 		++height;

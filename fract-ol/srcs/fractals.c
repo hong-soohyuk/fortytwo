@@ -6,33 +6,12 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 20:22:51 by soohong           #+#    #+#             */
-/*   Updated: 2023/02/26 12:13:32 by soohong          ###   ########.fr       */
+/*   Updated: 2023/02/26 20:33:25 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-// static int	mandelbrot_code(double i, double j, t_mlx *mlx)
-// {
-	// t_complex	p;
-	// t_complex	s;
-	// double		temp;
-	// int			i;
-
-	// s.real = (i - OFFSET_X) * mlx->scale;
-	// s.imaginary = (OFFSET_Y - j) * mlx->scale;
-	// p.real = 0;
-	// p.imaginary = 0;
-	// i = 0;
-	// while ((p.real * p.real) + (p.imaginary * p.imaginary) <= 4 && i < MAX_ITER)
-	// {
-	// 	temp = p.real * p.real - p.imaginary * p.imaginary + s.real;
-	// 	p.imaginary = 2 * p.real * p.imaginary + s.imaginary;
-	// 	p.real = temp;
-	// 	i++;
-	// }
-	// return (i);
-// }
 t_map	add_param(long double min_in, long double max_in,
 	long double min_out, long double max_out)
 {

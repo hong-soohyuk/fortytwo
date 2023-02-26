@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 14:55:04 by soohong           #+#    #+#             */
-/*   Updated: 2023/02/26 13:16:01 by soohong          ###   ########.fr       */
+/*   Updated: 2023/02/26 20:49:46 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 
 
 # define TITLE		"fract-ol"
-# define HEIGHT		600
-# define WIDTH		800
+# define WIDTH		1280
+# define HEIGHT		720
 # define MOTION_MASK (1L<<6)
 # define MOTION_NOTIFY	6
 // # define OFFSET_X	400
@@ -29,6 +29,20 @@
 // # define MAX_ITER	256
 # define MANDELBROT	"Mandelbrot"
 # define JULIA		"Julia"
+
+typedef struct	s_rgba
+{
+	unsigned int	r;
+	unsigned int	g;
+	unsigned int	b;
+	unsigned int	a;
+}	t_rgba;
+
+typedef union		u_color
+{
+	int			value;
+	t_rgba		rgba;
+}					t_color;
 
 typedef struct s_map
 {
@@ -40,16 +54,16 @@ typedef struct s_map
 
 typedef struct s_complex
 {
-	double	real;
-	double	imaginary;
+	long double	real;
+	long double	imaginary;
 }	t_complex;
 
-typedef struct s_color
+typedef struct		s_palette
 {
-	int	red;
-	int	green;
-	int	blue;
-}	t_color;
+	uint8_t		count;
+	int			cycle;
+	int			colors[16];
+}					t_palette;
 
 typedef struct s_mlx
 {
@@ -60,7 +74,7 @@ typedef struct s_mlx
 	int			bits_per_pixel;
 	int			sizeline;
 	int			endian;
-	double		scale;
+	int			color_set;
 	float		max_iter;
 	long double	c_real;
 	long double	c_imag;
@@ -84,7 +98,7 @@ void	default_config(t_mlx *mlx);
 int		mouse_zoom_hook(int mousecode, int x, int y, t_mlx *mlx);
 int		key_hook(int keycode, t_mlx *mlx);
 int		exit_hook(void);
-t_color	get_color(int n, float max_iter);
+t_color	set_color(t_mlx *mlx, int iteration);
 void	pixel_loop(t_mlx *mlx);
 void	next_frame(t_mlx *mlx);
 int		mandelbrot(t_mlx *mlx, int x, int y);
