@@ -1,0 +1,9 @@
+{
+	"files.associations": {
+		"complex": "c",
+		"chrono": "c",
+		"limits": "c",
+		"ratio": "c",
+		"fractol.h": "c"
+	}
+}

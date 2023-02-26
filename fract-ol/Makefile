@@ -6,7 +6,7 @@
 #    By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/03 17:43:02 by soohong           #+#    #+#              #
-#    Updated: 2023/02/23 21:11:25 by soohong          ###   ########.fr        #
+#    Updated: 2023/02/26 12:59:18 by soohong          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,9 +37,12 @@ OBJDIR  = ./objects
 LMLX =  -Llibmlx -lmlx -framework OpenGl -framework Appkit
 LFT = -L libft -lft
 
-SOURCES = fractol.c \
-mandelbrot.c \
-hooks.c \
+SOURCES = main.c \
+fractals.c \
+drawer.c \
+color.c \
+mouse_hooks.c \
+key_hooks.c \
 
 SRCS = $(addprefix $(SRCDIR)/,$(SOURCES))
 OBJS = $(addprefix $(OBJDIR)/,$(SOURCES:%.c=%.o))
