@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 14:55:04 by soohong           #+#    #+#             */
-/*   Updated: 2023/02/27 14:10:50 by soohong          ###   ########.fr       */
+/*   Updated: 2023/02/27 21:00:44 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,9 @@
 # define HEIGHT		480
 # define MOTION_MASK (1L<<6)
 # define MOTION_NOTIFY	6
-// # define OFFSET_X	400
-// # define OFFSET_Y	400
-// # define MAX_ITER	256
 # define MANDELBROT	"Mandelbrot"
 # define JULIA		"Julia"
+# define TRICORN	"Tricorn"
 
 typedef struct	s_vec3
 {
@@ -90,9 +88,13 @@ unsigned int	set_color(t_mlx *mlx, int iteration);
 void			pixel_loop(t_mlx *mlx);
 int				mandelbrot(t_mlx *mlx, int x, int y);
 int				julia(t_mlx *mlx, int x, int y);
+int				tricorn(t_mlx *mlx, int x, int y);
 int				julia_mouse(int x, int y, t_mlx *mlx);
-t_map			add_param(double min_in, double max_in,
-					double min_out, double max_out);
-double ft_map(double x, t_map map);
+t_map			add_param(double min_in, double max_in, double min_out,
+	double max_out);
+double			ft_map(double x, t_map map);
+int				print_options(void);
+int				exit_hook(void);
+
 
 #endif

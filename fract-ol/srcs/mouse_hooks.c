@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 20:20:01 by soohong           #+#    #+#             */
-/*   Updated: 2023/02/27 14:11:49 by soohong          ###   ########.fr       */
+/*   Updated: 2023/02/27 20:56:41 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ static int	zoom_in(int x, int y, t_mlx *mlx)
 	double	move_y;
 
 	move_x = (double)x * (double)((mlx->max_x - mlx->min_x)
-		/ (double)WIDTH) + (double)mlx->min_x;
+			/ (double)WIDTH) + (double)mlx->min_x;
 	move_y = (double)y * (double)((mlx->max_y - mlx->min_y)
-		/ (double)HEIGHT) + (double)mlx->min_y;
+			/ (double)HEIGHT) + (double)mlx->min_y;
 	zoom_factor = 0.9f;
 	mlx->zoom *= zoom_factor;
 	mlx->max_x = mlx->max_x * zoom_factor + move_x * (1 - zoom_factor);
@@ -52,7 +52,7 @@ static int	zoom_out(int x, int y, t_mlx *mlx)
 	return (0);
 }
 
-int julia_mouse(int x, int y, t_mlx *mlx)
+int	julia_mouse(int x, int y, t_mlx *mlx)
 {
 	double	new_x;
 	double	new_y;

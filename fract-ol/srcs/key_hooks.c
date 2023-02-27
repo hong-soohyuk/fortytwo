@@ -6,13 +6,13 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 20:20:01 by soohong           #+#    #+#             */
-/*   Updated: 2023/02/27 14:11:24 by soohong          ###   ########.fr       */
+/*   Updated: 2023/02/27 20:55:36 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-static	void change_color_set(int keycode, t_mlx *mlx)
+static void	change_color_set(int keycode, t_mlx *mlx)
 {
 	if (keycode == KEY_1)
 		mlx->color_set = 0;
@@ -25,7 +25,7 @@ static	void change_color_set(int keycode, t_mlx *mlx)
 	pixel_loop(mlx);
 }
 
-static	void move_camera(int keycode, t_mlx *mlx)
+static void	move_camera(int keycode, t_mlx *mlx)
 {
 	if (keycode == KEY_DOWN)
 	{

@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 10:33:40 by soohong           #+#    #+#             */
-/*   Updated: 2023/02/27 14:10:15 by soohong          ###   ########.fr       */
+/*   Updated: 2023/02/27 20:53:46 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,6 @@ void	pixel_loop(t_mlx *mlx)
 		}
 		++height;
 	}
-	mlx_put_image_to_window(mlx->mlx_ptr, mlx->window_ptr, mlx->image_ptr, 0, 0);
+	mlx_put_image_to_window(mlx->mlx_ptr,
+		mlx->window_ptr, mlx->image_ptr, 0, 0);
 }

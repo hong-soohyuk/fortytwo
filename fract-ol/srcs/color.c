@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 20:20:01 by soohong           #+#    #+#             */
-/*   Updated: 2023/02/27 14:21:16 by soohong          ###   ########.fr       */
+/*   Updated: 2023/02/27 20:53:32 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ unsigned int	set_color(t_mlx *mlx, int iter)
 		return (0x00000000);
 	else
 		return (
-		((iter * iter * palettes[mlx->color_set][0]) % 255) << 16 |
-		((iter * iter * palettes[mlx->color_set][1]) % 255) << 8 |
-		((iter * iter * palettes[mlx->color_set][2]) % 255));
+			((iter * iter * palettes[mlx->color_set][0]) % 255) << 16 |
+			((iter * iter * palettes[mlx->color_set][1]) % 255) << 8 |
+			((iter * iter * palettes[mlx->color_set][2]) % 255));
 }

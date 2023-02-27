@@ -6,7 +6,7 @@
 #    By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/03 17:43:02 by soohong           #+#    #+#              #
-#    Updated: 2023/02/26 12:59:18 by soohong          ###   ########.fr        #
+#    Updated: 2023/02/27 21:01:28 by soohong          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,11 +38,12 @@ LMLX =  -Llibmlx -lmlx -framework OpenGl -framework Appkit
 LFT = -L libft -lft
 
 SOURCES = main.c \
-fractals.c \
-drawer.c \
 color.c \
-mouse_hooks.c \
+drawer.c \
+error_handler.c \
+fractals.c \
 key_hooks.c \
+mouse_hooks.c \
 
 SRCS = $(addprefix $(SRCDIR)/,$(SOURCES))
 OBJS = $(addprefix $(OBJDIR)/,$(SOURCES:%.c=%.o))

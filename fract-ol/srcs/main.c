@@ -6,24 +6,11 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 20:22:47 by soohong           #+#    #+#             */
-/*   Updated: 2023/02/27 14:14:57 by soohong          ###   ########.fr       */
+/*   Updated: 2023/02/27 20:58:21 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
-
-int	exit_hook(void)
-{
-	exit(0);
-}
-
-int	print_options()
-{
-	ft_putendl_fd("Invalid Parameter :)", 1);
-	ft_putendl_fd("ex1)	./fractol Mandelbrot", 1);
-	ft_putendl_fd("ex2)	./fractol Julia",1);
-	return (0);
-}
 
 static void	init_mlx(t_mlx *mlx)
 {
@@ -36,7 +23,8 @@ static void	init_mlx(t_mlx *mlx)
 	mlx_mouse_hook(mlx->window_ptr, mouse_zoom_hook, &mlx->mlx_ptr);
 	mlx_hook(mlx->window_ptr, 2, 0, key_hook, &mlx->mlx_ptr);
 	mlx_hook(mlx->window_ptr, 17, 0, exit_hook, &mlx->mlx_ptr);
-	mlx_hook(mlx->window_ptr, MOTION_NOTIFY, MOTION_MASK, julia_mouse, &mlx->mlx_ptr);
+	mlx_hook(mlx->window_ptr, MOTION_NOTIFY,
+		MOTION_MASK, julia_mouse, &mlx->mlx_ptr);
 }
 
 void	default_config(t_mlx *mlx)
@@ -63,8 +51,8 @@ static void	arguments_handler(char *string, t_mlx *mlx)
 		mlx->c_real = -0.70176f;
 		mlx->c_imag = -0.3842f;
 	}
-	else if (ft_strcmp(string, "temp") == 0)
-		mlx->fractal_function = mandelbrot;
+	else if (ft_strcmp(string, TRICORN) == 0)
+		mlx->fractal_function = tricorn;
 	else
 		mlx->fractal_function = NULL;
 }
