@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 14:55:04 by soohong           #+#    #+#             */
-/*   Updated: 2023/02/27 21:00:44 by soohong          ###   ########.fr       */
+/*   Updated: 2023/02/27 23:42:24 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 
 
 # define TITLE		"fract-ol"
-# define WIDTH		640
-# define HEIGHT		480
+# define WIDTH		1280
+# define HEIGHT		960
 # define MOTION_MASK (1L<<6)
 # define MOTION_NOTIFY	6
 # define MANDELBROT	"Mandelbrot"

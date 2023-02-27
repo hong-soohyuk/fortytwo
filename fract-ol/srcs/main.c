@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 20:22:47 by soohong           #+#    #+#             */
-/*   Updated: 2023/02/27 20:58:21 by soohong          ###   ########.fr       */
+/*   Updated: 2023/02/28 00:13:03 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ static void	init_mlx(t_mlx *mlx)
 
 void	default_config(t_mlx *mlx)
 {
-	mlx->min_x = -1.5f;
-	mlx->max_x = 1.0f;
-	mlx->min_y = -1.0f;
-	mlx->max_y = 1.0f;
+	mlx->min_x = -2.25f;
+	mlx->max_x = 1.5f;
+	mlx->min_y = -1.5f;
+	mlx->max_y = 1.5f;
 	mlx->move_x = 0.0f;
 	mlx->move_y = 0.0f;
 	mlx->zoom = 1.0f;
