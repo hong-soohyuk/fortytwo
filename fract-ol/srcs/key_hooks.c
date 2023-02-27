@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 20:20:01 by soohong           #+#    #+#             */
-/*   Updated: 2023/02/26 20:28:42 by soohong          ###   ########.fr       */
+/*   Updated: 2023/02/27 14:11:24 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static	void change_color_set(int keycode, t_mlx *mlx)
 		mlx->color_set = 2;
 	if (keycode == KEY_4)
 		mlx->color_set = 3;
-	next_frame(mlx);
+	pixel_loop(mlx);
 }
 
 static	void move_camera(int keycode, t_mlx *mlx)
@@ -47,7 +47,7 @@ static	void move_camera(int keycode, t_mlx *mlx)
 		mlx->min_x -= 0.05 * mlx->zoom;
 		mlx->max_x -= 0.05 * mlx->zoom;
 	}
-	next_frame(mlx);
+	pixel_loop(mlx);
 }
 
 int	key_hook(int keycode, t_mlx *mlx)
@@ -60,7 +60,7 @@ int	key_hook(int keycode, t_mlx *mlx)
 	if (keycode == KEY_BACKSPACE)
 	{
 		default_config(mlx);
-		next_frame(mlx);
+		pixel_loop(mlx);
 	}
 	if (mlx->fractal_function == julia && keycode == KEY_J)
 		mlx->julia_active = !mlx->julia_active;

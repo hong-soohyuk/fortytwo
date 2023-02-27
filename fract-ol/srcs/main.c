@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 20:22:47 by soohong           #+#    #+#             */
-/*   Updated: 2023/02/26 15:43:09 by soohong          ###   ########.fr       */
+/*   Updated: 2023/02/27 14:14:57 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ static void	init_mlx(t_mlx *mlx)
 	mlx->image_ptr = mlx_new_image(mlx->mlx_ptr, WIDTH, HEIGHT);
 	mlx->address = mlx_get_data_addr(mlx->image_ptr, &mlx->bits_per_pixel,
 			&mlx->sizeline, &mlx->endian);
+	mlx->bits_per_pixel /= 8;
 	mlx_mouse_hook(mlx->window_ptr, mouse_zoom_hook, &mlx->mlx_ptr);
 	mlx_hook(mlx->window_ptr, 2, 0, key_hook, &mlx->mlx_ptr);
 	mlx_hook(mlx->window_ptr, 17, 0, exit_hook, &mlx->mlx_ptr);
@@ -81,7 +82,6 @@ int	main(int argc, char **argv)
 	init_mlx(mlx);
 	default_config(mlx);
 	pixel_loop(mlx);
-	next_frame(mlx);
 	mlx_loop(mlx->mlx_ptr);
 	return (0);
 }
