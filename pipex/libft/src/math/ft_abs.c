@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_abs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/03 22:45:52 by soohong           #+#    #+#             */
-/*   Updated: 2023/03/03 16:48:12 by soohong          ###   ########.fr       */
+/*   Created: 2023/02/20 16:28:06 by soohong           #+#    #+#             */
+/*   Updated: 2023/02/20 16:28:59 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
-
-# include <unistd.h>
-# include <sys/wait.h>
-# include <fcntl.h>
-# include <errno.h>
-# include <string.h>
-# include "../libft/includes/libft.h"
-
-void	execute_command(char *cmd, char **envp);
-void	throw_error(char *msg, int status);
-
-#endif
+long long	ft_abs(long long n)
+{
+	if (n > 0)
+		return (n);
+	else if (n != -9223372036854775807)
+		return (-n);
+	return (-1);
+}

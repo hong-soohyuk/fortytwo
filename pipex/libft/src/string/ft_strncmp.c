@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/03 22:45:52 by soohong           #+#    #+#             */
-/*   Updated: 2023/03/03 16:48:12 by soohong          ###   ########.fr       */
+/*   Created: 2022/11/10 21:52:50 by soohong           #+#    #+#             */
+/*   Updated: 2023/02/20 17:19:12 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#include "../../includes/libft.h"
 
-# include <unistd.h>
-# include <sys/wait.h>
-# include <fcntl.h>
-# include <errno.h>
-# include <string.h>
-# include "../libft/includes/libft.h"
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
+{
+	unsigned char	*uns1;
+	unsigned char	*uns2;
 
-void	execute_command(char *cmd, char **envp);
-void	throw_error(char *msg, int status);
-
-#endif
+	uns1 = (unsigned char *)s1;
+	uns2 = (unsigned char *)s2;
+	while (*uns1 != '\0' && *uns2 != '\0' && n > 0)
+	{
+		if (*uns1 != *uns2)
+			break ;
+		uns1++;
+		uns2++;
+		n--;
+	}
+	if (n == 0)
+		return (0);
+	return (*uns1 - *uns2);
+}

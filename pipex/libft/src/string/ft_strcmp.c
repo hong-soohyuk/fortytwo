@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/03 22:45:52 by soohong           #+#    #+#             */
-/*   Updated: 2023/03/03 16:48:12 by soohong          ###   ########.fr       */
+/*   Created: 2023/02/21 18:41:51 by soohong           #+#    #+#             */
+/*   Updated: 2023/03/03 13:54:37 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#include "../../includes/libft.h"
 
-# include <unistd.h>
-# include <sys/wait.h>
-# include <fcntl.h>
-# include <errno.h>
-# include <string.h>
-# include "../libft/includes/libft.h"
+int	ft_strcmp(const char *s1, const char *s2)
+{
+	size_t	i;
 
-void	execute_command(char *cmd, char **envp);
-void	throw_error(char *msg, int status);
-
-#endif
+	i = 0;
+	while (s1[i] == s2[i])
+	{
+		if (!s1[i])
+			return (0);
+		++i;
+	}
+	if ((unsigned char)s1[i] > (unsigned char)s2[i])
+		return (1);
+	return (-1);
+}

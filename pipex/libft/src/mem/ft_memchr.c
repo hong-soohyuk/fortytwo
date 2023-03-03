@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/03 22:45:52 by soohong           #+#    #+#             */
-/*   Updated: 2023/03/03 16:48:12 by soohong          ###   ########.fr       */
+/*   Created: 2022/11/11 01:18:59 by soohong           #+#    #+#             */
+/*   Updated: 2023/02/20 17:19:12 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#include "../../includes/libft.h"
 
-# include <unistd.h>
-# include <sys/wait.h>
-# include <fcntl.h>
-# include <errno.h>
-# include <string.h>
-# include "../libft/includes/libft.h"
+void	*ft_memchr(const void *s, int c, size_t n)
+{
+	unsigned char	*mem;
+	size_t			i;
 
-void	execute_command(char *cmd, char **envp);
-void	throw_error(char *msg, int status);
-
-#endif
+	mem = (unsigned char *)s;
+	i = 0;
+	while (i < n)
+	{
+		if (mem[i] == (unsigned char) c)
+			return (mem + i);
+		i++;
+	}
+	return (0);
+}
