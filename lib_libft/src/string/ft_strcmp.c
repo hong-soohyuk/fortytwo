@@ -6,9 +6,11 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 18:41:51 by soohong           #+#    #+#             */
-/*   Updated: 2023/02/21 18:44:19 by soohong          ###   ########.fr       */
+/*   Updated: 2023/03/03 13:53:47 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../../includes/libft.h"
 
 int	ft_strcmp(const char *s1, const char *s2)
 {
