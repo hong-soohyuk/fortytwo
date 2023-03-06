@@ -6,7 +6,7 @@
 #    By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/13 17:53:16 by soohong           #+#    #+#              #
-#    Updated: 2023/03/03 14:33:37 by soohong          ###   ########.fr        #
+#    Updated: 2023/03/05 19:58:38 by soohong          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,8 @@ LIBFT = libft
 
 NAME = pipex
 
+BONUS = pipex_bonus
+
 HEADER = includes
 
 SRCDIR = ./srcs
@@ -39,18 +41,26 @@ OBJDIR = ./objects
 SOURCES = pipex.c \
 pipex_utils.c \
 
+BONUS_SOURCES = pipex_bonus.c \
+pipex_utils_bonus.c \
+
 SRCS = $(addprefix $(SRCDIR)/,$(SOURCES))
 OBJS = $(addprefix $(OBJDIR)/,$(SOURCES:%.c=%.o))
+
+BONUS_SRCS = $(addprefix $(SRCDIR)/,$(BONUS_SOURCES))
+BONUS_OBJS = $(addprefix $(OBJDIR)/,$(BONUS_SOURCES:%.c=%.o))
 
 LFT = -L libft -lft
 
 all : libraries makedir $(NAME)
 
+bonus : libraries makedir $(BONUS)
+
 $(NAME) : $(OBJS)
 	$(GCC) -o $(NAME) $(OBJS) $(LFT)
 
-$(BONUS_NAME) : $(BONUS_OBJ)
-	$(GCC) -o $(BONUS_NAME) $(BONUS_OBJ)
+$(BONUS) : $(BONUS_OBJS)
+	$(GCC) -o $(BONUS) $(BONUS_OBJS) $(LFT)
 
 libraries :
 	@echo "$(GREEN)Creating lib files$(CYAN)"
@@ -58,8 +68,6 @@ libraries :
 
 makedir:
 	@mkdir -p objects
-
-bonus : $(BONUS_NAME)
 
 $(OBJDIR)/%.o : $(SRCDIR)/%.c $(HEADER)/$(NAME).h
 	$(GCC) $(FLAG) -c $< -o $@
