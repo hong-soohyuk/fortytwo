@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 14:00:15 by soohong           #+#    #+#             */
-/*   Updated: 2022/12/23 19:31:13 by soohong          ###   ########.fr       */
+/*   Updated: 2023/03/06 19:08:29 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static char	*get_return_val(char *read_line)
 	return (return_val);
 }
 
-char	*reset_read_line(char *read_line)
+static char	*reset_read_line(char *read_line)
 {
 	char	*prev;
 	size_t	i;
