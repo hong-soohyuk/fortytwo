@@ -6,69 +6,93 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 22:45:59 by soohong           #+#    #+#             */
-/*   Updated: 2023/03/05 20:04:53 by soohong          ###   ########.fr       */
+/*   Updated: 2023/03/06 20:45:17 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
+#include <unistd.h>
 
-void	usage(void)
-{
-	ft_putstr_fd("\033[31mError: Bad argument\n\e[0m", 2);
-	ft_putstr_fd("Ex: ./pipex <file1> <cmd1> <cmd2> <...> <file2>\n", 1);
-	ft_putstr_fd("    ./pipex \"here_doc\" <LIMITER> <cmd> <cmd1> <...> <file>\n", 1);
-	exit(EXIT_SUCCESS);
-}
-
-void	child_process(char *infile, char *cmd, int *pipe_fd, char **envp)
-{
-	int	in_fd;
-
-	close(pipe_fd[0]);
-	in_fd = open(infile, O_RDONLY, 0777);
-	if (dup2(in_fd, STDIN_FILENO) == -1)
-		throw_error("fail on redirection", 1);
-	if (dup2(pipe_fd[1], STDOUT_FILENO) == -1)
-		throw_error("fail on redirection", 1);
-	execute_command(cmd, envp);
-}
-
-void	parent_process(char *outfile, char *cmd, int *pipe_fd, char **envp)
-{
-	int	out_fd;
-
-	close(pipe_fd[1]);
-	out_fd = open(outfile, O_RDWR | O_CREAT, 0644);
-	if (dup2(pipe_fd[0], STDIN_FILENO) == -1)
-		throw_error("fail on redirection", 1);
-	if (dup2(out_fd, STDOUT_FILENO) == -1)
-		throw_error("fail on redirection", 1);
-	execute_command(cmd, envp);
-}
-
-int	main(int argc, char *argv[], char *envp[])
+void	process_command(char *command, char **envp)
 {
 	int		pipe_fd[2];
 	int		status;
 	pid_t	pid;
-	pid_t	wait_pid;
 
-	if (argc != 5)
-		throw_error("argument error", 1);
+	if (pipe(pipe_fd) == -1)
+		throw_error("pipe error", 1);
+	pid = fork();
+	if (pid == -1)
+		throw_error("process fork fail", 1);
+	else if (pid == 0)
+	{
+		close(pipe_fd[0]);
+		if (dup2(pipe_fd[1], STDOUT_FILENO) == -1)
+			throw_error("fail on redirection pid == 0", 1);
+		execute_command(command, envp);
+	}
 	else
 	{
-		if (pipe(pipe_fd) == -1)
-			throw_error("pipe error", 1);
-		pid = fork();
-		if (pid == 0)
-			child_process(argv[1], argv[2], pipe_fd, envp);
-		else if (pid > 0)
-		{
-			wait_pid = waitpid(pid, &status, WNOHANG);
-			parent_process(argv[4], argv[3], pipe_fd, envp);
-		}
-		else
-			throw_error("process fork fail", 1);
+		close(pipe_fd[1]);
+		if (dup2(pipe_fd[0], STDIN_FILENO) == -1)
+			throw_error("fail on redirection  pid > 0", 1);
+		waitpid(pid, &status, 0);
 	}
+}
+
+void	last_process(char *outfile, char *cmd, char **envp)
+{
+	int	fd_outfile;
+
+	fd_outfile = open(outfile, O_RDWR | O_CREAT | O_TRUNC , 0644);// if (heredoc) O_APPEND else O_TRUNC
+	if (fd_outfile == -1)
+		throw_error("fail on opening outfile", 1);
+	if (dup2(fd_outfile, STDOUT_FILENO) == -1)
+		throw_error("fail on redirection in last file", 1);
+	execute_command(cmd, envp);
+}
+
+void	here_doc(char *limiter, int argc)
+{
+	int		pipe_fd[2];
+	// pid_t	pid;
+	char	*read_line;
+
+	if (argc < 6)
+		throw_error("wrong heredoc argument", 1);
+	if (pipe(pipe_fd) == -1)
+		throw_error("pipe error", 1);
+
+	close(pipe_fd[0]);
+	read_line = get_next_line(0);
+	while (read_line && ft_strcmp(read_line, limiter) != 0)
+	{
+		read_line = get_next_line(0);
+		write(pipe_fd[1], read_line, ft_strlen(read_line));
+	}
+}
+
+int	main(int argc, char *argv[], char *envp[])
+{
+	int	fd_infile;
+	int	i;
+	
+	if (argc < 5)
+		throw_error("arguments error", 1);
+	if (ft_strcmp(argv[1], "here_doc") == 0)
+	{
+		here_doc(argv[2], argc);
+		i = 3;
+	}
+	else
+	{
+		fd_infile = open(argv[1], O_RDONLY, 0777);
+		if (dup2(fd_infile, STDIN_FILENO) == -1)
+			throw_error("fail on redirection not heredoc", 1);
+		i = 2;
+	}
+	while (i < argc - 2)
+		process_command(argv[i++], envp);
+	last_process(argv[argc - 1], argv[argc - 2], envp);
 	return (0);
 }

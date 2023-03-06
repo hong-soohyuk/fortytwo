@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 22:45:59 by soohong           #+#    #+#             */
-/*   Updated: 2023/03/06 17:32:25 by soohong          ###   ########.fr       */
+/*   Updated: 2023/03/06 18:33:19 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	child_process(char *infile, char *cmd, int *pipe_fd, char **envp)
 
 	close(pipe_fd[0]);
 	fd_infile = open(infile, O_RDONLY, 0777);
+	if (fd_infile == -1)
+		throw_error("fail on opening infile", 1);
 	if (dup2(fd_infile, STDIN_FILENO) == -1)
 		throw_error("fail on redirection", 1);
 	if (dup2(pipe_fd[1], STDOUT_FILENO) == -1)
@@ -31,6 +33,8 @@ void	parent_process(char *outfile, char *cmd, int *pipe_fd, char **envp)
 
 	close(pipe_fd[1]);
 	fd_outfile = open(outfile, O_RDWR | O_CREAT, 0644);
+	if (fd_outfile == -1)
+		throw_error("fail on opening outfile", 1);
 	if (dup2(pipe_fd[0], STDIN_FILENO) == -1)
 		throw_error("fail on redirection", 1);
 	if (dup2(fd_outfile, STDOUT_FILENO) == -1)
