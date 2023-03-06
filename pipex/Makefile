@@ -6,7 +6,7 @@
 #    By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/13 17:53:16 by soohong           #+#    #+#              #
-#    Updated: 2023/03/05 19:58:38 by soohong          ###   ########.fr        #
+#    Updated: 2023/03/06 20:49:41 by soohong          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,10 +24,11 @@ WHITE       = \033[1;37m
 
 GCC = gcc
 
-# FLAG = -Wall -Wextra -Werror
-FLAG = -w
+FLAG = -Wall -Wextra -Werror
 
 LIBFT = libft
+
+GET_NEXT_LINE = get_next_line
 
 NAME = pipex
 
@@ -51,20 +52,26 @@ BONUS_SRCS = $(addprefix $(SRCDIR)/,$(BONUS_SOURCES))
 BONUS_OBJS = $(addprefix $(OBJDIR)/,$(BONUS_SOURCES:%.c=%.o))
 
 LFT = -L libft -lft
+GNL = -L get_next_line -lgnl
 
 all : libraries makedir $(NAME)
 
-bonus : libraries makedir $(BONUS)
+bonus : bonus_libraries makedir $(BONUS)
 
 $(NAME) : $(OBJS)
 	$(GCC) -o $(NAME) $(OBJS) $(LFT)
 
 $(BONUS) : $(BONUS_OBJS)
-	$(GCC) -o $(BONUS) $(BONUS_OBJS) $(LFT)
+	$(GCC) -o $(BONUS) $(BONUS_OBJS) $(LFT) $(GNL)
 
 libraries :
 	@echo "$(GREEN)Creating lib files$(CYAN)"
 	@make -C $(LIBFT)
+
+bonus_libraries :
+	@echo "$(GREEN)Creating lib files$(CYAN)"
+	@make -C $(LIBFT)
+	@make -C $(GET_NEXT_LINE)
 
 makedir:
 	@mkdir -p objects
@@ -76,13 +83,16 @@ $(OBJDIR)/%.o : $(SRCDIR)/%.c $(HEADER)/$(NAME).h
 clean:
 	@echo "$(GREEN)Supressing libraries files$(CYAN)"
 	@make clean -C $(LIBFT)
+	@make clean -C $(GET_NEXT_LINE)
 	@rm -rf $(OBJDIR)
 
 fclean: clean
 	@echo "$(GREEN)Supressing libraries files$(CYAN)"
 	@rm -rf $(OBJDIR)
 	@rm -f $(NAME)
+	@rm -f $(BONUS)
 	@make fclean -C $(LIBFT)
+	@make fclean -C $(GET_NEXT_LINE)
 
 re: fclean all
 
