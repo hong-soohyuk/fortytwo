@@ -6,7 +6,7 @@
 #    By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/13 17:53:16 by soohong           #+#    #+#              #
-#    Updated: 2023/03/06 20:49:41 by soohong          ###   ########.fr        #
+#    Updated: 2023/03/07 16:50:31 by soohong          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,10 +59,12 @@ all : libraries makedir $(NAME)
 bonus : bonus_libraries makedir $(BONUS)
 
 $(NAME) : $(OBJS)
-	$(GCC) -o $(NAME) $(OBJS) $(LFT)
+	@$(GCC) -o $(NAME) $(OBJS) $(LFT)
+	@echo "$(BLUE)Linking object files -> $(WHITE)$(notdir $@)... $(RED)[Done]$(NOC)"
 
 $(BONUS) : $(BONUS_OBJS)
-	$(GCC) -o $(BONUS) $(BONUS_OBJS) $(LFT) $(GNL)
+	@$(GCC) -o $(BONUS) $(BONUS_OBJS) $(LFT) $(GNL)
+	@echo "$(BLUE)Linking object files -> $(WHITE)$(notdir $@)... $(RED)[Done]$(NOC)"
 
 libraries :
 	@echo "$(GREEN)Creating lib files$(CYAN)"
@@ -77,8 +79,8 @@ makedir:
 	@mkdir -p objects
 
 $(OBJDIR)/%.o : $(SRCDIR)/%.c $(HEADER)/$(NAME).h
-	$(GCC) $(FLAG) -c $< -o $@
-	@echo "$(BLUE)Creating object file -> $(WHITE)$(notdir $@)... $(RED)[Done]$(NOC)"
+	@$(GCC) $(FLAG) -c $< -o $@
+	@echo "$(BLUE)Compiling object file -> $(WHITE)$(notdir $@)... $(RED)[Done]$(NOC)"
 
 clean:
 	@echo "$(GREEN)Supressing libraries files$(CYAN)"

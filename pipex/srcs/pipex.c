@@ -6,11 +6,12 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 22:45:59 by soohong           #+#    #+#             */
-/*   Updated: 2023/03/06 18:33:19 by soohong          ###   ########.fr       */
+/*   Updated: 2023/03/07 17:13:27 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
+#include <unistd.h>
 
 void	child_process(char *infile, char *cmd, int *pipe_fd, char **envp)
 {
@@ -32,7 +33,7 @@ void	parent_process(char *outfile, char *cmd, int *pipe_fd, char **envp)
 	int	fd_outfile;
 
 	close(pipe_fd[1]);
-	fd_outfile = open(outfile, O_RDWR | O_CREAT, 0644);
+	fd_outfile = open(outfile, O_RDWR | O_CREAT | O_TRUNC, 0644);
 	if (fd_outfile == -1)
 		throw_error("fail on opening outfile", 1);
 	if (dup2(pipe_fd[0], STDIN_FILENO) == -1)
@@ -42,10 +43,17 @@ void	parent_process(char *outfile, char *cmd, int *pipe_fd, char **envp)
 	execute_command(cmd, envp);
 }
 
+void leak_check()
+{
+	system("leaks pipex");
+}
+
 int	main(int argc, char *argv[], char *envp[])
 {
 	int		pipe_fd[2];
 	pid_t	pid;
+
+	atexit(leak_check);
 
 	if (argc != 5)
 		throw_error("argument error", 1);

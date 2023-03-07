@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 22:45:52 by soohong           #+#    #+#             */
-/*   Updated: 2023/03/06 19:12:48 by soohong          ###   ########.fr       */
+/*   Updated: 2023/03/07 15:08:48 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,6 @@
 
 void	execute_command(char *cmd, char **envp);
 void	throw_error(char *msg, int status);
+int		open_file(char *filename, int option);
 
 #endif
