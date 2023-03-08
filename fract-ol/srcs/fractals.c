@@ -6,14 +6,13 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 20:22:51 by soohong           #+#    #+#             */
-/*   Updated: 2023/02/27 20:55:18 by soohong          ###   ########.fr       */
+/*   Updated: 2023/03/08 16:01:32 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-t_map	add_param(double min_in, double max_in,
-	double min_out, double max_out)
+t_map	add_param(double min_in, double max_in, double min_out, double max_out)
 {
 	t_map	map;
 
@@ -26,11 +25,8 @@ t_map	add_param(double min_in, double max_in,
 
 double	ft_map(double x, t_map map)
 {
-	double	return_val;
-
-	return_val = map.min_out + (map.max_out - map.min_out) * ((x - map.min_in)
-			/ (map.max_in - map.min_in));
-	return (return_val);
+	return (map.min_out + (map.max_out - map.min_out) * ((x - map.min_in)
+		/ (map.max_in - map.min_in)));
 }
 
 int	mandelbrot(t_mlx *mlx, int x, int y)

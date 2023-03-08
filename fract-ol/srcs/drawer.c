@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 10:33:40 by soohong           #+#    #+#             */
-/*   Updated: 2023/02/27 20:53:46 by soohong          ###   ########.fr       */
+/*   Updated: 2023/03/08 15:30:31 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,17 @@ static void	mlx_pix_put(t_mlx *mlx, int x, int y, unsigned int color)
 
 void	pixel_loop(t_mlx *mlx)
 {
-	int	height;
-	int	width;
+	int	x;
+	int	y;
 
 	mlx_clear_window(mlx->mlx_ptr, mlx->window_ptr);
-	height = 0;
-	while (height < HEIGHT)
+	y = -1;
+	while (++y < HEIGHT)
 	{
-		width = 0;
-		while (width < WIDTH)
-		{
-			mlx_pix_put(mlx, width, height,
-				set_color(mlx, mlx->fractal_function(mlx, width, height)));
-			++width;
-		}
-		++height;
+		x = -1;
+		while (++x < WIDTH)
+			mlx_pix_put(mlx, x, y,
+				set_color(mlx, mlx->fractal_function(mlx, x, y)));
 	}
 	mlx_put_image_to_window(mlx->mlx_ptr,
 		mlx->window_ptr, mlx->image_ptr, 0, 0);

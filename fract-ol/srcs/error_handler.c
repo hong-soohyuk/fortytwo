@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 20:58:11 by soohong           #+#    #+#             */
-/*   Updated: 2023/02/27 20:59:46 by soohong          ###   ########.fr       */
+/*   Updated: 2023/03/08 15:52:06 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,15 @@ int	exit_hook(void)
 	return (0);
 }
 
-int	print_options(void)
+void	throw_error(t_mlx *mlx)
 {
-	ft_putendl_fd("Invalid Parameter :)", 1);
-	ft_putendl_fd("ex1)	./fractol Mandelbrot", 1);
-	ft_putendl_fd("ex2)	./fractol Julia", 1);
-	ft_putendl_fd("ex3)	./fractol Tricorn", 1);
-	return (0);
+	ft_putstr_fd("\033[31mError : ", 2);
+	ft_putstr_fd(strerror(22), 2);
+	ft_putstr_fd("\n\033[0m", 2);
+	ft_putendl_fd("\033[1;35mex1) ./fractol Mandelbrot\033[0m", 1);
+	ft_putendl_fd("\033[1;35mex2) ./fractol Julia\033[0m", 1);
+	ft_putendl_fd("\033[1;35mex3) ./fractol Tricorn\033[0m", 1);
+	if (mlx)
+		free(mlx);
+	exit(2);
 }

@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 14:55:04 by soohong           #+#    #+#             */
-/*   Updated: 2023/02/27 23:42:24 by soohong          ###   ########.fr       */
+/*   Updated: 2023/03/08 15:58:09 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,17 @@
 # define FRACTOL_H
 
 # include <math.h>
+# include <string.h>
 # include "../libmlx/mlx.h"
 # include "../libft/includes/libft.h"
 # include "mac_keycode.h"
 
-
 # define TITLE		"fract-ol"
 # define WIDTH		1280
 # define HEIGHT		960
-# define MOTION_MASK (1L<<6)
-# define MOTION_NOTIFY	6
 # define MANDELBROT	"Mandelbrot"
 # define JULIA		"Julia"
 # define TRICORN	"Tricorn"
-
-typedef struct	s_vec3
-{
-	float	a;
-	float	b;
-	float	c;
-	float	d;
-}	t_vec3;
 
 typedef struct s_map
 {
@@ -49,7 +39,6 @@ typedef struct s_complex
 	double	real;
 	double	imaginary;
 }	t_complex;
-
 
 typedef struct s_mlx
 {
@@ -91,10 +80,9 @@ int				julia(t_mlx *mlx, int x, int y);
 int				tricorn(t_mlx *mlx, int x, int y);
 int				julia_mouse(int x, int y, t_mlx *mlx);
 t_map			add_param(double min_in, double max_in, double min_out,
-	double max_out);
+					double max_out);
 double			ft_map(double x, t_map map);
-int				print_options(void);
+void			throw_error(t_mlx *mlx);
 int				exit_hook(void);
-
 
 #endif
