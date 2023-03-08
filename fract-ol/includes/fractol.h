@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 14:55:04 by soohong           #+#    #+#             */
-/*   Updated: 2023/03/08 15:58:09 by soohong          ###   ########.fr       */
+/*   Updated: 2023/03/08 17:14:31 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # include "mac_keycode.h"
 
 # define TITLE		"fract-ol"
-# define WIDTH		1280
-# define HEIGHT		960
+# define WIDTH		400
+# define HEIGHT		400
 # define MANDELBROT	"Mandelbrot"
 # define JULIA		"Julia"
 # define TRICORN	"Tricorn"

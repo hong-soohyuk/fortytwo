@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 20:22:47 by soohong           #+#    #+#             */
-/*   Updated: 2023/03/08 15:53:38 by soohong          ###   ########.fr       */
+/*   Updated: 2023/03/08 17:20:27 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,18 @@ static void	init_mlx(t_mlx *mlx)
 	mlx->mlx_ptr = mlx_init();
 	mlx->window_ptr = mlx_new_window(mlx->mlx_ptr, WIDTH, HEIGHT, TITLE);
 	mlx->image_ptr = mlx_new_image(mlx->mlx_ptr, WIDTH, HEIGHT);
-	mlx->address = mlx_get_data_addr(mlx->image_ptr, &mlx->bits_per_pixel,
+	mlx->address = mlx_get_data_addr(mlx->image_ptr, &mlx->bits_per_pixel, //bbp? 픽셀하나가 비비트  가지는 수 
 			&mlx->sizeline, &mlx->endian);
 	mlx->bits_per_pixel /= 8;
 	mlx_mouse_hook(mlx->window_ptr, mouse_zoom_hook, &mlx->mlx_ptr);
 	mlx_hook(mlx->window_ptr, 2, 0, key_hook, &mlx->mlx_ptr);
 	mlx_hook(mlx->window_ptr, 17, 0, exit_hook, &mlx->mlx_ptr);
-	mlx_hook(mlx->window_ptr, 6, 1L << 6, julia_mouse, &mlx->mlx_ptr);
+	mlx_hook(mlx->window_ptr, 6, 0, julia_mouse, &mlx->mlx_ptr);
 }
 
 void	default_config(t_mlx *mlx)
 {
-	mlx->min_x = -2.25f;
+	mlx->min_x = -1.5f;
 	mlx->max_x = 1.5f;
 	mlx->min_y = -1.5f;
 	mlx->max_y = 1.5f;
