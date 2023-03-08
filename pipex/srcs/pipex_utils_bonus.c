@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 22:45:59 by soohong           #+#    #+#             */
-/*   Updated: 2023/03/07 15:08:42 by soohong          ###   ########.fr       */
+/*   Updated: 2023/03/07 17:40:04 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ int	open_file(char *filename, int option)
 	int	fd;
 
 	if (option == 0)
-		fd = open(filename, O_WRONLY | O_CREAT | O_APPEND, 0777);
-	else if (option == 1)
 		fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0777);
+	else if (option == 1)
+		fd = open(filename, O_WRONLY | O_CREAT | O_APPEND, 0777);
 	else if (option == 2)
 		fd = open(filename, O_RDONLY, 0777);
 	else

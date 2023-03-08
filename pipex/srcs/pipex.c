@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 22:45:59 by soohong           #+#    #+#             */
-/*   Updated: 2023/03/07 17:13:27 by soohong          ###   ########.fr       */
+/*   Updated: 2023/03/07 18:39:14 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,10 @@ void	parent_process(char *outfile, char *cmd, int *pipe_fd, char **envp)
 	execute_command(cmd, envp);
 }
 
-void leak_check()
-{
-	system("leaks pipex");
-}
-
 int	main(int argc, char *argv[], char *envp[])
 {
 	int		pipe_fd[2];
 	pid_t	pid;
-
-	atexit(leak_check);
 
 	if (argc != 5)
 		throw_error("argument error", 1);

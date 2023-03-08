@@ -1,11 +1,12 @@
-this is infile
-this is$
-real here doc$
-endwell$
-this$
-is$
-my$
-heredoc$
-haha$
-lsls$
-slsl$
+.
+..
+Makefile
+get_next_line
+includes
+infile
+libft
+objects
+outfile
+pipex
+pipex_bonus
+srcs

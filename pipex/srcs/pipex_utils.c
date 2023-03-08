@@ -6,12 +6,11 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 22:45:59 by soohong           #+#    #+#             */
-/*   Updated: 2023/03/07 17:03:32 by soohong          ###   ########.fr       */
+/*   Updated: 2023/03/07 18:32:48 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
-#include <stdlib.h>
 
 void	throw_error(char *message, int status)
 {
@@ -30,15 +29,15 @@ void	throw_error(char *message, int status)
 	exit(status);
 }
 
-// static void	free_split(char **split)
-// {
-// 	int	i;
+static void	free_split(char **split)
+{
+	int	i;
 
-// 	i = -1;
-// 	while (split[++i])
-// 		free(split[i]);
-// 	free(split);
-// }
+	i = -1;
+	while (split[++i])
+		free(split[i]);
+	free(split);
+}
 
 static char	*find_path(char *command, char **envp)
 {
@@ -61,9 +60,9 @@ static char	*find_path(char *command, char **envp)
 		if (access(delimeted_path, F_OK | X_OK) == 0)
 			return (delimeted_path);
 	}
+	free_split(path_list);
 	return (NULL);
 }
-
 
 void	execute_command(char *command, char *envp[])
 {
