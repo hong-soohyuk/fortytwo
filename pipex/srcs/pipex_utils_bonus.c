@@ -6,26 +6,11 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 22:45:59 by soohong           #+#    #+#             */
-/*   Updated: 2023/03/07 17:40:04 by soohong          ###   ########.fr       */
+/*   Updated: 2023/03/09 18:19:02 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
-
-int	open_file(char *filename, int option)
-{
-	int	fd;
-
-	if (option == 0)
-		fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0777);
-	else if (option == 1)
-		fd = open(filename, O_WRONLY | O_CREAT | O_APPEND, 0777);
-	else if (option == 2)
-		fd = open(filename, O_RDONLY, 0777);
-	else
-		fd = -1;
-	return (fd);
-}
 
 void	throw_error(char *message, int status)
 {
@@ -44,10 +29,31 @@ void	throw_error(char *message, int status)
 	exit(status);
 }
 
+static char	*get_path_command(char const *path, char *command)
+{
+	char	*delimeted_path;
+	char	*path_joined_command;
+
+	delimeted_path = ft_strjoin(path, "/");
+	path_joined_command = ft_strjoin(delimeted_path, command);
+	free(delimeted_path);
+	return (path_joined_command);
+}
+
+static void	free_split(char **split)
+{
+	int	i;
+
+	i = -1;
+	while (split[++i])
+		free(split[i]);
+	free(split);
+}
+
 static char	*find_path(char *command, char **envp)
 {
 	char	*path;
-	char	*delimeted_path;
+	char	*path_joined_command;
 	char	**path_list;
 	int		index;
 
@@ -60,11 +66,15 @@ static char	*find_path(char *command, char **envp)
 	index = -1;
 	while (path_list[++index])
 	{
-		delimeted_path = ft_strjoin(path_list[index], "/");
-		delimeted_path = ft_strjoin(delimeted_path, command);
-		if (access(delimeted_path, F_OK | X_OK) == 0)
-			return (delimeted_path);
+		path_joined_command = get_path_command(path_list[index], command);
+		if (access(path_joined_command, F_OK | X_OK) == 0)
+		{
+			free_split(path_list);
+			return (path_joined_command);
+		}
+		free(path_joined_command);
 	}
+	free_split(path_list);
 	return (NULL);
 }
 
@@ -76,7 +86,10 @@ void	execute_command(char *command, char *envp[])
 	commands = ft_split(command, ' ');
 	path = find_path(commands[0], envp);
 	if (path == NULL)
+	{
+		free_split(commands);
 		throw_error("command not found", 127);
+	}
 	if (execve(path, commands, envp) == -1)
 		throw_error(NULL, 126);
 }

@@ -6,11 +6,13 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 22:45:59 by soohong           #+#    #+#             */
-/*   Updated: 2023/03/07 18:39:14 by soohong          ###   ########.fr       */
+/*   Updated: 2023/03/09 18:13:48 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
+#include <stdlib.h>
+#include <sys/wait.h>
 #include <unistd.h>
 
 void	child_process(char *infile, char *cmd, int *pipe_fd, char **envp)

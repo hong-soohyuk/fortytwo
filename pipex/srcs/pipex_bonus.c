@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 22:45:59 by soohong           #+#    #+#             */
-/*   Updated: 2023/03/07 18:57:02 by soohong          ###   ########.fr       */
+/*   Updated: 2023/03/09 18:20:16 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,21 @@ static void	process_command(char *command, char **envp)
 			throw_error("fail on redirection  pid > 0", 1);
 		waitpid(pid, NULL, 0);
 	}
+}
+
+static int	open_file(char *filename, int option)
+{
+	int	fd;
+
+	if (option == 0)
+		fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0777);
+	else if (option == 1)
+		fd = open(filename, O_WRONLY | O_CREAT | O_APPEND, 0777);
+	else if (option == 2)
+		fd = open(filename, O_RDONLY, 0777);
+	else
+		fd = -1;
+	return (fd);
 }
 
 static int	here_doc(char *limiter, int argc)

@@ -6,11 +6,12 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 22:45:59 by soohong           #+#    #+#             */
-/*   Updated: 2023/03/07 18:32:48 by soohong          ###   ########.fr       */
+/*   Updated: 2023/03/09 18:15:26 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
+#include <stdlib.h>
 
 void	throw_error(char *message, int status)
 {
@@ -39,10 +40,21 @@ static void	free_split(char **split)
 	free(split);
 }
 
+static char	*get_path_command(char const *path, char *command)
+{
+	char	*delimeted_path;
+	char	*path_joined_command;
+
+	delimeted_path = ft_strjoin(path, "/");
+	path_joined_command = ft_strjoin(delimeted_path, command);
+	free(delimeted_path);
+	return (path_joined_command);
+}
+
 static char	*find_path(char *command, char **envp)
 {
 	char	*path;
-	char	*delimeted_path;
+	char	*path_joined_command;
 	char	**path_list;
 	int		index;
 
@@ -55,10 +67,13 @@ static char	*find_path(char *command, char **envp)
 	index = -1;
 	while (path_list[++index])
 	{
-		delimeted_path = ft_strjoin(path_list[index], "/");
-		delimeted_path = ft_strjoin(delimeted_path, command);
-		if (access(delimeted_path, F_OK | X_OK) == 0)
-			return (delimeted_path);
+		path_joined_command = get_path_command(path_list[index], command);
+		if (access(path_joined_command, F_OK | X_OK) == 0)
+		{
+			free_split(path_list);
+			return (path_joined_command);
+		}
+		free(path_joined_command);
 	}
 	free_split(path_list);
 	return (NULL);
@@ -72,7 +87,10 @@ void	execute_command(char *command, char *envp[])
 	commands = ft_split(command, ' ');
 	path = find_path(commands[0], envp);
 	if (path == NULL)
+	{
+		free_split(commands);
 		throw_error("command not found", 127);
+	}
 	if (execve(path, commands, envp) == -1)
 		throw_error(NULL, 126);
 }
