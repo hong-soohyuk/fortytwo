@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 20:20:01 by soohong           #+#    #+#             */
-/*   Updated: 2023/02/27 20:55:36 by soohong          ###   ########.fr       */
+/*   Updated: 2023/03/10 13:25:18 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,23 +29,23 @@ static void	move_camera(int keycode, t_mlx *mlx)
 {
 	if (keycode == KEY_DOWN)
 	{
-		mlx->min_y += 0.05 * mlx->zoom;
-		mlx->max_y += 0.05 * mlx->zoom;
+		mlx->height_start += 0.05 * mlx->zoom;
+		mlx->height_end += 0.05 * mlx->zoom;
 	}
 	if (keycode == KEY_UP)
 	{
-		mlx->min_y -= 0.05 * mlx->zoom;
-		mlx->max_y -= 0.05 * mlx->zoom;
+		mlx->height_start -= 0.05 * mlx->zoom;
+		mlx->height_end -= 0.05 * mlx->zoom;
 	}
 	if (keycode == KEY_RIGHT)
 	{
-		mlx->min_x += 0.05 * mlx->zoom;
-		mlx->max_x += 0.05 * mlx->zoom;
+		mlx->width_start += 0.05 * mlx->zoom;
+		mlx->width_end += 0.05 * mlx->zoom;
 	}
 	if (keycode == KEY_LEFT)
 	{
-		mlx->min_x -= 0.05 * mlx->zoom;
-		mlx->max_x -= 0.05 * mlx->zoom;
+		mlx->width_start -= 0.05 * mlx->zoom;
+		mlx->width_end -= 0.05 * mlx->zoom;
 	}
 	pixel_loop(mlx);
 }

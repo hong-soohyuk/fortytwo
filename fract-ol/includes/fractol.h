@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 14:55:04 by soohong           #+#    #+#             */
-/*   Updated: 2023/03/08 17:14:31 by soohong          ###   ########.fr       */
+/*   Updated: 2023/03/10 13:27:52 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,6 @@
 # define MANDELBROT	"Mandelbrot"
 # define JULIA		"Julia"
 # define TRICORN	"Tricorn"
-
-typedef struct s_map
-{
-	double	min_in;
-	double	min_out;
-	double	max_in;
-	double	max_out;
-}	t_map;
 
 typedef struct s_complex
 {
@@ -53,17 +45,13 @@ typedef struct s_mlx
 	float	max_iter;
 	double	c_real;
 	double	c_imag;
-	double	min_x;
-	double	max_x;
-	double	min_y;
-	double	max_y;
-	double	center_x;
-	double	center_y;
+	double	width_start;
+	double	width_end;
+	double	height_start;
+	double	height_end;
 	double	zoom;
 	double	move_x;
 	double	move_y;
-	double	start_y;
-	double	end_y;
 	int		julia_active;
 	int		fractal_selected;
 	int		(*fractal_function)(struct s_mlx *mlx, int x, int y);
@@ -79,9 +67,8 @@ int				mandelbrot(t_mlx *mlx, int x, int y);
 int				julia(t_mlx *mlx, int x, int y);
 int				tricorn(t_mlx *mlx, int x, int y);
 int				julia_mouse(int x, int y, t_mlx *mlx);
-t_map			add_param(double min_in, double max_in, double min_out,
-					double max_out);
-double			ft_map(double x, t_map map);
+double			find_real(double x, double min, double max);
+double			find_imaginary(double x, double min, double max);
 void			throw_error(t_mlx *mlx);
 int				exit_hook(void);
 
