@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 22:45:59 by soohong           #+#    #+#             */
-/*   Updated: 2023/03/22 20:18:24 by soohong          ###   ########.fr       */
+/*   Updated: 2023/03/22 20:22:36 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,17 @@ static pid_t	process_command(char *command, char **envp, int fd_outfile)
 	pid_t	pid;
 
 	if (pipe(pipe_fd) == -1)
-		throw_strerror("pipe error", 1);
+		throw_error("pipe error", 1);
 	pid = fork();
 	if (pid == -1)
-		throw_strerror("process fork fail", 1);
+		throw_error("process fork fail", 1);
 	else if (pid == 0)
 	{
 		close(pipe_fd[0]);
 		if (fd_outfile == 0 && dup2(pipe_fd[1], STDOUT_FILENO) == -1)
-			throw_strerror("fail on redirection pid == 0", 1);
+			throw_error("fail on redirection pid == 0", 1);
 		if (fd_outfile != 0 && dup2(fd_outfile, STDOUT_FILENO) == -1)
-			throw_strerror("fail on redirection pid == 0", 1);
+			throw_error("fail on redirection pid == 0", 1);
 		close(pipe_fd[1]);
 		execute_command(command, envp);
 	}
@@ -61,10 +61,10 @@ static int	here_doc(char *limiter, int argc)
 	char	*read_line;
 
 	if (argc < 6)
-		throw_strerror("wrong heredoc argument", 1);
+		throw_error("wrong heredoc argument", 1);
 	fd = open_file(HERE_DOC_NAME, 0);
 	if (fd == -1)
-		throw_strerror("fail to open temp heredoc file", 1);
+		throw_error("fail to open temp heredoc file", 1);
 	read_line = get_next_line(0);
 	while (read_line && ft_strcmp(read_line, limiter) != 0)
 	{
@@ -95,9 +95,9 @@ static int	configure_fds(int argc, char *argv[], int *here_doc_mode)
 	}
 	argument_index = 2 + *here_doc_mode;
 	if (fd_infile == -1)
-		throw_strerror("fail to open outfile.", 1);
+		throw_error("fail to open outfile.", 1);
 	if (dup2(fd_infile, STDIN_FILENO) == -1)
-		throw_strerror("fail on redirection", 1);
+		throw_error("fail on redirection", 1);
 	return (argument_index - 1);
 }
 
@@ -110,7 +110,7 @@ int	main(int argc, char *argv[], char *envp[])
 	pid_t	pid;
 
 	if (argc < 5)
-		throw_strerror("arguments error", 1);
+		throw_error("arguments error", 1);
 	command_index = configure_fds(argc, argv, &here_doc_mode);
 	fd_outfile = open_file(argv[argc - 1], here_doc_mode);
 	pid_index = command_index;
