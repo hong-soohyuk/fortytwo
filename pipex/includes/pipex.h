@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 22:45:52 by soohong           #+#    #+#             */
-/*   Updated: 2023/03/09 18:19:41 by soohong          ###   ########.fr       */
+/*   Updated: 2023/03/22 20:02:58 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PIPEX_H
 
 # include <unistd.h>
+# include <stdio.h>
 # include <sys/wait.h>
 # include <fcntl.h>
 # include <errno.h>

@@ -6,14 +6,13 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 22:45:59 by soohong           #+#    #+#             */
-/*   Updated: 2023/03/09 18:15:26 by soohong          ###   ########.fr       */
+/*   Updated: 2023/03/22 20:17:39 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
-#include <stdlib.h>
 
-void	throw_error(char *message, int status)
+void	throw_strerror(char *message, int status)
 {
 	if (message)
 	{
@@ -89,8 +88,8 @@ void	execute_command(char *command, char *envp[])
 	if (path == NULL)
 	{
 		free_split(commands);
-		throw_error("command not found", 127);
+		throw_strerror("command not found", 127);
 	}
 	if (execve(path, commands, envp) == -1)
-		throw_error(NULL, 126);
+		throw_strerror(NULL, 126);
 }
