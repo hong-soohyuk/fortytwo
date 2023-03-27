@@ -35,7 +35,7 @@ int	main(int argc, char *argv[], char *envp[])
 ```
 
 ### 위 코드 실행시 나오는 것은
-![envp.png](envp.png)
+![envp.png](read_me_res/envp.png)
 
 환경변수를 다룰 수 있는 함수들도 존재한다.
 ```c
@@ -52,7 +52,7 @@ putenv("USER=fake_soohong");
 ```
 
 위 명령어는
-![putenv.png](putenv.png)
+![putenv.png](read_me_res/putenv.png)
 
 사진과 같은 결과를 보여주게 되고, 프로세스 안에서 추가되거나 변경된  환경변수는 프로세스 안에서만 유효하고, 실제 시스템 변수는 변경되지 않는다.
 
