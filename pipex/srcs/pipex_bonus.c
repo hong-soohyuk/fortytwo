@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 22:45:59 by soohong           #+#    #+#             */
-/*   Updated: 2023/03/22 20:22:36 by soohong          ###   ########.fr       */
+/*   Updated: 2023/03/23 15:01:15 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,16 @@ static pid_t	process_command(char *command, char **envp, int fd_outfile)
 	{
 		close(pipe_fd[0]);
 		if (fd_outfile == 0 && dup2(pipe_fd[1], STDOUT_FILENO) == -1)
-			throw_error("fail on redirection pid == 0", 1);
+			throw_error("fail on redirection in child process", 1);
 		if (fd_outfile != 0 && dup2(fd_outfile, STDOUT_FILENO) == -1)
-			throw_error("fail on redirection pid == 0", 1);
+			throw_error("fail on redirection in child process", 1);
 		close(pipe_fd[1]);
 		execute_command(command, envp);
 	}
 	else
 		if (close(pipe_fd[1]) == -1 || dup2(pipe_fd[0], STDIN_FILENO) == -1
 			|| close(pipe_fd[0]))
-			perror("error on parent process");
-			// throw_error("fail on redirection  pid > 0", 1);
+			throw_error("error on parent process", 1);
 	return (pid);
 }
 
@@ -65,9 +64,11 @@ static int	here_doc(char *limiter, int argc)
 	fd = open_file(HERE_DOC_NAME, 0);
 	if (fd == -1)
 		throw_error("fail to open temp heredoc file", 1);
+	write(1, "soohyukdoc> ", 12);
 	read_line = get_next_line(0);
 	while (read_line && ft_strcmp(read_line, limiter) != 0)
 	{
+		write(1, "soohyukdoc> ", 12);
 		write(fd, read_line, ft_strlen(read_line));
 		free(read_line);
 		read_line = get_next_line(0);

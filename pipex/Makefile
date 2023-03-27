@@ -6,7 +6,7 @@
 #    By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/13 17:53:16 by soohong           #+#    #+#              #
-#    Updated: 2023/03/22 19:58:45 by soohong          ###   ########.fr        #
+#    Updated: 2023/03/23 14:20:52 by soohong          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,69 +32,59 @@ GET_NEXT_LINE = get_next_line
 
 NAME = pipex
 
-BONUS = pipex_bonus
-
 HEADER = includes
 
 SRCDIR = ./srcs
 OBJDIR = ./objects
 
-SOURCES = pipex.c \
+SOURCES_M = pipex.c \
 pipex_utils.c \
 
-BONUS_SOURCES = pipex_bonus.c \
+SOURCES_B = pipex_bonus.c \
 pipex_utils_bonus.c \
 
-SRCS = $(addprefix $(SRCDIR)/,$(SOURCES))
-OBJS = $(addprefix $(OBJDIR)/,$(SOURCES:%.c=%.o))
+SRCS_M = $(addprefix $(SRCDIR)/,$(SOURCES_M))
+OBJS_M = $(addprefix $(OBJDIR)/,$(SOURCES_M:%.c=%.o))
 
-BONUS_SRCS = $(addprefix $(SRCDIR)/,$(BONUS_SOURCES))
-BONUS_OBJS = $(addprefix $(OBJDIR)/,$(BONUS_SOURCES:%.c=%.o))
+SRCS_B = $(addprefix $(SRCDIR)/,$(SOURCES_B))
+OBJS_B = $(addprefix $(OBJDIR)/,$(SOURCES_B:%.c=%.o))
 
 LFT = -L libft -lft
 GNL = -L get_next_line -lgnl
 
 all : libraries makedir $(NAME)
 
-bonus : bonus_libraries makedir $(BONUS)
+$(NAME) : $(OBJS_M)
+	@$(GCC) -o $(NAME) $(OBJS_M) $(LFT) $(GNL)
+	@echo "$(BLUE)Linking object files -> $(WHITE)$(notdir $@)[Done]$(NOC)"
 
-$(NAME) : $(OBJS)
-	@$(GCC) -o $(NAME) $(OBJS) $(LFT)
-	@echo "$(BLUE)Linking object files -> $(WHITE)$(notdir $@)... $(RED)[Done]$(NOC)"
-
-$(BONUS) : $(BONUS_OBJS)
-	@$(GCC) -o $(BONUS) $(BONUS_OBJS) $(LFT) $(GNL)
-	@echo "$(BLUE)Linking object files -> $(WHITE)$(notdir $@)... $(RED)[Done]$(NOC)"
+bonus : libraries makedir $(OBJS_B)
+	@$(GCC) -o $(NAME) $(OBJS_B) $(LFT) $(GNL)
+	@echo "$(BLUE)Linking object files -> $(WHITE)$(notdir $@)[Done]$(NOC)"
 
 libraries :
 	@echo "$(GREEN)Creating lib files$(CYAN)"
-	@make -C $(LIBFT)
-
-bonus_libraries :
-	@echo "$(GREEN)Creating lib files$(CYAN)"
-	@make -C $(LIBFT)
 	@make -C $(GET_NEXT_LINE)
+	@make -C $(LIBFT)
 
 makedir:
 	@mkdir -p objects
 
 $(OBJDIR)/%.o : $(SRCDIR)/%.c $(HEADER)/$(NAME).h
 	@$(GCC) $(FLAG) -c $< -o $@
-	@echo "$(BLUE)Compiling object file -> $(WHITE)$(notdir $@)... $(RED)[Done]$(NOC)"
+	@echo "$(BLUE)Compiling object file -> $(WHITE)$(notdir $@)[Done]$(NOC)"
 
 clean:
-	@echo "$(GREEN)Supressing libraries files$(CYAN)"
+	@echo "$(GREEN)Remove objects files and libraries.$(CYAN)"
+	@rm -rf $(OBJDIR)
 	@make clean -C $(LIBFT)
 	@make clean -C $(GET_NEXT_LINE)
-	@rm -rf $(OBJDIR)
 
 fclean: clean
-	@echo "$(GREEN)Supressing libraries files$(CYAN)"
-	@rm -rf $(OBJDIR)
-	@rm -f $(NAME)
-	@rm -f $(BONUS)
+	@echo "$(GREEN)Remove exec file.$(CYAN)"
 	@make fclean -C $(LIBFT)
 	@make fclean -C $(GET_NEXT_LINE)
+	@rm -f $(NAME)
 
 re: fclean all
 
