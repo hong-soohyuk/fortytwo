@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 20:22:51 by soohong           #+#    #+#             */
-/*   Updated: 2023/03/22 20:25:57 by soohong          ###   ########.fr       */
+/*   Updated: 2023/03/27 19:24:09 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,12 @@
 
 double	find_real(double x, double width_start, double width_end)
 {
-	return (width_start + (width_end - width_start) * ((x - 0) / (WIDTH - 0)));
+	return (width_start + (width_end - width_start) * (x / WIDTH));
 }
 
 double	find_imaginary(double y, double height_start, double height_end)
 {
-	return (height_start + (height_end - height_start)
-		* ((y - 0) / (HEIGHT - 0)));
+	return (height_start + (height_end - height_start) * (y / HEIGHT));
 }
 
 int	mandelbrot(t_mlx *mlx, int x, int y)
@@ -39,7 +38,7 @@ int	mandelbrot(t_mlx *mlx, int x, int y)
 		&& i < mlx->max_iter)
 	{
 		temp = p.real * p.real - p.imaginary * p.imaginary + s.real;
-		p.imaginary = 2 * p.real * p.imaginary + s.imaginary;
+		p.imaginary = 2.0f * p.real * p.imaginary + s.imaginary;
 		p.real = temp;
 		i++;
 	}
@@ -82,7 +81,7 @@ int	tricorn(t_mlx *mlx, int x, int y)
 		&& i < mlx->max_iter)
 	{
 		temp = p.real * p.real - p.imaginary * p.imaginary + s.real;
-		p.imaginary = -2 * p.real * p.imaginary + s.imaginary;
+		p.imaginary = -2.0f * p.real * p.imaginary + s.imaginary;
 		p.real = temp;
 		i++;
 	}

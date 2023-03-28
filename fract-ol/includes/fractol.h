@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 14:55:04 by soohong           #+#    #+#             */
-/*   Updated: 2023/03/10 13:27:52 by soohong          ###   ########.fr       */
+/*   Updated: 2023/03/27 22:06:18 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct s_complex
 typedef struct s_mlx
 {
 	void	*mlx_ptr;
-	void	*window_ptr;
+	void	*win_ptr;
 	void	*image_ptr;
 	char	*address;
 	int		bits_per_pixel;
@@ -67,8 +67,9 @@ int				mandelbrot(t_mlx *mlx, int x, int y);
 int				julia(t_mlx *mlx, int x, int y);
 int				tricorn(t_mlx *mlx, int x, int y);
 int				julia_mouse(int x, int y, t_mlx *mlx);
-double			find_real(double x, double min, double max);
-double			find_imaginary(double x, double min, double max);
+double			find_real(double x, double width_start, double width_end);
+double			find_imaginary(double y, double height_start,
+					double height_end);
 void			throw_error(t_mlx *mlx);
 int				exit_hook(void);
 

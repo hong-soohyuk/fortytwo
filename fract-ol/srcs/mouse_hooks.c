@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 20:20:01 by soohong           #+#    #+#             */
-/*   Updated: 2023/03/10 13:30:23 by soohong          ###   ########.fr       */
+/*   Updated: 2023/03/27 21:53:37 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ static int	zoom_in(int x, int y, t_mlx *mlx)
 			/ (double)HEIGHT) + (double)mlx->height_start;
 	ratio = 0.9f;
 	mlx->zoom *= ratio;
-	mlx->width_end = mlx->width_end * ratio + move_x * (1 - ratio);
 	mlx->width_start = mlx->width_start * ratio + move_x * (1 - ratio);
-	mlx->height_end = mlx->height_end * ratio + move_y * (1 - ratio);
+	mlx->width_end = mlx->width_end * ratio + move_x * (1 - ratio);
 	mlx->height_start = mlx->height_start * ratio + move_y * (1 - ratio);
+	mlx->height_end = mlx->height_end * ratio + move_y * (1 - ratio);
 	return (0);
 }
 
@@ -45,10 +45,10 @@ static int	zoom_out(int x, int y, t_mlx *mlx)
 			/ (double)HEIGHT) + mlx->height_start;
 	ratio = 1.1f;
 	mlx->zoom *= ratio;
-	mlx->width_end = mlx->width_end * ratio + move_x * (1 - ratio);
 	mlx->width_start = mlx->width_start * ratio + move_x * (1 - ratio);
-	mlx->height_end = mlx->height_end * ratio + move_y * (1 - ratio);
+	mlx->width_end = mlx->width_end * ratio + move_x * (1 - ratio);
 	mlx->height_start = mlx->height_start * ratio + move_y * (1 - ratio);
+	mlx->height_end = mlx->height_end * ratio + move_y * (1 - ratio);
 	return (0);
 }
 
@@ -59,8 +59,8 @@ int	julia_mouse(int x, int y, t_mlx *mlx)
 
 	if (mlx->julia_active)
 	{
-		new_real = find_real(x, -1, 1);
-		new_imaginary = find_imaginary(y, -1, 1);
+		new_real = find_real(x, mlx->width_start, mlx->width_end);
+		new_imaginary = find_imaginary(y, mlx->height_start, mlx->height_end);
 		mlx->c_real = new_real;
 		mlx->c_imag = new_imaginary;
 		pixel_loop(mlx);

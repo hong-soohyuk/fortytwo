@@ -6,7 +6,7 @@
 #    By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/03 17:43:02 by soohong           #+#    #+#              #
-#    Updated: 2023/02/27 21:01:28 by soohong          ###   ########.fr        #
+#    Updated: 2023/03/27 18:54:10 by soohong          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,8 +23,7 @@ CYAN        = \033[1;36m
 WHITE       = \033[1;37m
 
 CC = cc
-FLAG = -Wall -Wextra -Werror -g
-# FLAG = -w
+FLAG = -Wall -Wextra -Werror
 
 NAME = fractol
 

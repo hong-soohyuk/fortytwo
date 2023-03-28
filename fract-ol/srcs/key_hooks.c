@@ -6,7 +6,7 @@
 /*   By: soohong <soohong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 20:20:01 by soohong           #+#    #+#             */
-/*   Updated: 2023/03/10 13:25:18 by soohong          ###   ########.fr       */
+/*   Updated: 2023/03/27 17:47:16 by soohong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	key_hook(int keycode, t_mlx *mlx)
 {
 	if (keycode == KEY_ESCAPE)
 	{
-		mlx_destroy_window(mlx->mlx_ptr, mlx->window_ptr);
+		mlx_destroy_window(mlx->mlx_ptr, mlx->win_ptr);
 		exit(0);
 	}
 	if (keycode == KEY_BACKSPACE)
