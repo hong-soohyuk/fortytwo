@@ -1,19 +1,6 @@
-# 42 CURSUS
-
-42서울에서 진행하는 ecole42 본 과정 과제를 기록하기 위한 repository.
-
-
-
------
-
-
------
-
-## printf
-
------
-
 ## born2beroot
+🖥️
+
 virtual machine에 linux를 설치하고, package manager, sudo, password policy, ufw를 학습.
 
 - ### 1) vm?
@@ -44,5 +31,3 @@ Uncomplicated Firewall은 말 그대로 복잡하지 않고 간단한 명령어�
 > Daemon: 사용자의 영역에서 벗어나 Background에서 실행되고있는 프로세스를 말한다. 어원은 맥스웰의 악마로, 눈에 보이지 않고도 알아서 할 일을 다 해준다는 의미에서 명칭을 가져왔다
 
 추가로, sudo 권한을 편집할 수 있는 `visudo`에서 `requiretty` 을 설정하는데, cron와 같은 daemon이 함부로 sudo 명령어를 실행하지 않게 하기 위한 설정이다.
-
------
